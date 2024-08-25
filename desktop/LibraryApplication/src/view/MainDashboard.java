@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author olwia
@@ -51,6 +53,11 @@ public class MainDashboard extends javax.swing.JFrame {
         jLabel1.setText("Library Management System");
 
         BtnManageBorrowers1.setText("Manage Borrowers");
+        BtnManageBorrowers1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnManageBorrowers1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,11 +94,36 @@ public class MainDashboard extends javax.swing.JFrame {
 
     private void BtnManageBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageBooksActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        BooksManager bm = new BooksManager();
+        JFrame frame = new JFrame("Books Manager");
+        frame.getContentPane().add(bm);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }//GEN-LAST:event_BtnManageBooksActionPerformed
 
     private void BtnManageAuthorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageAuthorsActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        AuthorsManager am = new AuthorsManager();
+        JFrame frame = new JFrame("Authors Manager");
+        frame.getContentPane().add(am);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }//GEN-LAST:event_BtnManageAuthorsActionPerformed
+
+    private void BtnManageBorrowers1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageBorrowers1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        BorrowerManager bm = new BorrowerManager();
+        JFrame frame = new JFrame("Borrower Manager");
+        frame.getContentPane().add(bm);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_BtnManageBorrowers1ActionPerformed
 
     /**
      * @param args the command line arguments
