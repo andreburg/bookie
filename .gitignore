@@ -25,3 +25,9 @@ replay_pid*
 /desktop/MainDashboard/nbproject/private/
 /desktop/LibraryApplication/nbproject/private/
 /desktop/LibraryApplication/build/
+
+
+.idea
+
+
+bookie.iml
