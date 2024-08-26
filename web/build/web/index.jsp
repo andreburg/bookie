@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>JSP Page</title>
         <link rel="stylesheet" href="/style/globals.css" />
     </head>
@@ -45,16 +46,9 @@
                     <p>Free Delivery On Your First Order*</p>
                 </div>
                 <div class="why-us-point">
-                    <img src="/assets/tag.svg"/>
-                    <p>Competitive Pricing</p>
-                </div>
-                <div class="why-us-point">
                     <img src="/assets/package.svg"/>
                     <p>Order Tracking</p>
                 </div>
-            </div>
-            <div>
-                
             </div>
         </main>
     </body>

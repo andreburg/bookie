@@ -106,7 +106,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     gap: 5rem;
     justify-content: space-between;
-    padding: 2rem;
+    flex-wrap: wrap;
 }
 
 .why-us-point{
@@ -121,4 +121,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     height: 2rem;
     color: hsl(var(--accent));
     filter: invert(59%) sepia(93%) saturate(736%) hue-rotate(350deg) brightness(101%) contrast(101%);
+}
+
+.why-us-sub {
+    max-width: 960px;
+    width: 100%;
+    display: flex;
+    gap: 5rem;
+    justify-content: center;
 }
