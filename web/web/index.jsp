@@ -31,29 +31,25 @@
                     </p>
                 </div>
             </div>
-            <div>
-                <div>
-                    <img/>
+            <div class="why-us-section">
+                <div class="why-us-point">
+                    <img src="/assets/headset.svg"/>
                     <p>24/7 customer service</p>
                 </div>
-                <div>
-                    <img/>
-                    <p>Easy Returns</p>
-                </div>
-                <div>
-                    <img/>
+                <div class="why-us-point">
+                    <img src="/assets/award.svg"/>
                     <p>A-Z Guarantee</p>
                 </div>
-                <div>
-                    <img/>
+                <div class="why-us-point">
+                    <img src="/assets/truck.svg"/>
                     <p>Free Delivery On Your First Order*</p>
                 </div>
-                <div>
-                    <img/>
-                    <p>Delivery pick-up locations</p>
+                <div class="why-us-point">
+                    <img src="/assets/tag.svg"/>
+                    <p>Competitive Pricing</p>
                 </div>
-                <div>
-                    <img/>
+                <div class="why-us-point">
+                    <img src="/assets/package.svg"/>
                     <p>Order Tracking</p>
                 </div>
             </div>

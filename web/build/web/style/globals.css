@@ -47,7 +47,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5rem;
+    gap: 10rem;
 }
 
 .nav-header {
@@ -62,6 +62,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     align-items: center;
     color: hsl(var(--muted-foreground));
     gap: 2rem;
+    max-width: 960px;
+    flex-wrap: wrap;
 }
 
 .info-img{
@@ -97,4 +99,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color: hsl(var(--secondary-foreground));
     padding: 0.5rem 1.5rem;
     background-color: hsl(var(--secondary));
+}
+
+.why-us-section{
+    max-width: 960px;
+    display: flex;
+    gap: 5rem;
+    justify-content: space-between;
+    background-color: hsl(var(--secondary));
+    padding: 2rem;
+}
+
+.why-us-point{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: hsl(var(--accent));
+    font-size: var(--font-sm)
+}
+
+.why-us-point > img{
+    height: 2rem;
+    color: hsl(var(--accent));
+    filter: invert(59%) sepia(93%) saturate(736%) hue-rotate(350deg) brightness(101%) contrast(101%);
 }
