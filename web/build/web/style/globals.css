@@ -106,7 +106,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     gap: 5rem;
     justify-content: space-between;
-    background-color: hsl(var(--secondary));
     padding: 2rem;
 }
 
