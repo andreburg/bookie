@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,9 +16,7 @@
     </head>
     <body>
         <main class="main-section">
-            <nav class="nav-header">
-                <img src="/assets/bookie-logo.svg"/>
-            </nav>
+            <tags:header />
             <div id="loginForm">
                 <form action="action">
                     <div class="user-input">
