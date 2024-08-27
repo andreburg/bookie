@@ -14,7 +14,7 @@ import java.sql.*;
 public class ConnectionProvider {
     public ConnectionProvider(){}
     
-    String username = "postgres";
+    String username = "avnadmin";
     String pwd = "";
     private static final String conURL = "jdbc:postgresql://pg-24fc2e18-librarybookie.f.aivencloud.com:27682/defaultdb";
     private static final String DRIVER = "org.postgresql.Driver";

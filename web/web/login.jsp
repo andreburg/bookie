@@ -20,6 +20,7 @@
     </head>
     <body>
         <main class="main-section">
+            <tags:auth-check/>
             <tags:header />
             <div id="loginForm">
                 <form action="authenticate" method="POST" id="side-One">

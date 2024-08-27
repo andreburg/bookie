@@ -17,7 +17,8 @@
     </head>
     <body>
         <main class="main-section">
-            <tags:header />
+            <tags:auth-check/>
+            <tags:header/>
             <div id="loginForm">
                 <form action="action" id="side-One">
                     <div id="user-input-text">
@@ -42,4 +43,4 @@
             </div>
         </main>    
     </body>
-</html>
+</html

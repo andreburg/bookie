@@ -24,9 +24,9 @@
                 
                 if(cookies != null){
                     for(Cookie cookie: cookies){
-                        if(cookie.getName() == "username")
-                            username = cookie.getValue();
-                        
+                        if(cookie.getName().equals("username")) {
+                        username = cookie.getValue();
+                        }   
                     }
                 }
                                 
