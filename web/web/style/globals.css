@@ -130,3 +130,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     gap: 5rem;
     justify-content: center;
 }
+
+#loginForm {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-input input {
+    padding: 8rem;
+}
