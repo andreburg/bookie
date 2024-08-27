@@ -18,18 +18,25 @@
         <main class="main-section">
             <tags:header />
             <div id="loginForm">
-                <form action="action">
-                    <div class="user-input">
-                        <label>Username</label>
-                        <input type="text" name ="" id=""></input>
+                <form action="action" id="side-One">
+                    <div id="user-input-text">
+                        <h3>Welcome back</h3>
+                        <p>Welcome back! Please enter your details. </p>
                     </div>
                     <div class="user-input">
-                        <label>Password</label>
-                        <input type="password" name ="" id=""></input>
+                        <label for="username">Username</label>
+                        <input type="text" name ="username" id="username"></input>
+                    </div>
+                    <div class="user-input">
+                        <label for="password">Password</label>
+                        <input type="password" name ="password" id="password"></input>
+                    </div>
+                    <div class="user-input">
+                        <button>Sign in</button>
                     </div>
                 </form>
-                <div>
-                    <p>text</p>
+                <div id="side-Two">
+                    <img src="/assets/bird.svg" class="bird"/>
                 </div>
             </div>
         </main>

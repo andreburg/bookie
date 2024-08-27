@@ -19,6 +19,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     
     --accent: 37, 100%, 53%;
     
+    --loginSideOne: 0, 0%, 85%, 10%;
+    --loginSideTwo: 0, 0%, 28%, 10%;
+    
     --success: 100, 100%, 30%;
     --descructive: 0, 100%, 67%;
     
@@ -134,13 +137,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 #loginForm {
     display: flex;
     flex-direction: row;
+    max-width: 960px;
 }
 
 .user-input {
     display: flex;
     flex-direction: column;
+    padding: 1rem;
 }
 
-.user-input input {
-    padding: 8rem;
+.user-input button {
+    color: white;
+    background-color: hsl(var(--secondary));
+}
+
+#user-input-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+#user-input-text p {
+    font-size: x-small;
+}
+
+#side-One {
+    background-color: hsl(var(--loginSideOne));
+    width: 100%;
+    padding: 2rem;
+}
+
+#side-Two {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(var(--loginSideTwo));
+    width: 100%;
+    padding: 2rem;
 }
