@@ -8,180 +8,182 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 :root {
-    --primary: 0, 0%, 97%;
-    --primary-foreground: 0, 0%, 15%;
-    
-    --secondary: 359, 14%, 38%;
-    --secondary-foreground: 0, 0%, 90%;
-    
-    --muted: 0, 0%, 90%;
-    --muted-foreground: 0, 0%, 48%;
-    
-    --accent: 37, 100%, 53%;
-    
-    --loginSideOne: 0, 0%, 85%, 10%;
-    --loginSideTwo: 0, 0%, 28%, 10%;
-    --loginFont: 0, 0%, 48%, 100%;
-    
-    --success: 100, 100%, 30%;
-    --descructive: 0, 100%, 67%;
-    
-    --rounded-full: 100%;
-    --rounded-lg: 10rem;
-    --rounded-md: 5rem;
-    --rounded-sm: 2rem;
-    
-    --font-4xl: 2rem;
-    --font-3xl: 1.75rem;
-    --font-2xl: 1.5rem;
-    --font-xl: 1.25rem;
-    --font-lg: 1.25rem;
-    --font-md: 1rem;
-    --font-sm: 0.75rem;
-    --font-xs: 0.6rem;
-    --font-2xs: 0.5rem;
+  --primary: 0, 0%, 97%;
+  --primary-foreground: 0, 0%, 15%;
+
+  --secondary: 359, 14%, 38%;
+  --secondary-foreground: 0, 0%, 90%;
+
+  --muted: 0, 0%, 90%;
+  --muted-foreground: 0, 0%, 48%;
+
+  --accent: 37, 100%, 53%;
+
+  --loginSideOne: 0, 0%, 85%, 10%;
+  --loginSideTwo: 0, 0%, 28%, 10%;
+  --loginFont: 0, 0%, 48%, 100%;
+
+  --success: 100, 100%, 30%;
+  --descructive: 0, 100%, 67%;
+
+  --rounded-full: 100%;
+  --rounded-lg: 10rem;
+  --rounded-md: 5rem;
+  --rounded-sm: 2rem;
+
+  --font-4xl: 2rem;
+  --font-3xl: 1.75rem;
+  --font-2xl: 1.5rem;
+  --font-xl: 1.25rem;
+  --font-lg: 1.25rem;
+  --font-md: 1rem;
+  --font-sm: 0.75rem;
+  --font-xs: 0.6rem;
+  --font-2xs: 0.5rem;
 }
 
 * {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 .main-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rem;
 }
 
 .nav-header {
-    max-width: 960px;
-    width: 100%;
+  max-width: 960px;
+  width: 100%;
 }
 
-.auth-prompt{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: hsl(var(--muted-foreground));
-    gap: 2rem;
-    max-width: 960px;
-    flex-wrap: wrap;
+.auth-prompt {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: hsl(var(--muted-foreground));
+  gap: 2rem;
+  max-width: 960px;
+  flex-wrap: wrap;
 }
 
-.info-img{
-    width: 3rem;
+.info-img {
+  width: 3rem;
 }
 
-.auth-prompt-nav{
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.auth-prompt-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.auth-prompt-message{
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.auth-prompt-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .auth-prompt-register {
-    font-size: var(--font-sm);
+  font-size: var(--font-sm);
 }
 
-.auth-prompt-register > a{
-    color: inherit;
-    font-weight: bold;
+.auth-prompt-register > a {
+  color: inherit;
+  font-weight: bold;
 }
 
 .auth-prompt-login {
-    font-size: var(--font-md);
-    text-decoration: none;
-    color: hsl(var(--secondary-foreground));
-    padding: 0.5rem 1.5rem;
-    background-color: hsl(var(--secondary));
+  font-size: var(--font-md);
+  text-decoration: none;
+  color: hsl(var(--secondary-foreground));
+  padding: 0.5rem 1.5rem;
+  background-color: hsl(var(--secondary));
 }
 
-.why-us-section{
-    max-width: 960px;
-    display: flex;
-    gap: 5rem;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.why-us-section {
+  max-width: 960px;
+  display: flex;
+  gap: 5rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.why-us-point{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    color: hsl(var(--accent));
-    font-size: var(--font-sm)
+.why-us-point {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: hsl(var(--accent));
+  font-size: var(--font-sm);
 }
 
-.why-us-point > img{
-    height: 2rem;
-    color: hsl(var(--accent));
-    filter: invert(59%) sepia(93%) saturate(736%) hue-rotate(350deg) brightness(101%) contrast(101%);
+.why-us-point > img {
+  height: 2rem;
+  color: hsl(var(--accent));
+  filter: invert(59%) sepia(93%) saturate(736%) hue-rotate(350deg)
+    brightness(101%) contrast(101%);
 }
 
 .why-us-sub {
-    max-width: 960px;
-    width: 100%;
-    display: flex;
-    gap: 5rem;
-    justify-content: center;
+  max-width: 960px;
+  width: 100%;
+  display: flex;
+  gap: 5rem;
+  justify-content: center;
 }
 
 #loginForm {
-    display: flex;
-    flex-direction: row;
-    max-width: 960px;
+  display: flex;
+  flex-direction: row;
+  max-width: 960px;
 }
 
 .user-input {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
 }
 
-.user-input label{
-    font-weight: bold;
-    padding: 1rem;
-    font-size: small;
+.user-input label {
+  font-weight: bold;
+  padding: 1rem;
+  font-size: small;
+}
 
 .user-input button {
-    color: white;
-    background-color: hsl(var(--secondary));
-    padding: 0.5rem;
+  color: white;
+  background-color: hsl(var(--secondary));
+  padding: 0.5rem;
 }
 
 #user-input-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.3rem;
 }
 
 #user-input-text p {
-    font-size: x-small;
-    color: hsl(var(--loginFont));
+  font-size: x-small;
+  color: hsl(var(--loginFont));
 }
 
 #side-One {
-    background-color: hsl(var(--loginSideOne));
-    width: 477px;
-    padding: 4rem;
+  background-color: hsl(var(--loginSideOne));
+  width: 477px;
+  padding: 4rem;
 }
 
 #side-Two {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: hsl(var(--loginSideTwo));
-    width: 477px;
-    padding: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(var(--loginSideTwo));
+  width: 477px;
+  padding: 4rem;
 }
