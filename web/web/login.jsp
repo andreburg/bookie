@@ -11,6 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/static/style/globals.css" />
         <title>Login</title>
     </head>
@@ -20,19 +21,16 @@
             <div id="loginForm">
                 <form action="action" id="side-One">
                     <div id="user-input-text">
-                        <h3>Welcome back</h3>
+                        <h2>Welcome back</h2>
                         <p>Welcome back! Please enter your details. </p>
                     </div>
                     <div class="user-input">
-                        <label for="username">Username</label>
-                        <input type="text" name ="username" id="username"></input>
-                    </div>
-                    <div class="user-input">
-                        <label for="password">Password</label>
-                        <input type="password" name ="password" id="password"></input>
-                    </div>
-                    <div class="user-input">
+                        <div class="input-wrapper">
+                            <input type="text" name ="username" id="username" placeholder="Username">
+                            <input type="password" name ="password" id="password" placeholder="Password">
+                        </div>
                         <button>Sign in</button>
+                        <p>Don't have an account? <span><a href='/register'>Register</a></span></p>
                     </div>
                 </form>
                 <div id="side-Two">
