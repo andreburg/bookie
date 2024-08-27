@@ -73,4 +73,60 @@ public class ConnectionProvider {
         }
         return false;
     }
+    
+    public boolean register(String username, String password, String firstName, String lastName, String email, String phone) throws ClassNotFoundException {
+        Connection conn = null;
+        PreparedStatement pstmtRegister = null;
+        PreparedStatement pstmtLogin = null;
+
+        try {
+            conn = getCon();
+            conn.setAutoCommit(false);
+            
+            pstmtRegister = conn.prepareStatement("INSERT INTO registration (username, first_name, last_surname, password, email_address, phone_number) VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            pstmtRegister.setString(1, username);
+            pstmtRegister.setString(2, firstName);
+            pstmtRegister.setString(3, lastName);
+            pstmtRegister.setString(4, password);
+            pstmtRegister.setString(5, email);
+            pstmtRegister.setString(6, phone);
+            pstmtRegister.executeUpdate();
+
+            ResultSet generatedKeys = pstmtRegister.getGeneratedKeys();
+            int registrationId = 0;
+            if (generatedKeys.next()) {
+                System.out.println(generatedKeys.getInt(1));
+                registrationId = generatedKeys.getInt(1);
+            }
+
+            String loginSQL = "INSERT INTO login (username, password, registration_id) VALUES (?, ?, ?)";
+            pstmtLogin = conn.prepareStatement(loginSQL);
+            pstmtLogin.setString(1, username);
+            pstmtLogin.setString(2, password);
+            pstmtLogin.setInt(3, registrationId);
+            pstmtLogin.executeUpdate();
+
+            conn.commit();
+
+            return true;
+        } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmtRegister != null) pstmtRegister.close();
+                if (pstmtLogin != null) pstmtLogin.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
 }
