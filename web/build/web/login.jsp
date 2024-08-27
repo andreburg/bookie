@@ -6,6 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="app.ConnectionProvider" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -19,17 +22,17 @@
         <main class="main-section">
             <tags:header />
             <div id="loginForm">
-                <form action="action" id="side-One">
+                <form action="authenticate" method="POST" id="side-One">
                     <div id="user-input-text">
                         <h2>Welcome back</h2>
                         <p>Welcome back! Please enter your details. </p>
                     </div>
                     <div class="user-input">
                         <div class="input-wrapper">
-                            <input type="text" name ="username" id="username" placeholder="Username">
-                            <input type="password" name ="password" id="password" placeholder="Password">
+                            <input type="text" name ="txtUsername" id="username" placeholder="Username">
+                            <input type="password" name ="txtPassword" id="password" placeholder="Password">
                         </div>
-                        <button>Sign in</button>
+                        <input id="sign-in-button" type="submit" value="Sign in">
                         <p>Don't have an account? <span><a href='/register'>Register</a></span></p>
                     </div>
                 </form>

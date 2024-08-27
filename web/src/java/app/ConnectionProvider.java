@@ -1,3 +1,5 @@
+package app;
+
 
 import java.sql.*;
 /*
@@ -39,7 +41,7 @@ public class ConnectionProvider {
         try{
             conn = getCon();
             
-            pstmt = conn.prepareStatement("INSERT INTO Student (id, name, surname) VALUES (?, ?, ?)");
+            pstmt = conn.prepareStatement("INSERT INTO login (id, name, surname) VALUES (?, ?, ?)");
             pstmt.setString(1, id);
             pstmt.setString(2, n);
             pstmt.setString(3, s);
@@ -49,5 +51,26 @@ public class ConnectionProvider {
         catch(SQLException ex){
             System.out.println("Could not add data: " + ex.getMessage());
         }
+    }
+    public boolean validate(String username, String password) throws ClassNotFoundException {
+        Connection conn;
+        PreparedStatement pstmt;
+        
+        try{
+            conn = getCon();
+            
+            pstmt = conn.prepareStatement("SELECT * FROM login WHERE username = ? AND password = ?");
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            
+            ResultSet rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                return true;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
