@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -83,7 +84,12 @@ public class authenticate extends HttpServlet {
             
             
             if(cp.validate(username, password)) {
-                response.sendRedirect("welcome.jsp");
+                Cookie cookie = new Cookie("username", username);
+                cookie.setMaxAge(60*60*24*7);
+                cookie.setHttpOnly(true);
+                response.addCookie(cookie);
+                
+                response.sendRedirect("/");
             }else {
                 response.sendRedirect("login.jsp?error=Invalid credentials");
             }
