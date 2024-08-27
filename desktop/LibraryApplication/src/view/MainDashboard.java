@@ -4,7 +4,7 @@
  */
 package view;
 import javax.swing.JFrame;
-import libraryApplication.DataHandler;
+import controller.DataController;
 /**
  *
  * @author olwia
@@ -142,14 +142,8 @@ public class MainDashboard extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_BtnManageBorrowers1ActionPerformed
 
-
     
-    
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static DataHandler dh = new DataHandler();
+    public static DataController dc = new DataController();
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -180,13 +174,11 @@ public class MainDashboard extends javax.swing.JFrame {
             public void run() {
                 new MainDashboard().setVisible(true);
                 try{
-                    dh.connect();
-                  //  dh.createTables();
-                    
+                    dc.connect();
+                    //  dc.createTables();                    
                 }catch(ClassNotFoundException ex){
                     ex.printStackTrace();
-                }
-                    
+                }                    
             }
         });
     }

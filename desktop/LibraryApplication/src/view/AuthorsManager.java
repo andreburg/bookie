@@ -7,14 +7,9 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import libraryApplication.DataHandler;
+import controller.DataController;
+import controller.AuthorController;
 
-
-
-/**
- *
- * @author olwia
- */
 public class AuthorsManager extends javax.swing.JPanel {
 
     /**
@@ -47,6 +42,8 @@ public class AuthorsManager extends javax.swing.JPanel {
         tfAuthorName = new javax.swing.JTextField();
         javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
         tfAuthorLastName = new javax.swing.JTextField();
+
+        setPreferredSize(new java.awt.Dimension(1080, 540));
 
         TableAuthors.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -219,16 +216,15 @@ public class AuthorsManager extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public static DataHandler dh = new DataHandler();
+    public static DataController dc = new DataController();
     private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
-        // TODO add your handling code here:
         try{
-                    dh.connect();
-                  //  dh.createTables();
-                    
-                }catch(ClassNotFoundException ex){
-                    ex.printStackTrace();
-                }
+            dc.connect();
+            //  dh.createTables();
+
+        }catch(ClassNotFoundException ex){
+            ex.printStackTrace();
+        }                
         String id = tfAuthorID.getText();
         String name = tfAuthorName.getText();
         String lastName = tfAuthorLastName.getText();
@@ -241,17 +237,12 @@ public class AuthorsManager extends javax.swing.JPanel {
                     JOptionPane.ERROR_MESSAGE);
         }else
         {
-            dh.addAuthor(id,name,lastName);
+            //Add Author
+            
             DefaultTableModel model = (DefaultTableModel) TableAuthors.getModel();
             
-            model.addRow(new Object[]{id, name,lastName});
-            
-               
-        }
-        
-        
-      
-        
+            model.addRow(new Object[]{id, name,lastName});                           
+        }        
     }//GEN-LAST:event_BtnAddActionPerformed
 
     private void BtnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewActionPerformed

@@ -49,26 +49,26 @@ public class BooksManager extends javax.swing.JPanel {
         tfBookReturnedDate = new javax.swing.JTextField();
         javax.swing.JLabel jLabel8 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel9 = new javax.swing.JLabel();
-        tfBookLastBorrowedDate1 = new javax.swing.JTextField();
+        tfBookLastBorrowedDate = new javax.swing.JTextField();
+        javax.swing.JLabel jLabel10 = new javax.swing.JLabel();
+        tfBorrowerID = new javax.swing.JTextField();
 
+        setPreferredSize(new java.awt.Dimension(1080, 540));
         setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Title", "Genre", "ISBN Code", "Availability ", "LBD", "Date Returned"
+                "ID", "Title", "Genre", "ISBN Code", "Availability ", "LBD", "Date Returned", "Borrower ID"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true
+                false, true, true, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -87,7 +87,7 @@ public class BooksManager extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel1.setText("Books");
         add(jLabel1);
-        jLabel1.setBounds(450, 10, 115, 50);
+        jLabel1.setBounds(430, 10, 230, 50);
 
         BtnAdd.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnAdd.setText("Add");
@@ -147,65 +147,77 @@ public class BooksManager extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("ID:");
         add(jLabel2);
-        jLabel2.setBounds(20, 80, 16, 16);
+        jLabel2.setBounds(30, 90, 16, 16);
 
         tfBookID.setText("Enter ID");
         add(tfBookID);
-        tfBookID.setBounds(20, 110, 240, 22);
+        tfBookID.setBounds(20, 110, 240, 26);
 
         tfBookISBNCode.setText("Enter ISBN code");
+        tfBookISBNCode.setToolTipText("");
         add(tfBookISBNCode);
-        tfBookISBNCode.setBounds(290, 110, 240, 22);
+        tfBookISBNCode.setBounds(290, 110, 240, 26);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Title:");
         add(jLabel4);
-        jLabel4.setBounds(20, 140, 110, 16);
+        jLabel4.setBounds(30, 150, 110, 16);
 
         tfBookTitle.setText("Enter book title");
         add(tfBookTitle);
-        tfBookTitle.setBounds(20, 170, 240, 22);
+        tfBookTitle.setBounds(20, 170, 240, 26);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("ISBN Code:");
         add(jLabel5);
-        jLabel5.setBounds(290, 80, 190, 16);
+        jLabel5.setBounds(300, 90, 190, 16);
 
         tfBookAvailability.setText("Stock Available");
         add(tfBookAvailability);
-        tfBookAvailability.setBounds(290, 170, 240, 22);
+        tfBookAvailability.setBounds(290, 170, 240, 26);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Genre:");
         add(jLabel6);
-        jLabel6.setBounds(20, 210, 130, 16);
+        jLabel6.setBounds(30, 220, 130, 16);
 
         tfBookGenre.setText("Enter book genre");
         add(tfBookGenre);
-        tfBookGenre.setBounds(20, 240, 240, 22);
+        tfBookGenre.setBounds(20, 240, 240, 26);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Returned Date:");
         add(jLabel7);
-        jLabel7.setBounds(570, 80, 150, 16);
+        jLabel7.setBounds(570, 90, 150, 16);
 
         tfBookReturnedDate.setText("Enter returned date");
         add(tfBookReturnedDate);
-        tfBookReturnedDate.setBounds(560, 110, 250, 22);
+        tfBookReturnedDate.setBounds(560, 110, 250, 26);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Availability:");
         add(jLabel8);
-        jLabel8.setBounds(290, 140, 200, 16);
+        jLabel8.setBounds(300, 150, 200, 16);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setText("Last Borrowed Date:");
+        jLabel9.setText("Borrower ID:");
         add(jLabel9);
-        jLabel9.setBounds(290, 210, 120, 16);
+        jLabel9.setBounds(570, 150, 120, 16);
 
-        tfBookLastBorrowedDate1.setText("Enter last borrowed date");
-        add(tfBookLastBorrowedDate1);
-        tfBookLastBorrowedDate1.setBounds(290, 240, 240, 22);
+        tfBookLastBorrowedDate.setText("Enter last borrowed date");
+        tfBookLastBorrowedDate.setName(""); // NOI18N
+        add(tfBookLastBorrowedDate);
+        tfBookLastBorrowedDate.setBounds(290, 240, 240, 26);
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setText("Last Borrowed Date:");
+        add(jLabel10);
+        jLabel10.setBounds(300, 220, 120, 16);
+
+        tfBorrowerID.setText("Enter Borrower ID");
+        tfBorrowerID.setName(""); // NOI18N
+        add(tfBorrowerID);
+        tfBorrowerID.setBounds(560, 170, 240, 26);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
@@ -246,8 +258,9 @@ public class BooksManager extends javax.swing.JPanel {
     private javax.swing.JTextField tfBookGenre;
     private javax.swing.JTextField tfBookID;
     private javax.swing.JTextField tfBookISBNCode;
-    private javax.swing.JTextField tfBookLastBorrowedDate1;
+    private javax.swing.JTextField tfBookLastBorrowedDate;
     private javax.swing.JTextField tfBookReturnedDate;
     private javax.swing.JTextField tfBookTitle;
+    private javax.swing.JTextField tfBorrowerID;
     // End of variables declaration//GEN-END:variables
 }

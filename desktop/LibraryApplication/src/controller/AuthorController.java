@@ -3,34 +3,53 @@
  */
 package controller;
 
+import java.util.List;
+import java.util.ArrayList;
 import model.Author;
-import model.LibraryDB;
 
 public class AuthorController {
-    private LibraryDB db;
+    private DataController db;
+    private List<Author> authors;
 
-    public AuthorController(LibraryDB db) {
+    public AuthorController(DataController db) {
         this.db = db;
-        // Add event listeners to the view
+        // At Main start connect to DB, read all authors into List<Authors>
+        authors = new ArrayList<>();
     }
 
     public void addAuthor(Author author) {
-        // Code to add an author to the database
+        authors.add(author);
+        dbQuery("auth", 1, author);
     }
     
     /*
     public SomeList<Author> getAllAuthors() {
-        // Code to get all authors from the database
+        // Code to get all Author objects
     }
     */
 
     public void updateAuthor(Author author) {
-        // Code to update an author in the database
+        dbQuery("auth", 2, author, Integer.toString(author.getId()));
     }
 
-    public void deleteAuthor(int authorId) {
-        // Code to delete an author from the database
+    public void deleteAuthor(Author author) {
+        dbQuery("auth", 3, author, Integer.toString(author.getId()));
     }
 
-    // Other methods related to author operations
+    // Database methods related to author operations
+    
+    /* Actions:
+            "1": Add
+            "2": Update
+            "3": Delete
+            "4": Select //IF whereClause is empty its SELECT *
+    */
+    
+    public void dbQuery(String table, int action, Author obj) {
+        dbQuery(table, action, obj, "");
+    }
+    // Overloaded dbQuery accepts whereClause
+    public void dbQuery(String table, int action, Author obj, String whereClause) {
+        db.queryExecutor(table, action, obj, whereClause);
+    }
 }
