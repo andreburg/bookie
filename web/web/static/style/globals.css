@@ -21,6 +21,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     
     --loginSideOne: 0, 0%, 85%, 10%;
     --loginSideTwo: 0, 0%, 28%, 10%;
+    --loginFont: 0, 0%, 48%, 100%;
     
     --success: 100, 100%, 30%;
     --descructive: 0, 100%, 67%;
@@ -146,9 +147,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     padding: 1rem;
 }
 
+.user-input label{
+    font-weight: bold;
+    padding: 1rem;
+    font-size: small;
+
 .user-input button {
     color: white;
     background-color: hsl(var(--secondary));
+    padding: 0.5rem;
 }
 
 #user-input-text {
@@ -156,17 +163,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 1.3rem;
 }
 
 #user-input-text p {
     font-size: x-small;
+    color: hsl(var(--loginFont));
 }
 
 #side-One {
     background-color: hsl(var(--loginSideOne));
-    width: 100%;
-    padding: 2rem;
+    width: 477px;
+    padding: 4rem;
 }
 
 #side-Two {
@@ -174,6 +182,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     justify-content: center;
     align-items: center;
     background-color: hsl(var(--loginSideTwo));
-    width: 100%;
-    padding: 2rem;
+    width: 477px;
+    padding: 4rem;
 }
