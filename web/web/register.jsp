@@ -28,23 +28,23 @@
                         <p>Please fill in your details to get started.</p>
                     </div>
                     <div class="user-input">
-                        <div class="user-input">
+                        <div class="general-registration-information">
+                            <div class="input-wrapper">
+                                <input type="text" name ="firstName" id="firstName" placeholder="First Name" required>
+                                <input type="text" name ="lastName" id="lastName" placeholder="Last Name" required>
+                                <input type="email" name ="username" id="username" placeholder="Email" required>
+                                <input type="tel" name ="password" id="password" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+                        <div class="input-wrapper">
                             <input type="text" name ="username" id="username" placeholder="Username" required>
-                        </div>
-                        <div class="user-input">
-                            <input type="text" name ="firstName" id="firstName" placeholder="First Name" required>
-                            <input type="text" name ="lastName" id="lastName" placeholder="Last Name" required>
-                        </div>
-                        <div class="user-input">
-                            <input type="email" name ="username" id="username" placeholder="Email" required>
-                            <input type="tel" name ="password" id="password" placeholder="Phone Number" required>
-                        </div>
-                        <div class="user-input">
                             <input type="password" name ="password" id="password" placeholder="Password" required>
                             <input type="password" name ="password" id="password" placeholder="Confirm Password" required>
                         </div>
 
                         <button>Register</button>
+                        
+                        <p>Already have an account? <span><a href='/login'>Login</a></span></p>
                     </div>
                 </form>
             </div>
