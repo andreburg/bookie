@@ -11,6 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/static/style/globals.css" />
         <title>Login</title>
     </head>
@@ -24,14 +25,8 @@
                         <p>Welcome back! Please enter your details. </p>
                     </div>
                     <div class="user-input">
-                        <label for="username">Username</label>
-                        <input type="text" name ="username" id="username"></input>
-                    </div>
-                    <div class="user-input">
-                        <label for="password">Password</label>
-                        <input type="password" name ="password" id="password"></input>
-                    </div>
-                    <div class="user-input">
+                        <input type="text" name ="username" id="username" placeholder="Username">
+                        <input type="password" name ="password" id="password" placeholder="Password">
                         <button>Sign in</button>
                     </div>
                 </form>

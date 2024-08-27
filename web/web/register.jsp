@@ -11,6 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/static/style/globals.css" />
         <title>JSP Page</title>
     </head>
@@ -25,11 +26,11 @@
                     </div>
                     <div class="user-input">
                         <label for="username">Username</label>
-                        <input type="text" name ="username" id="username"></input>
+                        <input type="text" name ="username" id="username" placeholder="Username">
                     </div>
                     <div class="user-input">
                         <label for="password">Password</label>
-                        <input type="password" name ="password" id="password"></input>
+                        <input type="password" name ="password" id="password" placeholder="Password">
                     </div>
                     <div class="user-input">
                         <button>Sign in</button>
