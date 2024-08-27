@@ -3,9 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-
 import javax.swing.JFrame;
-
+import libraryApplication.DataHandler;
 /**
  *
  * @author olwia
@@ -143,9 +142,15 @@ public class MainDashboard extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_BtnManageBorrowers1ActionPerformed
 
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */
+    public static DataHandler dh = new DataHandler();
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -174,6 +179,14 @@ public class MainDashboard extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainDashboard().setVisible(true);
+                try{
+                    dh.connect();
+                  //  dh.createTables();
+                    
+                }catch(ClassNotFoundException ex){
+                    ex.printStackTrace();
+                }
+                    
             }
         });
     }

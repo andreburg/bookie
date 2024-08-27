@@ -31,34 +31,63 @@ public class BooksManager extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
-        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
-        tfID = new javax.swing.JTextField();
         javax.swing.JButton BtnAdd = new javax.swing.JButton();
         javax.swing.JButton BtnView = new javax.swing.JButton();
         javax.swing.JButton BtnUpdate = new javax.swing.JButton();
         javax.swing.JButton BtnDelete = new javax.swing.JButton();
         BtnMain = new javax.swing.JButton();
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
+        tfBookID = new javax.swing.JTextField();
+        tfBookISBNCode = new javax.swing.JTextField();
+        javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
+        tfBookTitle = new javax.swing.JTextField();
+        javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
+        tfBookAvailability = new javax.swing.JTextField();
+        javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
+        tfBookGenre = new javax.swing.JTextField();
+        javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
+        tfBookReturnedDate = new javax.swing.JTextField();
+        javax.swing.JLabel jLabel8 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel9 = new javax.swing.JLabel();
+        tfBookLastBorrowedDate1 = new javax.swing.JTextField();
+
+        setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Title", "Genre", "ISBN Code", "Availability ", "LBD", "Date Returned"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+
+        add(jScrollPane1);
+        jScrollPane1.setBounds(6, 311, 1006, 226);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel1.setText("Books");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("ID:");
-
-        tfID.setText("Enter ID");
+        add(jLabel1);
+        jLabel1.setBounds(450, 10, 115, 50);
 
         BtnAdd.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnAdd.setText("Add");
@@ -68,6 +97,8 @@ public class BooksManager extends javax.swing.JPanel {
                 BtnAddActionPerformed(evt);
             }
         });
+        add(BtnAdd);
+        BtnAdd.setBounds(838, 121, 174, 31);
 
         BtnView.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnView.setText("View");
@@ -77,6 +108,8 @@ public class BooksManager extends javax.swing.JPanel {
                 BtnViewActionPerformed(evt);
             }
         });
+        add(BtnView);
+        BtnView.setBounds(838, 170, 174, 31);
 
         BtnUpdate.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnUpdate.setText("Update");
@@ -86,6 +119,8 @@ public class BooksManager extends javax.swing.JPanel {
                 BtnUpdateActionPerformed(evt);
             }
         });
+        add(BtnUpdate);
+        BtnUpdate.setBounds(838, 219, 174, 31);
 
         BtnDelete.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnDelete.setText("Delete");
@@ -95,6 +130,8 @@ public class BooksManager extends javax.swing.JPanel {
                 BtnDeleteActionPerformed(evt);
             }
         });
+        add(BtnDelete);
+        BtnDelete.setBounds(838, 268, 174, 31);
 
         BtnMain.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnMain.setText("Main Menu");
@@ -104,62 +141,71 @@ public class BooksManager extends javax.swing.JPanel {
                 BtnMainActionPerformed(evt);
             }
         });
+        add(BtnMain);
+        BtnMain.setBounds(840, 70, 170, 31);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(450, 450, 450)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(654, 654, 654)
-                .addComponent(BtnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(838, 838, 838)
-                .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(838, 838, 838)
-                .addComponent(BtnView, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(838, 838, 838)
-                .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(838, 838, 838)
-                .addComponent(BtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1006, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(6, 6, 6)
-                        .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(BtnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11)
-                .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnView, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setText("ID:");
+        add(jLabel2);
+        jLabel2.setBounds(20, 80, 16, 16);
+
+        tfBookID.setText("Enter ID");
+        add(tfBookID);
+        tfBookID.setBounds(20, 110, 240, 22);
+
+        tfBookISBNCode.setText("Enter ISBN code");
+        add(tfBookISBNCode);
+        tfBookISBNCode.setBounds(290, 110, 240, 22);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setText("Title:");
+        add(jLabel4);
+        jLabel4.setBounds(20, 140, 110, 16);
+
+        tfBookTitle.setText("Enter book title");
+        add(tfBookTitle);
+        tfBookTitle.setBounds(20, 170, 240, 22);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setText("ISBN Code:");
+        add(jLabel5);
+        jLabel5.setBounds(290, 80, 190, 16);
+
+        tfBookAvailability.setText("Stock Available");
+        add(tfBookAvailability);
+        tfBookAvailability.setBounds(290, 170, 240, 22);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setText("Genre:");
+        add(jLabel6);
+        jLabel6.setBounds(20, 210, 130, 16);
+
+        tfBookGenre.setText("Enter book genre");
+        add(tfBookGenre);
+        tfBookGenre.setBounds(20, 240, 240, 22);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setText("Returned Date:");
+        add(jLabel7);
+        jLabel7.setBounds(570, 80, 150, 16);
+
+        tfBookReturnedDate.setText("Enter returned date");
+        add(tfBookReturnedDate);
+        tfBookReturnedDate.setBounds(560, 110, 250, 22);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setText("Availability:");
+        add(jLabel8);
+        jLabel8.setBounds(290, 140, 200, 16);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Last Borrowed Date:");
+        add(jLabel9);
+        jLabel9.setBounds(290, 210, 120, 16);
+
+        tfBookLastBorrowedDate1.setText("Enter last borrowed date");
+        add(tfBookLastBorrowedDate1);
+        tfBookLastBorrowedDate1.setBounds(290, 240, 240, 22);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
@@ -196,6 +242,12 @@ public class BooksManager extends javax.swing.JPanel {
     private javax.swing.JButton BtnMain;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField tfID;
+    private javax.swing.JTextField tfBookAvailability;
+    private javax.swing.JTextField tfBookGenre;
+    private javax.swing.JTextField tfBookID;
+    private javax.swing.JTextField tfBookISBNCode;
+    private javax.swing.JTextField tfBookLastBorrowedDate1;
+    private javax.swing.JTextField tfBookReturnedDate;
+    private javax.swing.JTextField tfBookTitle;
     // End of variables declaration//GEN-END:variables
 }
