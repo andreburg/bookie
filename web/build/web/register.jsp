@@ -13,33 +13,41 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/static/style/globals.css" />
-        <title>JSP Page</title>
+        <title>Register</title>
     </head>
     <body>
         <main class="main-section">
             <tags:header />
             <div id="loginForm">
-                <form action="action" id="side-One">
-                    <div id="user-input-text">
-                        <h3>Welcome back</h3>
-                        <p>Welcome back! Please enter your details. </p>
-                    </div>
-                    <div class="user-input">
-                        <label for="username">Username</label>
-                        <input type="text" name ="username" id="username" placeholder="Username">
-                    </div>
-                    <div class="user-input">
-                        <label for="password">Password</label>
-                        <input type="password" name ="password" id="password" placeholder="Password">
-                    </div>
-                    <div class="user-input">
-                        <button>Sign in</button>
-                    </div>
-                </form>
                 <div id="side-Two">
                     <img src="/static/assets/bird.svg" class="bird"/>
                 </div>
+                <form action="action" id="side-One">
+                    <div id="user-input-text">
+                        <h3>Welcome</h3>
+                        <p>Please fill in your details to get started.</p>
+                    </div>
+                    <div class="user-input">
+                        <div class="user-input">
+                            <input type="text" name ="username" id="username" placeholder="Username" required>
+                        </div>
+                        <div class="user-input">
+                            <input type="text" name ="firstName" id="firstName" placeholder="First Name" required>
+                            <input type="text" name ="lastName" id="lastName" placeholder="Last Name" required>
+                        </div>
+                        <div class="user-input">
+                            <input type="email" name ="username" id="username" placeholder="Email" required>
+                            <input type="tel" name ="password" id="password" placeholder="Phone Number" required>
+                        </div>
+                        <div class="user-input">
+                            <input type="password" name ="password" id="password" placeholder="Password" required>
+                            <input type="password" name ="password" id="password" placeholder="Confirm Password" required>
+                        </div>
+
+                        <button>Register</button>
+                    </div>
+                </form>
             </div>
-        </main>    
+        </main>
     </body>
 </html>
