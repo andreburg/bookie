@@ -8,7 +8,7 @@
 
 <div class="auth-prompt">
     <div class="auth-prompt-message">
-        <img src="/assets/ghost.svg" class="info-img"/>
+        <img src="/static/assets/ghost.svg" class="info-img"/>
         <h3>Woah... Stop right there!</h3>
     </div>
     <div class="auth-prompt-nav">
@@ -22,19 +22,19 @@
 </div>
 <div class="why-us-section">
     <div class="why-us-point">
-        <img src="/assets/headset.svg"/>
+        <img src="/static/assets/headset.svg"/>
         <p>24/7 customer service</p>
     </div>
     <div class="why-us-point">
-        <img src="/assets/award.svg"/>
+        <img src="/static/assets/award.svg"/>
         <p>A-Z Guarantee</p>
     </div>
     <div class="why-us-point">
-        <img src="/assets/truck.svg"/>
+        <img src="/static/assets/truck.svg"/>
         <p>Free Delivery On Your First Order*</p>
     </div>
     <div class="why-us-point">
-        <img src="/assets/package.svg"/>
+        <img src="/static/assets/package.svg"/>
         <p>Order Tracking</p>
     </div>
 </div>

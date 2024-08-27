@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="/style/globals.css" />
+        <link rel="stylesheet" href="/static/style/globals.css" />
         <title>Login</title>
     </head>
     <body>
@@ -36,7 +36,7 @@
                     </div>
                 </form>
                 <div id="side-Two">
-                    <img src="/assets/bird.svg" class="bird"/>
+                    <img src="/static/assets/bird.svg" class="bird"/>
                 </div>
             </div>
         </main>

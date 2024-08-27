@@ -12,6 +12,6 @@
 <%-- any content can be specified here e.g.: --%>
 <nav class="nav-header">
     <a href="/">
-        <img src="/assets/bookie-logo.svg"/>        
+        <img src="/static/assets/bookie-logo.svg"/>        
     </a>
 </nav>
