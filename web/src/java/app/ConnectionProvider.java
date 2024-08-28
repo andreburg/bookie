@@ -35,23 +35,6 @@ public class ConnectionProvider {
         return con;
     }
     
-    public void add(String id, String n, String s) throws ClassNotFoundException {
-        Connection conn;
-        PreparedStatement pstmt;
-        try{
-            conn = getCon();
-            
-            pstmt = conn.prepareStatement("INSERT INTO login (id, name, surname) VALUES (?, ?, ?)");
-            pstmt.setString(1, id);
-            pstmt.setString(2, n);
-            pstmt.setString(3, s);
-
-            pstmt.executeUpdate();
-        }
-        catch(SQLException ex){
-            System.out.println("Could not add data: " + ex.getMessage());
-        }
-    }
     public boolean validate(String username, String password) throws ClassNotFoundException {
         Connection conn;
         PreparedStatement pstmt;
@@ -59,14 +42,14 @@ public class ConnectionProvider {
         try{
             conn = getCon();
             
-            pstmt = conn.prepareStatement("SELECT * FROM login WHERE username = ? AND password = ?");
+            pstmt = conn.prepareStatement("SELECT * FROM login WHERE username = ?");
             pstmt.setString(1, username);
-            pstmt.setString(2, password);
             
             ResultSet rs = pstmt.executeQuery();
             
             if(rs.next()) {
-                return true;
+                String hashedPassword = rs.getString("password");
+                return passwordUtil.validatePassword(password, hashedPassword);
             }
         }catch (SQLException e) {
             e.printStackTrace();
@@ -78,6 +61,7 @@ public class ConnectionProvider {
         Connection conn = null;
         PreparedStatement pstmtRegister = null;
         PreparedStatement pstmtLogin = null;
+        String hashedPassword = passwordUtil.hashPassword(password);
 
         try {
             conn = getCon();
@@ -87,7 +71,7 @@ public class ConnectionProvider {
             pstmtRegister.setString(1, username);
             pstmtRegister.setString(2, firstName);
             pstmtRegister.setString(3, lastName);
-            pstmtRegister.setString(4, password);
+            pstmtRegister.setString(4, hashedPassword);
             pstmtRegister.setString(5, email);
             pstmtRegister.setString(6, phone);
             pstmtRegister.executeUpdate();
@@ -102,7 +86,7 @@ public class ConnectionProvider {
             String loginSQL = "INSERT INTO login (username, password, registration_id) VALUES (?, ?, ?)";
             pstmtLogin = conn.prepareStatement(loginSQL);
             pstmtLogin.setString(1, username);
-            pstmtLogin.setString(2, password);
+            pstmtLogin.setString(2, hashedPassword);
             pstmtLogin.setInt(3, registrationId);
             pstmtLogin.executeUpdate();
 
