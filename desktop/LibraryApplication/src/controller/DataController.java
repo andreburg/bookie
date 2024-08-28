@@ -361,16 +361,87 @@ public class DataController {
                 }
                 break;
             case UPDATE:
-                // Update borrower logic with whereClause
+                try {
+                    String query = "UPDATE BORROWERS SET first_name = ?, last_name = ?, phone_number=?, email_address=?, home_address=? WHERE id = " + whereClause;
+                    try (PreparedStatement statement = con.prepareStatement(query)) {
+                        statement.setInt(1, borrower.getId());
+                        statement.setString(2, borrower.getName());
+                        statement.setString(3, borrower.getSurname());
+                        statement.setString(4, borrower.getPhone());
+                        statement.setString(5, borrower.getEmail());
+                        statement.setString(6, borrower.getAddress());
+                        int rowsUpdated = statement.executeUpdate();
+                        if (rowsUpdated > 0) {
+                            System.out.println("Data has been updated in the Borrowers table");
+                        } else {
+                            System.out.println("No data found to update in the Borrowers table");
+                        }
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Data could not be updated in the Borrowers table for borrower: " + borrower.getName() + " Where: " + whereClause, "Error", JOptionPane.ERROR_MESSAGE);
+                    System.out.println("Data could not be updated in the Borrowers table");
+                }
                 break;
+
             case DELETE:
-                // Delete borrower logic with whereClause
+                try {
+                        String query = "DELETE FROM BORROWERS WHERE " + whereClause;
+                        try (PreparedStatement statement = con.prepareStatement(query)) {
+                            ResultSet resultSet = statement.executeQuery();
+                            while (resultSet.next()) {
+                                // TO DO
+                                // Process the result set
+                                System.out.println("Borrowers ID: " + resultSet.getInt("id"));
+                                // Add more fields as needed
+                            }
+                        }
+                        System.out.println("Borrowers have been deleted from the Borrowers table with the specified condition");
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "Data could not be deleted from the Borrowers table where: " + whereClause, "Error", JOptionPane.ERROR_MESSAGE);
+                        System.out.println("Data could not be deleted from the Borrowers  table with the specified condition");
+                    }
                 break;
             case SELECT:
                 if (whereClause.isEmpty()) {
-                    // Select all borrowers logic
+                    // Select all borrower logic
+                    try {
+                        String query = "SELECT * FROM BORROWERS";
+                        try (PreparedStatement statement = con.prepareStatement(query)) {
+                            ResultSet resultSet = statement.executeQuery();
+                            while (resultSet.next()) {
+                                // TO DO
+                                // Process the result set
+                                System.out.println("Borrower ID: " + resultSet.getInt("id"));
+                                // Add more fields as needed
+                            }
+                        }
+                        System.out.println("All borrowers have been selected from the Borrowers table");
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "All Data could not be Selected frome the Borrowers table", "Error", JOptionPane.ERROR_MESSAGE);
+                        System.out.println("Data could not be selected from the Borrowers  table");
+                    }
                 } else {
                     // Select borrower with whereClause logic
+                    try {
+                        String query = "SELECT * FROM BORROWERS WHERE " + whereClause;
+                        try (PreparedStatement statement = con.prepareStatement(query)) {
+                            ResultSet resultSet = statement.executeQuery();
+                            while (resultSet.next()) {
+                                // TO DO
+                                // Process the result set
+                                System.out.println("Borrowers ID: " + resultSet.getInt("id"));
+                                // Add more fields as needed
+                            }
+                        }
+                        System.out.println("Borrowers have been selected from the Borrowers table with the specified condition");
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "Data could not be Selected from the Borrowers table where: " + whereClause, "Error", JOptionPane.ERROR_MESSAGE);
+                        System.out.println("Data could not be selected from the Borrowers  table with the specified condition");
+                    }
                 }
                 break;
             default:

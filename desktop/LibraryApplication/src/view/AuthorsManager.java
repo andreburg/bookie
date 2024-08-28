@@ -137,7 +137,7 @@ public class AuthorsManager extends javax.swing.JPanel {
             }
         });
         add(tfAuthorID);
-        tfAuthorID.setBounds(30, 100, 270, 26);
+        tfAuthorID.setBounds(30, 100, 270, 22);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Name:");
@@ -146,7 +146,7 @@ public class AuthorsManager extends javax.swing.JPanel {
 
         tfAuthorName.setText("Enter your Name");
         add(tfAuthorName);
-        tfAuthorName.setBounds(30, 160, 270, 26);
+        tfAuthorName.setBounds(30, 160, 270, 22);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Last Name:");
@@ -155,7 +155,7 @@ public class AuthorsManager extends javax.swing.JPanel {
 
         tfAuthorLastName.setText("Enter your Last Name");
         add(tfAuthorLastName);
-        tfAuthorLastName.setBounds(30, 220, 270, 26);
+        tfAuthorLastName.setBounds(30, 220, 270, 22);
 
         BtnReset.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnReset.setText("Reset");
