@@ -129,7 +129,7 @@ public class DataController {
     private void handleAuthorAction(Action action, Author author, String whereClause) {
         switch (action) {
             case ADD:
-                // Add author logic | Table/s: AUTHORS
+                // Add author logic
                 try {
                     String query = "INSERT INTO AUTHORS (id, first_name, last_name) VALUES (?, ?, ?)";
                     try (PreparedStatement statement = con.prepareStatement(query)) {
@@ -141,20 +141,85 @@ public class DataController {
                     System.out.println("Data has been added to the Authors table");
                 } catch (SQLException ex) {
                     ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Data could not be added to the Authors table for author: " + author.getName(), "Error", JOptionPane.ERROR_MESSAGE);
                     System.out.println("Data could not be added to the Authors table");
                 }
                 break;
             case UPDATE:
                 // Update author logic with whereClause
+                try {
+                    String query = "UPDATE AUTHORS SET first_name = ?, last_name = ? WHERE id = " + whereClause;
+                    try (PreparedStatement statement = con.prepareStatement(query)) {
+                        statement.setString(1, author.getName());
+                        statement.setString(2, author.getSurname());
+                        int rowsUpdated = statement.executeUpdate();
+                        if (rowsUpdated > 0) {
+                            System.out.println("Data has been updated in the Authors table");
+                        } else {
+                            System.out.println("No data found to update in the Authors table");
+                        }
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Data could not be updated in the Authors table for author: " + author.getName() + " Where: " + whereClause, "Error", JOptionPane.ERROR_MESSAGE);
+                    System.out.println("Data could not be updated in the Authors table");
+                }
                 break;
             case DELETE:
                 // Delete author logic with whereClause
+                try {
+                    String query = "DELETE FROM AUTHORS WHERE id = " + whereClause;
+                    try (PreparedStatement statement = con.prepareStatement(query)) {
+                        int rowsDeleted = statement.executeUpdate();
+                        if (rowsDeleted > 0) {
+                            System.out.println("Data has been deleted from the Authors table");
+                        } else {
+                            System.out.println("No data found to delete from the Authors table");
+                        }
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Data could not be deleted from the Authors table where: " + whereClause, "Error", JOptionPane.ERROR_MESSAGE);
+                    System.out.println("Data could not be deleted from the Authors table");
+                }
                 break;
             case SELECT:
                 if (whereClause.isEmpty()) {
                     // Select all authors logic
+                    try {
+                        String query = "SELECT * FROM AUTHORS";
+                        try (PreparedStatement statement = con.prepareStatement(query)) {
+                            ResultSet resultSet = statement.executeQuery();
+                            while (resultSet.next()) {
+                                // TO DO: Process the result set
+                                System.out.println("Author ID: " + resultSet.getInt("id"));
+                                // Add more fields as needed
+                            }
+                        }
+                        System.out.println("All authors have been selected from the Authors table");
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "All Data could not be selected from the Authors table", "Error", JOptionPane.ERROR_MESSAGE);
+                        System.out.println("Data could not be selected from the Authors table");
+                    }
                 } else {
                     // Select author with whereClause logic
+                    try {
+                        String query = "SELECT * FROM AUTHORS WHERE " + whereClause;
+                        try (PreparedStatement statement = con.prepareStatement(query)) {
+                            ResultSet resultSet = statement.executeQuery();
+                            while (resultSet.next()) {
+                                // TO DO: Process the result set
+                                System.out.println("Author ID: " + resultSet.getInt("id"));
+                                // Add more fields as needed
+                            }
+                        }
+                        System.out.println("Authors have been selected from the Authors table with the specified condition");
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "Data could not be selected from the Authors table where: " + whereClause, "Error", JOptionPane.ERROR_MESSAGE);
+                        System.out.println("Data could not be selected from the Authors table with the specified condition");
+                    }
                 }
                 break;
             default:
@@ -193,7 +258,7 @@ public class DataController {
                 // Update book logic with whereClause
                 try {
                     String query = "UPDATE BOOKS SET title = ?, genre = ?, isbn_code = ?, is_available = ?, "
-                            + "last_borrowed = ?, date_returned = ?, borrower_id = ? WHERE " + whereClause;
+                            + "last_borrowed = ?, date_returned = ?, borrower_id = ? WHERE id =" + whereClause;
                     try (PreparedStatement statement = con.prepareStatement(query)) {
                         statement.setString(1, book.getTitle());
                         statement.setString(2, book.getGenre());
@@ -214,7 +279,7 @@ public class DataController {
             case DELETE:
                 // Delete book logic with whereClause
                 try {
-                    String query = "DELETE FROM BOOKS WHERE " + whereClause;
+                    String query = "DELETE FROM BOOKS WHERE id =" + whereClause;
                     try (PreparedStatement statement = con.prepareStatement(query)) {
                         statement.executeUpdate();
                     }

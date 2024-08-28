@@ -11,9 +11,9 @@ public class AuthorController {
     private DataController dc;
     private List<Author> authors;
 
-    public AuthorController(DataController dc) {
-    this.dc = dc;
-    authors = new ArrayList<>();
+    public AuthorController() {
+        dc = new DataController();
+        authors = new ArrayList<>();
     }
 
     public void addAuthor(Author author) {

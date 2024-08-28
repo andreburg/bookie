@@ -7,7 +7,6 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import controller.DataController;
 import controller.AuthorController;
 import controller.ValidationController;
 import model.Author;
@@ -35,8 +34,6 @@ public class AuthorsManager extends javax.swing.JPanel {
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         javax.swing.JButton BtnAdd = new javax.swing.JButton();
         javax.swing.JButton BtnView = new javax.swing.JButton();
-        javax.swing.JButton BtnUpdate = new javax.swing.JButton();
-        javax.swing.JButton BtnDelete = new javax.swing.JButton();
         BtnMain = new javax.swing.JButton();
         javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
         tfAuthorID = new javax.swing.JTextField();
@@ -44,8 +41,12 @@ public class AuthorsManager extends javax.swing.JPanel {
         tfAuthorName = new javax.swing.JTextField();
         javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
         tfAuthorLastName = new javax.swing.JTextField();
+        javax.swing.JButton BtnReset = new javax.swing.JButton();
+        BtnUpdate = new javax.swing.JButton();
+        BtnDelete = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1080, 540));
+        setLayout(null);
 
         TableAuthors.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,10 +74,20 @@ public class AuthorsManager extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        TableAuthors.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableAuthorsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TableAuthors);
+
+        add(jScrollPane1);
+        jScrollPane1.setBounds(6, 306, 1006, 226);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel1.setText("Authors");
+        add(jLabel1);
+        jLabel1.setBounds(431, 10, 220, 50);
 
         BtnAdd.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnAdd.setText("Add");
@@ -86,6 +97,8 @@ public class AuthorsManager extends javax.swing.JPanel {
                 BtnAddActionPerformed(evt);
             }
         });
+        add(BtnAdd);
+        BtnAdd.setBounds(840, 110, 175, 30);
 
         BtnView.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnView.setText("View");
@@ -95,24 +108,8 @@ public class AuthorsManager extends javax.swing.JPanel {
                 BtnViewActionPerformed(evt);
             }
         });
-
-        BtnUpdate.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        BtnUpdate.setText("Update");
-        BtnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        BtnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnUpdateActionPerformed(evt);
-            }
-        });
-
-        BtnDelete.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        BtnDelete.setText("Delete");
-        BtnDelete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        BtnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnDeleteActionPerformed(evt);
-            }
-        });
+        add(BtnView);
+        BtnView.setBounds(840, 160, 175, 30);
 
         BtnMain.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnMain.setText("Main Menu");
@@ -125,9 +122,13 @@ public class AuthorsManager extends javax.swing.JPanel {
                 BtnMainActionPerformed(evt);
             }
         });
+        add(BtnMain);
+        BtnMain.setBounds(840, 60, 175, 30);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("ID:");
+        add(jLabel2);
+        jLabel2.setBounds(40, 80, 16, 16);
 
         tfAuthorID.setText("Enter ID");
         tfAuthorID.addActionListener(new java.awt.event.ActionListener() {
@@ -135,98 +136,71 @@ public class AuthorsManager extends javax.swing.JPanel {
                 tfAuthorIDActionPerformed(evt);
             }
         });
+        add(tfAuthorID);
+        tfAuthorID.setBounds(30, 100, 270, 26);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Name:");
+        add(jLabel4);
+        jLabel4.setBounds(40, 140, 110, 16);
 
         tfAuthorName.setText("Enter your Name");
+        add(tfAuthorName);
+        tfAuthorName.setBounds(30, 160, 270, 26);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Last Name:");
+        add(jLabel6);
+        jLabel6.setBounds(40, 200, 130, 16);
 
         tfAuthorLastName.setText("Enter your Last Name");
+        add(tfAuthorLastName);
+        tfAuthorLastName.setBounds(30, 220, 270, 26);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(431, 431, 431)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1006, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(tfAuthorID, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfAuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfAuthorLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(350, 350, 350)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(BtnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(BtnView, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(BtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(BtnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnView, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel2)
-                        .addGap(14, 14, 14)
-                        .addComponent(tfAuthorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel4)
-                        .addGap(14, 14, 14)
-                        .addComponent(tfAuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addGap(14, 14, 14)
-                        .addComponent(tfAuthorLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        BtnReset.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnReset.setText("Reset");
+        BtnReset.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnReset.setName(""); // NOI18N
+        BtnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResetActionPerformed(evt);
+            }
+        });
+        add(BtnReset);
+        BtnReset.setBounds(40, 260, 110, 30);
+
+        BtnUpdate.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnUpdate.setText("Update");
+        BtnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnUpdate.setEnabled(false);
+        BtnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUpdateActionPerformed(evt);
+            }
+        });
+        add(BtnUpdate);
+        BtnUpdate.setBounds(840, 210, 175, 30);
+
+        BtnDelete.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnDelete.setText("Delete");
+        BtnDelete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnDelete.setEnabled(false);
+        BtnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDeleteActionPerformed(evt);
+            }
+        });
+        add(BtnDelete);
+        BtnDelete.setBounds(840, 260, 175, 30);
     }// </editor-fold>//GEN-END:initComponents
 
-    private DataController dc;
     private AuthorController ac;
     ValidationController vc = new ValidationController();
     Author author;
     
     private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
         try {
-            dc = new DataController();
-            ac = new AuthorController(dc);
+            ac = new AuthorController();
             
             int id = Integer.parseInt(tfAuthorID.getText());
             String name = tfAuthorName.getText();
@@ -241,7 +215,7 @@ public class AuthorsManager extends javax.swing.JPanel {
                 ac.addAuthor(author);
                 //Pull and Update the table from DB
                 // TO HERE
-                JOptionPane.showMessageDialog(null, "Author added successfully!");
+                JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully added!");
             } else {
                 // Display error dialog with the identifier result
                 JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
@@ -255,14 +229,6 @@ public class AuthorsManager extends javax.swing.JPanel {
     private void BtnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnViewActionPerformed
-
-    private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnUpdateActionPerformed
-
-    private void BtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnDeleteActionPerformed
 
     private void BtnMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMainActionPerformed
         // TODO add your handling code here:
@@ -281,9 +247,110 @@ public class AuthorsManager extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfAuthorIDActionPerformed
 
+    private void BtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResetActionPerformed
+        // Clear text fields
+        tfAuthorID.setText("");
+        tfAuthorName.setText("");
+        tfAuthorLastName.setText("");
+
+        // Re-enable the ID text field
+        tfAuthorID.setEnabled(true);
+        
+        // Disable Buttons
+        BtnUpdate.disable();
+        BtnDelete.disable();
+
+        // Deselect any selected row in the table
+        TableAuthors.clearSelection();
+    }//GEN-LAST:event_BtnResetActionPerformed
+
+    private void TableAuthorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableAuthorsMouseClicked
+        // Check if a row is selected
+        int selectedRow = TableAuthors.getSelectedRow();
+    
+        if (selectedRow != -1) {
+            // Get values from the selected row
+            Object idValue = TableAuthors.getValueAt(selectedRow, 0);
+            Object firstNameValue = TableAuthors.getValueAt(selectedRow, 1);
+            Object lastNameValue = TableAuthors.getValueAt(selectedRow, 2);
+
+            // Convert to String, defaulting to empty string if null
+            String id = idValue != null ? idValue.toString() : "";
+            String firstName = firstNameValue != null ? firstNameValue.toString() : "";
+            String lastName = lastNameValue != null ? lastNameValue.toString() : "";
+
+            // Set the values in text fields
+            tfAuthorID.setText(id);
+            tfAuthorName.setText(firstName);
+            tfAuthorLastName.setText(lastName);
+
+            // Disable the ID field and enable buttons
+            tfAuthorID.setEnabled(false);
+            BtnUpdate.enable();
+            BtnDelete.enable();
+        }
+    }//GEN-LAST:event_TableAuthorsMouseClicked
+
+    private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
+        try {
+            ac = new AuthorController();
+            
+            int id = Integer.parseInt(tfAuthorID.getText());
+            String name = tfAuthorName.getText();
+            String lastName = tfAuthorLastName.getText();
+            author = new Author(id, name, lastName);
+
+            // Validate Author
+            ValidationController.ValidationResult result = vc.validateAuthor(author);
+
+            if (result.isValid()) {
+                // Add author to the database
+                ac.updateAuthor(author);
+                //Pull and Update the table from DB
+                // TO HERE
+                JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully updated!");
+            } else {
+                // Display error dialog with the identifier result
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex){
+            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_BtnUpdateActionPerformed
+
+    private void BtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteActionPerformed
+        try {
+            ac = new AuthorController();
+            
+            int id = Integer.parseInt(tfAuthorID.getText());
+            String name = tfAuthorName.getText();
+            String lastName = tfAuthorLastName.getText();
+            author = new Author(id, name, lastName);
+
+            // Validate Author
+            ValidationController.ValidationResult result = vc.validateAuthor(author);
+
+            if (result.isValid()) {
+                // Add author to the database
+                ac.deleteAuthor(author);
+                //Pull and Update the table from DB
+                // TO HERE
+                JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully deleted!");
+            } else {
+                // Display error dialog with the identifier result
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex){
+            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_BtnDeleteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnDelete;
     private javax.swing.JButton BtnMain;
+    private javax.swing.JButton BtnUpdate;
     private javax.swing.JTable TableAuthors;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField tfAuthorID;
