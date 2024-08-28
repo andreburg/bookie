@@ -10,31 +10,38 @@ import javax.swing.JOptionPane;
 
 public class DataController {
     // Open Connection
-    private static final String DRIVER= "org.apache.derby.jdbc.EmbeddedDriver";
-    
-    private static final String JDBC_URL= "jdbc:derby:LibraryDB;create=true";
-    
-    Connection con;
-    
-    public void connect() throws ClassNotFoundException
-    {
-        try{
+    private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static final String JDBC_URL = "jdbc:derby:LibraryDB;create=true";
+    private Connection con;
+
+    public void connect() throws ClassNotFoundException {
+        try {
             Class.forName(DRIVER);
             this.con = DriverManager.getConnection(JDBC_URL);
-            if (this.con!=null) {
+            if (this.con != null) {
                 System.out.println("Connected to Database");
-                
-            }         
-        }catch(SQLException ex){
-            ex.printStackTrace();    
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void disconnect() {
+        if (this.con != null) {
+            try {
+                this.con.close();
+                System.out.println("Disconnected from Database");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
-    public void Controller() {     
-        // Add event listeners to the view     
+    public void Controller() {
+        // Add event listeners to the view
     }
-    
-        public enum Table {
+
+    public enum Table {
         AUTH("auth"),
         BOOK("book"),
         BORR("borr");
@@ -66,44 +73,55 @@ public class DataController {
             return actionCode;
         }
     }
-    
+
     // db Executor default
     public <T> void queryExecutor(String table, int action, T obj) {
         queryExecutor(table, action, obj, "");
     }
-    
+
     // Overloaded db Executor accepts Where Arguments
     public <T> void queryExecutor(String table, int action, T obj, String whereClause) {
-        Table tableEnum = Table.valueOf(table.toUpperCase());
-        Action actionEnum = Action.values()[action - 1];
+        try {
+            connect();
+            if (this.con == null) {
+            throw new IllegalStateException("Database connection is not established.");
+            }
 
-        switch (tableEnum) {
-            case AUTH:
-                if (obj instanceof Author) {
-                    Author author = (Author) obj;
-                    handleAuthorAction(actionEnum, author, whereClause);
-                } else {
-                    throw new IllegalArgumentException("Invalid object type for table AUTH");
-                }
-                break;
-            case BOOK:
-                if (obj instanceof Book) {
-                    Book book = (Book) obj;
-                    handleBookAction(actionEnum, book, whereClause);
-                } else {
-                    throw new IllegalArgumentException("Invalid object type for table BOOK");
-                }
-                break;
-            case BORR:
-                if (obj instanceof Borrower) {
-                    Borrower borrower = (Borrower) obj;
-                    handleBorrowerAction(actionEnum, borrower, whereClause);
-                } else {
-                    throw new IllegalArgumentException("Invalid object type for table BORR");
-                }
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported table");
+            Table tableEnum = Table.valueOf(table.toUpperCase());
+            Action actionEnum = Action.values()[action - 1];
+
+            switch (tableEnum) {
+                case AUTH:
+                    if (obj instanceof Author) {
+                        Author author = (Author) obj;
+                        handleAuthorAction(actionEnum, author, whereClause);
+                    } else {
+                        throw new IllegalArgumentException("Invalid object type for table AUTH");
+                    }
+                    break;
+                case BOOK:
+                    if (obj instanceof Book) {
+                        Book book = (Book) obj;
+                        handleBookAction(actionEnum, book, whereClause);
+                    } else {
+                        throw new IllegalArgumentException("Invalid object type for table BOOK");
+                    }
+                    break;
+                case BORR:
+                    if (obj instanceof Borrower) {
+                        Borrower borrower = (Borrower) obj;
+                        handleBorrowerAction(actionEnum, borrower, whereClause);
+                    } else {
+                        throw new IllegalArgumentException("Invalid object type for table BORR");
+                    }
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unsupported table");
+            }
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            disconnect();
         }
     }
 
@@ -113,7 +131,7 @@ public class DataController {
             case ADD:
                 // Add author logic | Table/s: AUTHORS
                 try {
-                    String query = "INSERT INTO AUTHORS (id, name, surname) VALUES (?, ?, ?)";
+                    String query = "INSERT INTO AUTHORS (id, first_name, last_name) VALUES (?, ?, ?)";
                     try (PreparedStatement statement = con.prepareStatement(query)) {
                         statement.setInt(1, author.getId());
                         statement.setString(2, author.getName());
@@ -294,7 +312,7 @@ public class DataController {
                 throw new IllegalArgumentException("Unsupported action for Borrower");
         }
     }
-    
+}    
     /*
     //Creating Tables
         public void createTables(){       
@@ -338,4 +356,4 @@ public class DataController {
             }
         }
     */
-}
+

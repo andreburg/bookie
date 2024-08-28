@@ -4,7 +4,6 @@
  */
 package view;
 import javax.swing.JFrame;
-import controller.DataController;
 /**
  *
  * @author olwia
@@ -143,8 +142,6 @@ public class MainDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnManageBorrowers1ActionPerformed
 
     
-    public static DataController dc = new DataController();
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -172,13 +169,7 @@ public class MainDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainDashboard().setVisible(true);
-                try{
-                    dc.connect();
-                    //  dc.createTables();                    
-                }catch(ClassNotFoundException ex){
-                    ex.printStackTrace();
-                }                    
+                new MainDashboard().setVisible(true);                   
             }
         });
     }

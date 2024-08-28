@@ -8,13 +8,12 @@ import java.util.ArrayList;
 import model.Author;
 
 public class AuthorController {
-    private DataController db;
+    private DataController dc;
     private List<Author> authors;
 
-    public AuthorController(DataController db) {
-        this.db = db;
-        // At Main start connect to DB, read all authors into List<Authors>
-        authors = new ArrayList<>();
+    public AuthorController(DataController dc) {
+    this.dc = dc;
+    authors = new ArrayList<>();
     }
 
     public void addAuthor(Author author) {
@@ -50,6 +49,10 @@ public class AuthorController {
     }
     // Overloaded dbQuery accepts whereClause
     public void dbQuery(String table, int action, Author obj, String whereClause) {
-        db.queryExecutor(table, action, obj, whereClause);
+        if (dc == null) {
+            System.out.println("DataController is not initialized.");
+            return;
+        }
+        dc.queryExecutor(table, action, obj, whereClause);
     }
 }

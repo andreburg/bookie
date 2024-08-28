@@ -1,19 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Main Class
  */
 package libraryApplication;
 
 import view.MainDashboard;
-
-/**
- *
- * @author User
- */
-
-    /**
-     * @param args the command line arguments
-     */
 
 public class libraryRun {
         public static void main(String args[]) {
@@ -46,6 +36,5 @@ public class libraryRun {
                 new MainDashboard().setVisible(true);
             }
         });
-    }
-    
+    }  
 }

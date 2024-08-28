@@ -11,9 +11,9 @@ public class Book {
     private String genre;
     private String isbn;    
     private boolean isAvailable;
-    private Date lastBorrowed; // Null or Date dd/mm/yyyy
-    private Date dateReturned; // Null or Date dd/mm/yyyy
-    private int borrowerID;
+    private Date lastBorrowed; // Null or Date 
+    private Date dateReturned; // Null or Date 
+    private int borrowerID; // 0 or Int
 
     // Constructor
     public Book(int id, String title, String genre, String isbn, boolean isAvailable, Date lastBorrowed, Date dateReturned, int borrowerID) {

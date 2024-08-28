@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import controller.DataController;
 import controller.AuthorController;
+import controller.ValidationController;
+import model.Author;
 
 public class AuthorsManager extends javax.swing.JPanel {
 
@@ -216,33 +218,38 @@ public class AuthorsManager extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public static DataController dc = new DataController();
+    private DataController dc;
+    private AuthorController ac;
+    ValidationController vc = new ValidationController();
+    Author author;
+    
     private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
-        try{
-            dc.connect();
-            //  dh.createTables();
+        try {
+            dc = new DataController();
+            ac = new AuthorController(dc);
+            
+            int id = Integer.parseInt(tfAuthorID.getText());
+            String name = tfAuthorName.getText();
+            String lastName = tfAuthorLastName.getText();
+            author = new Author(id, name, lastName);
 
-        }catch(ClassNotFoundException ex){
-            ex.printStackTrace();
-        }                
-        String id = tfAuthorID.getText();
-        String name = tfAuthorName.getText();
-        String lastName = tfAuthorLastName.getText();
-        
-        if(id.isEmpty() || name.isEmpty()||lastName.isEmpty())
-        {
-            JOptionPane.showMessageDialog(this,
-                    "Please enter all fields", 
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }else
-        {
-            //Add Author
-            
-            DefaultTableModel model = (DefaultTableModel) TableAuthors.getModel();
-            
-            model.addRow(new Object[]{id, name,lastName});                           
-        }        
+            // Validate Author
+            ValidationController.ValidationResult result = vc.validateAuthor(author);
+
+            if (result.isValid()) {
+                // Add author to the database
+                ac.addAuthor(author);
+                //Pull and Update the table from DB
+                // TO HERE
+                JOptionPane.showMessageDialog(null, "Author added successfully!");
+            } else {
+                // Display error dialog with the identifier result
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex){
+            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);
+        }  
     }//GEN-LAST:event_BtnAddActionPerformed
 
     private void BtnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewActionPerformed
