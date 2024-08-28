@@ -36,7 +36,10 @@ public class BorrowerController {
     }
 
     public void deleteBorrower(Borrower borrower) {
-        dbQuery("borr", 2, borrower, Integer.toString(borrower.getId()));
+        dbQuery("borr", 3, borrower, Integer.toString(borrower.getId()));
+    }
+    public void viewBorrower(Borrower borrower) {
+        dbQuery("borr", 4, borrower, Integer.toString(borrower.getId()));
     }
 
     // Other methods related to borrower operations
