@@ -102,6 +102,12 @@ public class ConnectionProvider {
                 }
             }
             e.printStackTrace();
+            if(e.getMessage() != null && e.getMessage().contains("@")) {
+                System.out.println("Email is taken");
+            }
+            else {
+                System.out.println("Username is taken");
+            }
         } finally {
             try {
                 if (pstmtRegister != null) pstmtRegister.close();
@@ -113,4 +119,62 @@ public class ConnectionProvider {
         }
         return false;
     }
+    
+    public boolean isEmailTaken(String email) throws ClassNotFoundException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+    
+        try {
+            conn = getCon();
+        
+            pstmt = conn.prepareStatement("SELECT * FROM registration WHERE email_address = ?");
+            pstmt.setString(1, email);
+        
+            ResultSet rs = pstmt.executeQuery();
+        
+            if (rs.next()) {
+                return true; 
+            }
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false; 
+    }
+    
+    public boolean isUsernameTaken(String username) throws ClassNotFoundException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+    
+        try {
+            conn = getCon();
+        
+            pstmt = conn.prepareStatement("SELECT * FROM registration WHERE username = ?");
+            pstmt.setString(1, username);
+        
+            ResultSet rs = pstmt.executeQuery();
+        
+            if (rs.next()) {
+                return true; 
+            }
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false; 
+    }
 }
+
+

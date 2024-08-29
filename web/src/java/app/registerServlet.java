@@ -12,6 +12,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.net.URLEncoder;
 
 /**
  *
@@ -69,32 +70,45 @@ public class registerServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        try{
-            ConnectionProvider cp = new ConnectionProvider();
-            boolean registered = cp.register(username, password, firstName, lastName, email, phone);
-            if(registered) {
-                Cookie cookie = new Cookie("username", username);
-                cookie.setMaxAge(60*60*24*7);
-                cookie.setHttpOnly(true);
-                response.addCookie(cookie);
-                response.sendRedirect("/");
-            }else {
-                response.sendRedirect("register.jsp?error=Error Registering User");
+        throws ServletException, IOException {
+    String firstName = request.getParameter("firstName");
+    String lastName = request.getParameter("lastName");
+    String email = request.getParameter("email");
+    String phone = request.getParameter("phone");
+    String username = request.getParameter("username");
+    String password = request.getParameter("password");
+
+    try {
+        ConnectionProvider cp = new ConnectionProvider();
+        boolean isEmailValid = cp.isEmailTaken(email);
+        boolean isUsernameValid = cp.isUsernameTaken(username);
+        boolean registered = false;
+
+        if (!isEmailValid && !isUsernameValid) {
+            registered = cp.register(username, password, firstName, lastName, email, phone);
+        }
+
+        if (registered) {
+            Cookie cookie = new Cookie("username", username);
+            cookie.setMaxAge(60 * 60 * 24 * 7);
+            cookie.setHttpOnly(true);
+            response.addCookie(cookie);
+            response.sendRedirect("/"); 
+        } else {
+            String errorMessage = "Error Registering User";
+            if (isEmailValid) {
+                errorMessage = "Email is already taken";
+            } else if (isUsernameValid) {
+                errorMessage = "Username is already taken";
             }
+            response.sendRedirect("register.jsp?error=" + URLEncoder.encode(errorMessage, "UTF-8"));
         }
-        catch(Exception e){
-            System.out.println(e);
-        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        response.sendRedirect("register.jsp?error=An unexpected error occurred");
     }
+}
 
     /**
      * Returns a short description of the servlet.

@@ -309,6 +309,16 @@ input::placeholder input::-ms-input-placeholde{
     
 }
 
+#errorMessage p {
+    color: red;
+    font-size: x-small;
+}
+
+.error::placeholder {
+    color: red;
+} 
+ 
+
 @media screen and (max-width: 600px) {
     #side-Two {
         display: none;
