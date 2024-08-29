@@ -8,6 +8,8 @@
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
 <%@attribute name="message"%>
+<%@tag import="app.util.Auth"%>
+<%@tag import="app.util.Session"%>
 
 <%-- any content can be specified here e.g.: --%>
 <div class="welcome-page">
@@ -22,19 +24,12 @@
         if(s != null){
     %>
     <script>
-        (function runJavaProgram() {
-            const { exec } = require('child_process');
-            exec('java -jar "C:\Users\olwia\OneDrive\Documents\GitHub\bookie\desktop\LibraryApplication\dist\LibraryApplication.jar" <%= s.getUsername() %>', (error, stdout, stderr) => {
-                if (error) {
-                    console.error(Error: ${error});
-                    return;
-                }
-                console.log(Output: ${stdout});
-                if (stderr) {
-                    console.error(stderr: ${stderr});
-                }
-            });
-        })()
+        (() => {
+            const url = 'LibraryApp://open?arg1=<%= s.getUsername() %>';
+            let a = document.createElement('a');
+            a.setAttribute("href", url);
+            a.click();
+            })()
      <%}%>
     </script>
 </div>
