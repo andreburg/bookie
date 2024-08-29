@@ -4,15 +4,14 @@
  */
 package view;
 
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import controller.BorrowerController;
 import controller.ValidationController;
 import controller.DataController;
+import java.util.List;
 import model.Borrower;
-
 
 /**
  *
@@ -37,7 +36,7 @@ public class BorrowerManager extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TableBorrowers = new javax.swing.JTable();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
         tfBorrowerID = new javax.swing.JTextField();
@@ -60,7 +59,7 @@ public class BorrowerManager extends javax.swing.JPanel {
 
         setLayout(null);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TableBorrowers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -86,7 +85,7 @@ public class BorrowerManager extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TableBorrowers);
 
         add(jScrollPane1);
         jScrollPane1.setBounds(6, 297, 1006, 226);
@@ -213,37 +212,85 @@ public class BorrowerManager extends javax.swing.JPanel {
     private BorrowerController bc;
     ValidationController vc = new ValidationController();
     Borrower borrower;
-  
+
     DataController dc = new DataController();
-    
+
+    private void populateTable(boolean search, boolean update) {
+        try {
+            bc = new BorrowerController();
+            DefaultTableModel model = (DefaultTableModel) TableBorrowers.getModel();
+
+            if (search) {
+                // Perform search
+                bc.viewAllBorrowers(tfBorrowerID.getText());
+            } else {
+                // Retrieve all authors
+                bc.viewAllBorrowers("");
+            }
+
+            List<Borrower> borrowers = bc.getBorrowers();
+
+            // Clear existing rows
+            model.setRowCount(0);
+
+            if (borrowers.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No borrowers found.", "Search Result", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            } else {
+                // Populate the table with new data
+                for (Borrower borrower : borrowers) {
+                    Object[] row = {borrower.getId(), borrower.getName(), borrower.getSurname(), borrower.getPhone(), borrower.getEmail(), borrower.getAddress()};
+                    model.addRow(row);
+                }
+                if (!update) {
+                    JOptionPane.showMessageDialog(null, "Borrower table successfully pulled!");
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Borrower table not pulled!", "Read Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);
+        }
+    }
+
     private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
         // TODO add your handling code here:
         try {
             bc = new BorrowerController();
-            
+
             int id = Integer.parseInt(tfBorrowerID.getText());
             String name = tfBorrowerName.getText();
             String lastName = tfBorrowerLastName.getText();
             String phoneNumber = tfBorrowerPhoneNumber.getText();
             String email = tfBorrowerEmailAddress.getText();
             String address = tfBorrowerHomeAddress.getText();
-           
-            borrower = new Borrower(id, name, lastName,phoneNumber,email,address);
 
-            // Validate Author
+            borrower = new Borrower(id, name, lastName, phoneNumber, email, address);
+
+            // Validate Borrower
             ValidationController.ValidationResult result = vc.validateBorrower(borrower);
 
             if (result.isValid()) {
                 // Add author to the database
                 bc.addBorrower(borrower);
+
                 //Pull and Update the table from DB
+                populateTable(false, true);
+
                 // TO HERE
                 JOptionPane.showMessageDialog(null, "Borrower " + Integer.toString(borrower.getId()) + " successfully added!");
+                //Clear all fields:
+                tfBorrowerID.setText("");
+                tfBorrowerName.setText("");
+                tfBorrowerLastName.setText("");
+                tfBorrowerPhoneNumber.setText("");
+                tfBorrowerEmailAddress.setText("");
+                tfBorrowerHomeAddress.setText("");
+
             } else {
                 // Display error dialog with the identifier result
                 JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(ex);
         }
@@ -251,65 +298,38 @@ public class BorrowerManager extends javax.swing.JPanel {
 
     private void BtnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewActionPerformed
         // TODO add your handling code here:
-        try {
-            bc = new BorrowerController();
-            
-            int id = Integer.parseInt(tfBorrowerID.getText());
-            String name = tfBorrowerName.getText();
-            String lastName = tfBorrowerLastName.getText();
-            String phoneNumber = tfBorrowerPhoneNumber.getText();
-            String email = tfBorrowerEmailAddress.getText();
-            String address = tfBorrowerHomeAddress.getText();
-           
-            borrower = new Borrower(id, name, lastName,phoneNumber,email,address);
-
-            // Validate Author
-            ValidationController.ValidationResult result = vc.validateBorrower(borrower);
-
-            if (result.isValid()) {
-                // Add author to the database
-                //bc.viewAllBorrowers(borrower);
-                //Pull and Update the table from DB
-                // TO HERE
-                JOptionPane.showMessageDialog(null, "Borrower " + Integer.toString(borrower.getId()) + " successfully updated!");
-            } else {
-                // Display error dialog with the identifier result
-                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (Exception ex){
-            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
-            System.out.println(ex);
-        }
+       populateTable(false,false);
     }//GEN-LAST:event_BtnViewActionPerformed
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
         // TODO add your handling code here:
         try {
             bc = new BorrowerController();
-            
+
             int id = Integer.parseInt(tfBorrowerID.getText());
             String name = tfBorrowerName.getText();
             String lastName = tfBorrowerLastName.getText();
             String phoneNumber = tfBorrowerPhoneNumber.getText();
             String email = tfBorrowerEmailAddress.getText();
             String address = tfBorrowerHomeAddress.getText();
-           
-            borrower = new Borrower(id, name, lastName,phoneNumber,email,address);
 
-            // Validate Author
+            borrower = new Borrower(id, name, lastName, phoneNumber, email, address);
+
+            // Validate Borrower
             ValidationController.ValidationResult result = vc.validateBorrower(borrower);
 
             if (result.isValid()) {
-                // Add author to the database
+                // Add borrower to the database
                 bc.updateBorrower(borrower);
                 //Pull and Update the table from DB
+                populateTable(false,true);
                 // TO HERE
                 JOptionPane.showMessageDialog(null, "Borrower " + Integer.toString(borrower.getId()) + " successfully updated!");
             } else {
                 // Display error dialog with the identifier result
                 JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(ex);
         }
@@ -319,15 +339,15 @@ public class BorrowerManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             bc = new BorrowerController();
-            
+
             int id = Integer.parseInt(tfBorrowerID.getText());
             String name = tfBorrowerName.getText();
             String lastName = tfBorrowerLastName.getText();
             String phoneNumber = tfBorrowerPhoneNumber.getText();
             String email = tfBorrowerEmailAddress.getText();
             String address = tfBorrowerHomeAddress.getText();
-           
-            borrower = new Borrower(id, name, lastName,phoneNumber,email,address);
+
+            borrower = new Borrower(id, name, lastName, phoneNumber, email, address);
 
             // Validate Author
             ValidationController.ValidationResult result = vc.validateBorrower(borrower);
@@ -336,13 +356,14 @@ public class BorrowerManager extends javax.swing.JPanel {
                 // Add author to the database
                 bc.deleteBorrower(borrower);
                 //Pull and Update the table from DB
+                populateTable(false,true);
                 // TO HERE
                 JOptionPane.showMessageDialog(null, "Borrower " + Integer.toString(borrower.getId()) + " successfully deleted!");
             } else {
                 // Display error dialog with the identifier result
                 JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(ex);
         }
@@ -350,22 +371,22 @@ public class BorrowerManager extends javax.swing.JPanel {
 
     private void BtnMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMainActionPerformed
         // TODO add your handling code here:
-    JFrame parentFrame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-    if (parentFrame != null) {
-        parentFrame.dispose();
-    } else {
-        System.out.println("No parent frame found.");
-    }
+        JFrame parentFrame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (parentFrame != null) {
+            parentFrame.dispose();
+        } else {
+            System.out.println("No parent frame found.");
+        }
 
-    MainDashboard md = new MainDashboard(); 
-    md.setVisible(true);
+        MainDashboard md = new MainDashboard();
+        md.setVisible(true);
     }//GEN-LAST:event_BtnMainActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnMain;
+    private javax.swing.JTable TableBorrowers;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField tfBorrowerEmailAddress;
     private javax.swing.JTextField tfBorrowerHomeAddress;
     private javax.swing.JTextField tfBorrowerID;
