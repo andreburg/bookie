@@ -10,6 +10,28 @@ import model.Borrower;
 
 public class ValidationController {
 
+    // Pattern examples for validation
+    /*
+        NAME_PATTERN: 
+        - Valid Examples: "John Doe", "Marie-Claire", "José García"
+        EMAIL_PATTERN: 
+        - Valid Examples: "example.email@domain.com", "user.name+tag@domain.co.uk", "username@sub.domain.org"
+        PHONE_PATTERN: 
+        - Valid Examples: "1234567890", "0987654321", "5555555555"
+        ADDRESS_PATTERN: 
+        - Valid Examples: "123 Main St.", "4567 Elm Road, Apt 2B", "78 King's Cross"
+        DATE_PATTERN: 
+        - Valid Examples: "2024-08-29", "1999-12-31", "2000-01-01"
+        TITLE_PATTERN: 
+        - Valid Examples: "The Great Gatsby!", "War & Peace: Volume 1", "How to Win Friends & Influence People?"
+        GENRE_PATTERN: 
+        - Valid Examples: "Science Fiction", "Romance", "Historical Fiction"
+        ISBN_PATTERN: 
+        - Valid Examples: "9783161484100", "0306406152", "978123456789X"
+        INTEGER_PATTERN: 
+        - Valid Examples: "123", "456789", "0"
+    */
+    
     // Constants for regex patterns
     private static final String NAME_PATTERN = "^[a-zA-Zà-ÿÀ-ß]+(?:[ '-][a-zA-Zà-ÿÀ-ß]+)*$";
     private static final String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";

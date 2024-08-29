@@ -372,7 +372,7 @@ public class DataController {
         case ADD:
             // Add borrower logic
             try {
-                String query = "INSERT INTO BORROWERS (id, first_name, last_name, phone, email, address) VALUES (?, ?, ?, ?, ?, ?)";
+                String query = "INSERT INTO BORROWERS (id, first_name, last_name, phone_number, email_address, home_address) VALUES (?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement statement = con.prepareStatement(query)) {
                     statement.setInt(1, borrower.getId());
                     statement.setString(2, borrower.getName());
@@ -391,7 +391,7 @@ public class DataController {
         case UPDATE:
             // Update borrower logic with whereClause
             try {
-                String query = "UPDATE BORROWERS SET first_name = ?, last_name = ?, phone = ?, email = ?, address = ? WHERE id = ?";
+                String query = "UPDATE BORROWERS SET first_name = ?, last_name = ?, phone_number = ?, email_address = ?, home_address = ? WHERE id = ?";
                 try (PreparedStatement statement = con.prepareStatement(query)) {
                     statement.setString(1, borrower.getName());
                     statement.setString(2, borrower.getSurname());
@@ -441,9 +441,9 @@ public class DataController {
                             Borrower b = new Borrower(resultSet.getInt("id"),
                                     resultSet.getString("first_name"),
                                     resultSet.getString("last_name"),
-                                    resultSet.getString("phone"),
-                                    resultSet.getString("email"),
-                                    resultSet.getString("address"));
+                                    resultSet.getString("phone_number"),
+                                    resultSet.getString("email_address"),
+                                    resultSet.getString("home_address"));
                             borrowers.add(b);
                         }
                         this.borrowerTableData = borrowers; // Store result in tableData
@@ -464,9 +464,9 @@ public class DataController {
                             Borrower b = new Borrower(resultSet.getInt("id"),
                                     resultSet.getString("first_name"),
                                     resultSet.getString("last_name"),
-                                    resultSet.getString("phone"),
-                                    resultSet.getString("email"),
-                                    resultSet.getString("address"));
+                                    resultSet.getString("phone_number"),
+                                    resultSet.getString("email_address"),
+                                    resultSet.getString("home_address"));
                             borrowers.add(b);
                         }
                         this.borrowerTableData = borrowers; // Store result in tableData
@@ -479,8 +479,8 @@ public class DataController {
             break;
         default:
             throw new IllegalArgumentException("Unsupported action for Borrower");
+        }
     }
-}
 }
 
     
