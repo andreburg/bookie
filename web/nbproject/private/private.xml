@@ -7,6 +7,8 @@
             <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/WEB-INF/tags/welcome.tag</file>
             <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/ConnectionProvider.java</file>
+            <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/passwordUtil.java</file>
+            <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/WEB-INF/tags/auth-check.tag</file>
             <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/WEB-INF/tags/header.tag</file>
             <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/WEB-INF/tags/footer.tag</file>
             <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/authenticate.java</file>
@@ -17,6 +19,7 @@
             <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/login.jsp</file>
             <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/CookieWrapper.java</file>
             <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/META-INF/context.xml</file>
+            <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/logoutServlet.java</file>
             <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/welcome.jsp</file>
             <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/conf/MANIFEST.MF</file>
         </group>

@@ -46,17 +46,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-family: sans-serif;
 }
 
+head, body {
+    margin: 0 auto;
+    padding: 0;
+}
+
 .main-section {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5rem;
+    gap: 10rem;
 }
 
 .nav-header {
     max-width: 960px;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    z-index: 10;
 }
 
 .auth-prompt{
@@ -144,11 +154,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     justify-content: center;
 }
 
-.user-input p{
+.user-input > p{
     font-size: x-small;
 }
 
-.user-input span a {
+.user-input > span, a {
     color: hsl(var(--secondary));
     text-decoration: none;
 }
@@ -220,6 +230,71 @@ input::placeholder input::-ms-input-placeholde{
     align-items: center;
     background-color: hsl(var(--loginSideTwo));
     flex: 1;
+}
+
+.header-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    gap: 0.25rem;
+}
+
+.header-profile-picture{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    background-color: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    user-select: none;
+    border: 1px solid hsl(var(--muted-foreground));
+}
+
+.header-profile > p{
+        color: hsl(var(--muted-foreground));
+        font-size: small;
+        margin: 0rem;
+}
+
+.header-profile > a{
+    color: hsl(var(--descructive));
+    font-size: small;
+}
+
+.header-profile > a:hover{
+    text-decoration: underline;
+}
+
+.welcome-page{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10rem;
+}
+
+.welcome-page > img{
+    margin-top: 10rem;
+    z-index: 1;
+}
+
+.opening-soon{
+    color: hsl(var(--accent));
+}
+
+.welcome-message{
+    color: hsl(var(--muted-foreground));
+    font-size: xx-large;
+    text-align: center;
+}
+
+#confetti-canvas{
+    position: absolute;
+    z-index: 0;
 }
 
 @media screen and (max-width: 600px) {

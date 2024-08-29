@@ -10,4 +10,11 @@
 <%@attribute name="message"%>
 
 <%-- any content can be specified here e.g.: --%>
-<h2>${message}</h2>
+<div class="welcome-page">
+    <canvas id="confetti-canvas"></canvas>
+    <img src="/static/assets/welcome-bookie.svg" alt="alt"/>
+    <p class="welcome-message">
+        your new trusty book outlet <span class="opening-soon">opening soon</span>!
+    </p>
+    <script type="text/javascript" src="/static/js/confetti.js" defer></script>
+</div>
