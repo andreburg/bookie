@@ -4,6 +4,8 @@
     Author     : andre
 --%>
 
+<%@tag import="app.util.Auth"%>
+<%@tag import="app.util.Session"%>
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
@@ -15,25 +17,13 @@
         <img src="/static/assets/bookie-logo.svg"/>        
     </a>
     <% 
-        Cookie[] cookies = request.getCookies();
-        String username = "";
-
-        if(cookies != null){
-            for(Cookie cookie: cookies){
-                if(cookie.getName().equals("username")) {
-                username = cookie.getValue();
-                }   
-            }
-        }
-
-        if(username != ""){
+    Session s = Auth.getSession(request);
+    if(s.validateSession()){
     %>
     <div class="header-profile">
-        <div class="header-profile-picture"><%= username.charAt(0) %></div>
-        <p class="header-profile-username"><%= username %></p>
+        <div class="header-profile-picture"><%= s.getUsername().charAt(0) %></div>
+        <p class="header-profile-username"><%= s.getUsername() %></p>
         <a href="/logout" class="header-logout">Logout</a>
     </div>
-    <%
-        }
-    %>
+    <%}%>
 </div>

@@ -7,8 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="app.ConnectionProvider" %>
-
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/static/style/globals.css" />
-        <title>Login</title>
+        <title>Bookie - Login</title>
     </head>
     <body>
         <main class="main-section">

@@ -1,6 +1,7 @@
-package app;
+package app.controller;
 
 
+import app.util.PasswordUtils;
 import java.sql.*;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -11,8 +12,8 @@ import java.sql.*;
  *
  * @author andre
  */
-public class ConnectionProvider {
-    public ConnectionProvider(){}
+public class DataController {
+    public DataController(){}
     
     String username = "avnadmin";
     String pwd = "";
@@ -49,7 +50,7 @@ public class ConnectionProvider {
             
             if(rs.next()) {
                 String hashedPassword = rs.getString("password");
-                return passwordUtil.validatePassword(password, hashedPassword);
+                return PasswordUtils.validatePassword(password, hashedPassword);
             }
         }catch (SQLException e) {
             e.printStackTrace();
@@ -61,7 +62,7 @@ public class ConnectionProvider {
         Connection conn = null;
         PreparedStatement pstmtRegister = null;
         PreparedStatement pstmtLogin = null;
-        String hashedPassword = passwordUtil.hashPassword(password);
+        String hashedPassword = PasswordUtils.hashPassword(password);
 
         try {
             conn = getCon();

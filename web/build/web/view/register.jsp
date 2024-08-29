@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/static/style/globals.css" />
-        <title>JSP Page</title>
+        <title>Bookie - Register</title>
     </head>
     <body>
         <main class="main-section">
@@ -38,14 +38,9 @@
                                 if (errorMessage != null && !errorMessage.isEmpty() && errorMessage.contains("Email")) {
                             %>
                                 <input type="text" name="email" id="email" class="error" placeholder="<%= errorMessage %>" required>
-                            <% 
-                               }else {
-                            %>
+                            <%}else{%>
                                 <input type="text" name="email" id="email" placeholder="Email" required>
-                            <%    
-                                }
-                                    
-                            %>
+                            <%}%>
                             <input type="text" name="phone" id="phone" placeholder="Phone" required>
                         </div>
                         <div class="input-wrapper">
@@ -53,14 +48,9 @@
                                 if (errorMessage != null && !errorMessage.isEmpty() && errorMessage.contains("Username")) {
                             %>
                                 <input type="text" name="username" id="username" class="error"  placeholder="<%= errorMessage %>" required>
-                            <% 
-                               }else {
-                            %>
+                            <%}else{%>
                                 <input type="text" name="username" id="username" placeholder="Username" required>
-                            <%    
-                                }
-                                    
-                            %>
+                            <%}%>
                             <input type="password" name="password" id="password" placeholder="Password" required>
                             <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
                             <p id="message"></p>

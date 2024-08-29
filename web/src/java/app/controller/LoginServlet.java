@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package app;
+package app.controller;
 
+import app.controller.DataController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,14 +13,14 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.net.URLEncoder;
+import java.sql.*;
 
 /**
  *
- * @author andre
+ * @author werne
  */
-@WebServlet(name = "registerServlet", urlPatterns = {"/registerServlet"})
-public class registerServlet extends HttpServlet {
+@WebServlet(name = "authenticate", urlPatterns = {"/authenticate"})
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +39,10 @@ public class registerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet registerServlet</title>");
+            out.println("<title>Servlet authenticate</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet registerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet authenticate at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -70,45 +71,34 @@ public class registerServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    String firstName = request.getParameter("firstName");
-    String lastName = request.getParameter("lastName");
-    String email = request.getParameter("email");
-    String phone = request.getParameter("phone");
-    String username = request.getParameter("username");
-    String password = request.getParameter("password");
-
-    try {
-        ConnectionProvider cp = new ConnectionProvider();
-        boolean isEmailValid = cp.isEmailTaken(email);
-        boolean isUsernameValid = cp.isUsernameTaken(username);
-        boolean registered = false;
-
-        if (!isEmailValid && !isUsernameValid) {
-            registered = cp.register(username, password, firstName, lastName, email, phone);
-        }
-
-        if (registered) {
-            Cookie cookie = new Cookie("username", username);
-            cookie.setMaxAge(60 * 60 * 24 * 7);
-            cookie.setHttpOnly(true);
-            response.addCookie(cookie);
-            response.sendRedirect("/"); 
-        } else {
-            String errorMessage = "Error Registering User";
-            if (isEmailValid) {
-                errorMessage = "Email is already taken";
-            } else if (isUsernameValid) {
-                errorMessage = "Username is already taken";
+            throws ServletException, IOException {
+        String username = request.getParameter("txtUsername");
+        String password = request.getParameter("txtPassword");
+        
+        Connection conn = null;
+        
+        try {
+            DataController cp = new DataController();
+            conn = cp.getCon();
+            
+            
+            if(cp.validate(username, password)) {
+                Cookie cookie = new Cookie("username", username);
+                cookie.setMaxAge(60*60*24*7);
+                cookie.setHttpOnly(true);
+                response.addCookie(cookie);
+                
+                response.sendRedirect("/");
+            }else {
+                response.sendRedirect("/login?error=Invalid credentials");
             }
-            response.sendRedirect("register.jsp?error=" + URLEncoder.encode(errorMessage, "UTF-8"));
+        }catch(ClassNotFoundException e) {
+            e.printStackTrace();
+            response.sendRedirect("/login?error=Database connection error");
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-        response.sendRedirect("register.jsp?error=An unexpected error occurred");
     }
-}
 
     /**
      * Returns a short description of the servlet.
