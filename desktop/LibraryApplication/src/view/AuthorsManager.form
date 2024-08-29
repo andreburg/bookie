@@ -189,7 +189,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfAuthorID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter ID"/>
+        <Property name="toolTipText" type="java.lang.String" value="Enter ID"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfAuthorIDActionPerformed"/>
@@ -219,7 +219,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfAuthorName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter your Name"/>
+        <Property name="toolTipText" type="java.lang.String" value="Enter your Name"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -246,7 +246,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfAuthorLastName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter your Last Name"/>
+        <Property name="toolTipText" type="java.lang.String" value="Enter your Last Name"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

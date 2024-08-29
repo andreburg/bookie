@@ -248,7 +248,7 @@ public class DataController {
             case ADD:
                 // Add book logic
                 try {
-                    String query = "INSERT INTO BOOKS (id, title, genre, isbn, available, last_borrowed, date_returned, borrower_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    String query = "INSERT INTO BOOKS (id, title, genre, isbn_code, is_available, last_borrowed, date_returned, borrower_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                     try (PreparedStatement statement = con.prepareStatement(query)) {
                         statement.setInt(1, book.getId());
                         statement.setString(2, book.getTitle());
@@ -269,7 +269,7 @@ public class DataController {
             case UPDATE:
                 // Update book logic with whereClause
                 try {
-                    String query = "UPDATE BOOKS SET title = ?, genre = ?, isbn = ?, available = ?, last_borrowed = ?, date_returned = ?, borrower_id = ? WHERE id = ?";
+                    String query = "UPDATE BOOKS SET title = ?, genre = ?, isbn_code = ?, is_available = ?, last_borrowed = ?, date_returned = ?, borrower_id = ? WHERE id = ?";
                     try (PreparedStatement statement = con.prepareStatement(query)) {
                         statement.setString(1, book.getTitle());
                         statement.setString(2, book.getGenre());
@@ -278,13 +278,8 @@ public class DataController {
                         statement.setDate(5, book.getLastBorrowed() != null ? new java.sql.Date(book.getLastBorrowed().getTime()) : null);
                         statement.setDate(6, book.getDateReturned() != null ? new java.sql.Date(book.getDateReturned().getTime()) : null);
                         statement.setInt(7, book.getBorrowerID());
-                        statement.setInt(8, Integer.parseInt(whereClause));
-                        int rowsUpdated = statement.executeUpdate();
-                        if (rowsUpdated > 0) {
-                            System.out.println("Data has been updated in the Books table");
-                        } else {
-                            System.out.println("No data found to update in the Books table");
-                        }
+                        statement.setInt(8, book.getId());
+                        statement.executeUpdate();
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -321,8 +316,8 @@ public class DataController {
                                 Book b = new Book(resultSet.getInt("id"),
                                         resultSet.getString("title"),
                                         resultSet.getString("genre"),
-                                        resultSet.getString("isbn"),
-                                        resultSet.getBoolean("available"),
+                                        resultSet.getString("isbn_code"),
+                                        resultSet.getBoolean("is_available"),
                                         resultSet.getDate("last_borrowed"),
                                         resultSet.getDate("date_returned"),
                                         resultSet.getInt("borrower_id"));
@@ -346,8 +341,8 @@ public class DataController {
                                 Book b = new Book(resultSet.getInt("id"),
                                         resultSet.getString("title"),
                                         resultSet.getString("genre"),
-                                        resultSet.getString("isbn"),
-                                        resultSet.getBoolean("available"),
+                                        resultSet.getString("isbn_code"),
+                                        resultSet.getBoolean("is_available"),
                                         resultSet.getDate("last_borrowed"),
                                         resultSet.getDate("date_returned"),
                                         resultSet.getInt("borrower_id"));

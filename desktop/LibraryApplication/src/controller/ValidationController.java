@@ -3,7 +3,9 @@
  */
 package controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import model.Author;
 import model.Book;
 import model.Borrower;
@@ -33,17 +35,19 @@ public class ValidationController {
     */
     
     // Constants for regex patterns
-    private static final String NAME_PATTERN = "^[a-zA-Zà-ÿÀ-ß]+(?:[ '-][a-zA-Zà-ÿÀ-ß]+)*$";
-    private static final String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-    private static final String PHONE_PATTERN = "^\\d{10}$";
-    private static final String ADDRESS_PATTERN = "^\\d+\\s[A-Za-z0-9\\s,.'-]+$";
-    private static final String DATE_PATTERN = "^\\d{4}-\\d{2}-\\d{2}$"; // Date format is YYYY-MM-DD
-    private static final String TITLE_PATTERN = "^[A-Za-z0-9\\s,.'\\-!@#$%^&*()_+=<>?{}\\[\\]~`|:;\"\\\\]+$";
-    private static final String GENRE_PATTERN = "^[A-Za-z\\s]+$";
-    private static final String ISBN_PATTERN = "^(97(8|9))?\\d{9}(\\d|X)$";
-    private static final String INTEGER_PATTERN = "^\\d+$";
+    private static final String NAME_PATTERN = "^[a-zA-Zà-ÿÀ-ß]+(?:[ '-][a-zA-Zà-ÿÀ-ß]+)*$"; // Name/Lastname with optional spaces, hyphens, or apostrophes
+    private static final String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"; // Email address format
+    private static final String PHONE_PATTERN = "^\\d{10}$"; // 10-digit phone number
+    private static final String ADDRESS_PATTERN = "^\\d+\\s[A-Za-z0-9\\s,.'-]+$"; // Address with house number, street name, and optional details
+    private static final String DATE_PATTERN = "^\\d{4}-\\d{2}-\\d{2}$"; // Date format YYYY-MM-DD
+    private static final String TITLE_PATTERN = "^[A-Za-z0-9\\s,.'\\-!@#$%^&*()_+=<>?{}\\[\\]~`|:;\"\\\\]+$"; // Title with various allowed characters
+    private static final String GENRE_PATTERN = "^[A-Za-z\\s]+$"; // Genre with letters and spaces
+    //private static final String ISBN_PATTERN = "^(97(8|9))?\\d{9}(\\d|X)$"; // ISBN number format
+    private static final String ISBN_PATTERN = "^[a-zA-Z0-9]+$"; // Accepts any combination of letters and digits for testing
+    private static final String INTEGER_PATTERN = "^\\d+$"; // Non-negative integer
 
-    // Inner class
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+
     public class ValidationResult {
         private boolean isValid;
         private String identifier;
@@ -62,7 +66,6 @@ public class ValidationController {
         }
     }
 
-    // Method to validate Author
     public ValidationResult validateAuthor(Author author) {
         StringBuilder identifiers = new StringBuilder();
         boolean isValid = true;
@@ -82,7 +85,6 @@ public class ValidationController {
         return new ValidationResult(isValid, identifiers.toString().trim());
     }
 
-    // Method to validate Book
     public ValidationResult validateBook(Book book) {
         StringBuilder identifiers = new StringBuilder();
         boolean isValid = true;
@@ -128,7 +130,6 @@ public class ValidationController {
         return new ValidationResult(isValid, identifiers.toString().trim());
     }
 
-    // Method to validate Borrower
     public ValidationResult validateBorrower(Borrower borrower) {
         StringBuilder identifiers = new StringBuilder();
         boolean isValid = true;
@@ -166,7 +167,6 @@ public class ValidationController {
         return new ValidationResult(isValid, identifiers.toString().trim());
     }
 
-    // Helper methods for validation
     private ValidationResult validateName(String name) {
         boolean isValid = name.matches(NAME_PATTERN);
         return new ValidationResult(isValid, isValid ? "" : "Invalid Name");
@@ -203,7 +203,11 @@ public class ValidationController {
     }
 
     private ValidationResult validateDate(Date date) {
-        boolean isValid = date == null || date.toString().matches(DATE_PATTERN);
+        if (date == null) {
+            return new ValidationResult(true, ""); // Null dates are considered valid
+        }
+        String formattedDate = dateFormat.format(date);
+        boolean isValid = formattedDate.matches(DATE_PATTERN);
         return new ValidationResult(isValid, isValid ? "" : "Invalid Date");
     }
 

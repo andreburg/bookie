@@ -132,7 +132,7 @@ public class AuthorsManager extends javax.swing.JPanel {
         add(jLabel2);
         jLabel2.setBounds(40, 80, 16, 16);
 
-        tfAuthorID.setText("Enter ID");
+        tfAuthorID.setToolTipText("Enter ID");
         tfAuthorID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfAuthorIDActionPerformed(evt);
@@ -146,7 +146,7 @@ public class AuthorsManager extends javax.swing.JPanel {
         add(jLabel4);
         jLabel4.setBounds(40, 140, 110, 16);
 
-        tfAuthorName.setText("Enter your Name");
+        tfAuthorName.setToolTipText("Enter your Name");
         add(tfAuthorName);
         tfAuthorName.setBounds(30, 160, 270, 26);
 
@@ -155,7 +155,7 @@ public class AuthorsManager extends javax.swing.JPanel {
         add(jLabel6);
         jLabel6.setBounds(40, 200, 130, 16);
 
-        tfAuthorLastName.setText("Enter your Last Name");
+        tfAuthorLastName.setToolTipText("Enter your Last Name");
         add(tfAuthorLastName);
         tfAuthorLastName.setBounds(30, 220, 270, 26);
 

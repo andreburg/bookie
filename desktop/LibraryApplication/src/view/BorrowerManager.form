@@ -25,7 +25,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="tfBorrowerID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter ID"/>
+        <Property name="toolTipText" type="java.lang.String" value="Enter ID"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -35,7 +35,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfBorrowerName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter your Name"/>
+        <Property name="toolTipText" type="java.lang.String" value="Enter your Name"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -45,7 +45,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfBorrowerLastName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter your Last Name"/>
+        <Property name="toolTipText" type="java.lang.String" value="Enter your Last Name"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -55,7 +55,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfBorrowerPhoneNumber">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter your Phone Number"/>
+        <Property name="toolTipText" type="java.lang.String" value="Enter your Phone Number"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -65,7 +65,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfBorrowerEmailAddress">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter Email Address"/>
+        <Property name="toolTipText" type="java.lang.String" value="Enter Email Address"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -75,7 +75,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfBorrowerHomeAddress">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter Home Address"/>
+        <Property name="toolTipText" type="java.lang.String" value="Enter Home Address"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

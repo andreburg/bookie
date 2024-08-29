@@ -62,27 +62,27 @@ public class BorrowerManager extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1040, 760));
         setLayout(null);
 
-        tfBorrowerID.setText("Enter ID");
+        tfBorrowerID.setToolTipText("Enter ID");
         add(tfBorrowerID);
         tfBorrowerID.setBounds(20, 80, 270, 26);
 
-        tfBorrowerName.setText("Enter your Name");
+        tfBorrowerName.setToolTipText("Enter your Name");
         add(tfBorrowerName);
         tfBorrowerName.setBounds(20, 130, 270, 26);
 
-        tfBorrowerLastName.setText("Enter your Last Name");
+        tfBorrowerLastName.setToolTipText("Enter your Last Name");
         add(tfBorrowerLastName);
         tfBorrowerLastName.setBounds(320, 130, 270, 26);
 
-        tfBorrowerPhoneNumber.setText("Enter your Phone Number");
+        tfBorrowerPhoneNumber.setToolTipText("Enter your Phone Number");
         add(tfBorrowerPhoneNumber);
         tfBorrowerPhoneNumber.setBounds(20, 180, 270, 26);
 
-        tfBorrowerEmailAddress.setText("Enter Email Address");
+        tfBorrowerEmailAddress.setToolTipText("Enter Email Address");
         add(tfBorrowerEmailAddress);
         tfBorrowerEmailAddress.setBounds(320, 180, 270, 26);
 
-        tfBorrowerHomeAddress.setText("Enter Home Address");
+        tfBorrowerHomeAddress.setToolTipText("Enter Home Address");
         add(tfBorrowerHomeAddress);
         tfBorrowerHomeAddress.setBounds(20, 230, 270, 26);
 
