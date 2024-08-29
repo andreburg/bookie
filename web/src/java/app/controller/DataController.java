@@ -8,10 +8,6 @@ import java.sql.*;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-/**
- *
- * @author andre
- */
 public class DataController {
     public DataController(){}
     
@@ -43,12 +39,14 @@ public class DataController {
         try{
             conn = getCon();
             
-            pstmt = conn.prepareStatement("SELECT * FROM login WHERE username = ?");
+            //Query to search for user in the login table based on the user input
+            pstmt = conn.prepareStatement("SELECT * FROM login WHERE username = ?"); 
             pstmt.setString(1, username);
             
             ResultSet rs = pstmt.executeQuery();
             
             if(rs.next()) {
+                //Go through each row in the resultset and check whether the password entered by the user matches the password in the database
                 String hashedPassword = rs.getString("password");
                 return PasswordUtils.validatePassword(password, hashedPassword);
             }
@@ -68,6 +66,7 @@ public class DataController {
             conn = getCon();
             conn.setAutoCommit(false);
             
+            //Query to insert user inputs into the database. Checks if the for the foreign key constraint as well.(email and password must be unique)
             pstmtRegister = conn.prepareStatement("INSERT INTO registration (username, first_name, last_surname, password, email_address, phone_number) VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             pstmtRegister.setString(1, username);
             pstmtRegister.setString(2, firstName);
@@ -127,7 +126,7 @@ public class DataController {
     
         try {
             conn = getCon();
-        
+            //Query to check if input email already exits, will be used to show error on the clienside
             pstmt = conn.prepareStatement("SELECT * FROM registration WHERE email_address = ?");
             pstmt.setString(1, email);
         
@@ -155,7 +154,7 @@ public class DataController {
     
         try {
             conn = getCon();
-        
+            //Query to check if input username already exits, will be used to show error on the clienside
             pstmt = conn.prepareStatement("SELECT * FROM registration WHERE username = ?");
             pstmt.setString(1, username);
         

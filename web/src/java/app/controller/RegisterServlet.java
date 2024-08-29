@@ -89,7 +89,7 @@ public class RegisterServlet extends HttpServlet {
         if (!isEmailValid && !isUsernameValid) {
             registered = cp.register(username, password, firstName, lastName, email, phone);
         }
-
+        //If user is has registered successfully, they are logged in automatically and a cookie is created
         if (registered) {
             Cookie cookie = new Cookie("username", username);
             cookie.setMaxAge(60 * 60 * 24 * 7);
@@ -103,7 +103,7 @@ public class RegisterServlet extends HttpServlet {
             } else if (isUsernameValid) {
                 errorMessage = "Username is already taken";
             }
-            response.sendRedirect("/register?error=" + URLEncoder.encode(errorMessage, "UTF-8"));
+            response.sendRedirect("/register?error=" + URLEncoder.encode(errorMessage, "UTF-8"));//Get specified error in the frontend
         }
     } catch (Exception e) {
         e.printStackTrace();
@@ -111,14 +111,9 @@ public class RegisterServlet extends HttpServlet {
     }
 }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

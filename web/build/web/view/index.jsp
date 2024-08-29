@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 26 Aug 2024, 21:18:36
-    Author     : andre
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@page import="app.util.Auth"%>
@@ -21,12 +15,12 @@
         <main class="main-section">
             <tags:header />
             <% 
-                Session s = Auth.getSession(request);
-                if(s.validateSession()){
+                Session s = Auth.getSession(request); //Check if user is logged in
+                if(s != null && s.validateSession()){ //If true they are welcomed and allowed to proceed else they have to login in
             %>
-            <tags:welcome />
+            <tags:welcome /> 
             <%}else{%>
-            <tags:prompt-login />
+            <tags:prompt-login /> 
             <%}%>
         </main>
     </body>

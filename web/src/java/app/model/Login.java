@@ -5,10 +5,6 @@
 package app.model;
 import app.util.PasswordUtils;
 
-/**
- *
- * @author andre
- */
 public class Login {
     private final int id;
     private final String username;

@@ -15,10 +15,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.*;
 
-/**
- *
- * @author werne
- */
 @WebServlet(name = "authenticate", urlPatterns = {"/authenticate"})
 public class LoginServlet extends HttpServlet {
 
@@ -83,11 +79,11 @@ public class LoginServlet extends HttpServlet {
             DataController cp = new DataController();
             conn = cp.getCon();
             
-            
+            //If the user logged in succesfully create a cookie to allow them to stay logged in for a week.
             if(cp.validate(username, password)) {
                 Cookie cookie = new Cookie("username", username);
                 cookie.setMaxAge(60*60*24*7);
-                cookie.setHttpOnly(true);
+                cookie.setHttpOnly(true); //Cookie would not be accessible by client-side scripts
                 response.addCookie(cookie);
                 
                 response.sendRedirect("/");
@@ -100,14 +96,9 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }
