@@ -297,6 +297,18 @@ input::placeholder input::-ms-input-placeholde{
     z-index: 0;
 }
 
+#message {
+    font-size: x-small;
+}
+
+#registerButton {
+    background-color: hsl(var(--secondary));
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    
+}
+
 @media screen and (max-width: 600px) {
     #side-Two {
         display: none;

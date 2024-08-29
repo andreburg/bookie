@@ -39,12 +39,14 @@
                             <input type="text" name="username" id="username" placeholder="Username" required>
                             <input type="password" name="password" id="password" placeholder="Password" required>
                             <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+                            <p id="message"></p>
                         </div>
-                        <input id="register-button" type="submit" value="Register">
+                        <input id="registerButton" type="submit" value="Register">
                         <p>Already have an account? <span><a href='/login'>Login</a></span></p>
                     </div>
                 </form>
             </div>
-        </main>    
+        </main> 
+            <script type="text/javascript" src="/static/js/register.js" defer></script>
     </body>
 </html
