@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package view;
 
 import javax.swing.JFrame;
@@ -270,44 +267,7 @@ public class BooksManager extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 private BookController bc;
     ValidationController vc = new ValidationController();
-    Book book;
-    private void populateTable(boolean search, boolean update) {
-        try {
-            bc = new BookController();
-            DefaultTableModel model = (DefaultTableModel) TableBook.getModel();
-
-            if (search) {
-                // Perform search
-                bc.viewAllBooks(tfBookID.getText());
-            } else {
-                // Retrieve all books
-                bc.viewAllBooks("");
-            }
-
-            List<Book> books = bc.getBooks();
-
-            // Clear existing rows
-            model.setRowCount(0);
-
-            if (books.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No books found.", "Search Result", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            } else {
-                // Populate the table with new data
-                for (Book book : books) {
-                    Object[] row = { book.getId(), book.getTitle(), book.getGenre(), book.getIsbn(), book.isAvailable(), book.getLastBorrowed(), book.getDateReturned(), book.getBorrowerID() };
-                    model.addRow(row);
-                }
-                if (!update) {
-                    JOptionPane.showMessageDialog(null, "Books table successfully pulled!");
-                }
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Book table not pulled!", "Read Error", JOptionPane.ERROR_MESSAGE);
-            System.out.println(ex);
-        }
-    }
-    
+    Book book;   
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     
     private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
@@ -315,25 +275,18 @@ private BookController bc;
             bc = new BookController();
             vc = new ValidationController();
 
-            // Parsing ID as integer
-            int id = Integer.parseInt(tfBookID.getText().trim()); // Ensure input is trimmed to avoid NumberFormatException
-
-            // Getting text input directly for title, genre, and ISBN
-            String title = tfBookTitle.getText().trim();
+            int id = Integer.parseInt(tfBookID.getText().trim()); // Ensure input is trimmed to avoid NumberFormatException           
+            String title = tfBookTitle.getText().trim();    // Getting text input directly for title, genre, and ISBN
             String genre = tfBookGenre.getText().trim();
-            String isbn = tfBookISBNCode.getText().trim();
-
-            // Getting boolean value from JCheckBox
-            boolean isAvailable = cbxAvailable.isSelected(); // Directly gets the boolean value
+            String isbn = tfBookISBNCode.getText().trim();            
+            boolean isAvailable = cbxAvailable.isSelected(); // Getting boolean value from JCheckBox
 
             Date LBD = null;
             Date RD = null;
             int borrowerID = 0;
-
-            // Check if the book is checked out
-            if (!isAvailable) {
-                // Parsing dates with proper format
-                String lastBorrowedDateText = tfBookLastBorrowedDate.getText().trim();
+           
+            if (!isAvailable) { // Check if the book is checked out                    
+                String lastBorrowedDateText = tfBookLastBorrowedDate.getText().trim();  // Parsing dates with proper format
                 String returnedDateText = tfBookReturnedDate.getText().trim();
 
                 if (!lastBorrowedDateText.isEmpty() && !returnedDateText.isEmpty()) {
@@ -346,9 +299,8 @@ private BookController bc;
                         return; // Exit if date parsing fails
                     }
                 }
-
-                // Parsing borrower ID as integer
-                try {
+                
+                try {   // Parsing borrower ID as integer
                     if (tfBorrowerID.getText().isBlank()){
                         borrowerID = 0;
                     } else {
@@ -359,28 +311,22 @@ private BookController bc;
                     return; // Exit if borrower ID parsing fails
                 }
             }
-
-            // Create new Book object
-            book = new Book(id, title, genre, isbn, isAvailable, LBD, RD, borrowerID);
-
-            // Validate book using ValidationController
-            ValidationController.ValidationResult result = vc.validateBook(book);
+           
+            book = new Book(id, title, genre, isbn, isAvailable, LBD, RD, borrowerID);  // Create new Book object
+           
+            ValidationController.ValidationResult result = vc.validateBook(book);   // Validate book using ValidationController
 
             if (result.isValid()) {
-                if (isAvailable || borrowerID == 0 || borrowerExists(borrowerID)) {
-                    // Add book to the database
-                    bc.addBook(book);
-                    // Pull and update the table from DB
-                    populateTable(false, true);
+                if (isAvailable || borrowerID == 0 || borrowerExists(borrowerID)) {                    
+                    bc.addBook(book);   // Add book to the database                   
+                    populateTable(false, true); // Pull and update the table from DB
                     JOptionPane.showMessageDialog(null, "Book " + book.getId() + " successfully added!");
-
                     clearFields();
                 } else {
                     JOptionPane.showMessageDialog(null, "Error: Borrower " + borrowerID + " does not exist", "Validation Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } else {
-                // Display error dialog with the validation result
-                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            } else {               
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE); // Display error dialog with the validation result
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Error: Invalid input for numeric fields", "Validation Error", JOptionPane.ERROR_MESSAGE);
@@ -391,14 +337,12 @@ private BookController bc;
     }//GEN-LAST:event_BtnAddActionPerformed
 
     private void BtnMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMainActionPerformed
-        // TODO add your handling code here:
         JFrame parentFrame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
         if (parentFrame != null) {
             parentFrame.dispose();
         } else {
             System.out.println("No parent frame found.");
         }
-
         MainDashboard md = new MainDashboard();
         md.setVisible(true);
     }//GEN-LAST:event_BtnMainActionPerformed
@@ -408,12 +352,10 @@ private BookController bc;
     }//GEN-LAST:event_BtnViewActionPerformed
 
     private void TableBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableBookMouseClicked
-        // Check if a row is selected
-        int selectedRow = TableBook.getSelectedRow();
+        int selectedRow = TableBook.getSelectedRow();   // Check if a row is selected
 
-        if (selectedRow != -1) {
-            // Get values from the selected row
-            Object idValue = TableBook.getValueAt(selectedRow, 0);
+        if (selectedRow != -1) {           
+            Object idValue = TableBook.getValueAt(selectedRow, 0);  // Get values from the selected row
             Object titleValue = TableBook.getValueAt(selectedRow, 1);
             Object genreValue = TableBook.getValueAt(selectedRow, 2);
             Object isbnValue = TableBook.getValueAt(selectedRow, 3);
@@ -421,9 +363,8 @@ private BookController bc;
             Object lastBorrowedDateValue = TableBook.getValueAt(selectedRow, 5);
             Object returnedDateValue = TableBook.getValueAt(selectedRow, 6);
             Object borrowerIDValue = TableBook.getValueAt(selectedRow, 7);
-
-            // Convert to String, defaulting to empty string if null
-            String id = idValue != null ? idValue.toString() : "";
+           
+            String id = idValue != null ? idValue.toString() : "";  // Convert to String, defaulting to empty string if null
             String title = titleValue != null ? titleValue.toString() : "";
             String genre = genreValue != null ? genreValue.toString() : "";
             String isbn = isbnValue != null ? isbnValue.toString() : "";
@@ -431,21 +372,17 @@ private BookController bc;
             String lastBorrowedDate = lastBorrowedDateValue != null ? lastBorrowedDateValue.toString() : "";
             String returnedDate = returnedDateValue != null ? returnedDateValue.toString() : "";
             String borrowerID = borrowerIDValue != null ? borrowerIDValue.toString() : "";
-
-            // Set the values in text fields
-            tfBookID.setText(id);
+           
+            tfBookID.setText(id);   // Set the values in text fields
             tfBookTitle.setText(title);
             tfBookGenre.setText(genre);
             tfBookISBNCode.setText(isbn);
             tfBookLastBorrowedDate.setText(lastBorrowedDate);
             tfBookReturnedDate.setText(returnedDate);
-            tfBorrowerID.setText(borrowerID);
-
-            // Set checkbox state
-            cbxAvailable.setSelected(Boolean.parseBoolean(availability));
-
-            // Disable the ID field (not editable) and enable update and delete buttons
-            tfBookID.setEnabled(false);
+            tfBorrowerID.setText(borrowerID);            
+            cbxAvailable.setSelected(Boolean.parseBoolean(availability));   // Set checkbox state
+            
+            tfBookID.setEnabled(false); // Disable the ID field (not editable) and enable update and delete buttons
             if (cbxAvailable.isSelected()){
                 tfBookLastBorrowedDate.setEnabled(true);
                 tfBookReturnedDate.setEnabled(true);
@@ -455,9 +392,8 @@ private BookController bc;
             }              
             BtnUpdate.setEnabled(true);
             BtnDelete.setEnabled(true);
-        } else {
-            // No row is selected, clear fields and disable buttons
-            clearFields();
+        } else {           
+            clearFields();  // No row is selected, clear fields and disable buttons
             tfBookID.setEnabled(true);
             BtnUpdate.setEnabled(false);
             BtnDelete.setEnabled(false);
@@ -472,9 +408,8 @@ private BookController bc;
         try {
             bc = new BookController();
             vc = new ValidationController();
-
-            // Parse and validate input fields
-            int id = Integer.parseInt(tfBookID.getText().trim());
+            
+            int id = Integer.parseInt(tfBookID.getText().trim());   // Parse and validate input fields
             String title = tfBookTitle.getText().trim();
             String genre = tfBookGenre.getText().trim();
             String isbn = tfBookISBNCode.getText().trim();
@@ -485,9 +420,8 @@ private BookController bc;
             String lastBorrowedDateText = tfBookLastBorrowedDate.getText().trim();
             String returnedDateText = tfBookReturnedDate.getText().trim();
             int borrowerID = 0;
-
-            // Check if the book is being borrowed
-            if (isAvailable) {
+            
+            if (isAvailable) {  // Check if the book is being borrowed
                 if (!lastBorrowedDateText.isEmpty()) {
                     try {
                         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -510,9 +444,8 @@ private BookController bc;
                         return; // Exit if date parsing fails
                     }
                 }
-
-                // Parse borrower ID as integer if it is not empty
-                String borrowerIDText = tfBorrowerID.getText().trim();
+               
+                String borrowerIDText = tfBorrowerID.getText().trim();  // Parse borrower ID as integer if it is not empty
                 if (!borrowerIDText.isEmpty()) {
                     try {
                         borrowerID = Integer.parseInt(borrowerIDText);
@@ -522,30 +455,21 @@ private BookController bc;
                     }
                 }
             }
-
-            // Create a Book object
-            book = new Book(id, title, genre, isbn, isAvailable, lastBorrowedDate, returnedDate, borrowerID);
-
-            // Validate book using ValidationController
-            ValidationController.ValidationResult result = vc.validateBook(book);
-
+            
+            book = new Book(id, title, genre, isbn, isAvailable, lastBorrowedDate, returnedDate, borrowerID);   // Create a Book object
+           
+            ValidationController.ValidationResult result = vc.validateBook(book);   // Validate book using ValidationController
             if (result.isValid()) {
-                if (isAvailable && borrowerID == 0 || borrowerExists(borrowerID)) {
-                   // Update book in the database
-                bc.updateBook(book);
-                // Pull and update the table from DB
-                populateTable(false, true);
-                JOptionPane.showMessageDialog(null, "Book " + book.getId() + " successfully updated!");
-
-                // Clear fields
-                clearFields(); 
+                if (isAvailable && borrowerID == 0 || borrowerExists(borrowerID)) {                  
+                bc.updateBook(book);    // Update book in the database               
+                populateTable(false, true); // Pull and update the table from DB
+                JOptionPane.showMessageDialog(null, "Book " + book.getId() + " successfully updated!");                
+                clearFields();  // Clear fields
                 } else {
                    JOptionPane.showMessageDialog(null, "Error: Borrower " + borrowerID + " does not exist", "Validation Error", JOptionPane.ERROR_MESSAGE); 
-                }
-                
-            } else {
-                // Display error dialog with the validation result
-                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+                }               
+            } else {                
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE); // Display error dialog with the validation result
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error: Invalid number format. Please check your input.", "Format Error", JOptionPane.ERROR_MESSAGE);
@@ -556,23 +480,13 @@ private BookController bc;
 
     private void BtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteActionPerformed
         try {
-            bc = new BookController();
-
-            // Parse input field
-            int id = Integer.parseInt(tfBookID.getText().trim());
-
-            // Create a Book object with only ID (other fields are irrelevant for delete)
-            book = new Book(id, "", "", "", true, null, null, 0);
-
-            // Delete book from the database
-            bc.deleteBook(book);
-
-            // Pull and update the table from DB
-            populateTable(false, true);
-            JOptionPane.showMessageDialog(null, "Book " + book.getId() + " successfully deleted!");
-
-            // Clear fields
-            clearFields();
+            bc = new BookController();          
+            int id = Integer.parseInt(tfBookID.getText().trim());   // Parse input field           
+            book = new Book(id, "", "", "", true, null, null, 0);   // Create a Book object with only ID (other fields are irrelevant for delete)           
+            bc.deleteBook(book);    // Delete book from the database            
+            populateTable(false, true); // Pull and update the table from DB
+            JOptionPane.showMessageDialog(null, "Book " + book.getId() + " successfully deleted!");          
+            clearFields();  // Clear fields
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error: Invalid number format. Please check your input.", "Format Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
@@ -598,6 +512,37 @@ private BookController bc;
         }    
     }//GEN-LAST:event_cbxAvailableMouseClicked
 
+    private void populateTable(boolean search, boolean update) {
+        try {
+            bc = new BookController();
+            DefaultTableModel model = (DefaultTableModel) TableBook.getModel();
+            if (search) {               
+                bc.viewAllBooks(tfBookID.getText());    // Perform search
+            } else {               
+                bc.viewAllBooks("");    // Retrieve all books
+            }
+
+            List<Book> books = bc.getBooks();            
+            model.setRowCount(0);   // Clear existing rows
+
+            if (books.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No books found.", "Search Result", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            } else {                
+                for (Book book : books) {   // Populate the table with new data
+                    Object[] row = { book.getId(), book.getTitle(), book.getGenre(), book.getIsbn(), book.isAvailable(), book.getLastBorrowed(), book.getDateReturned(), book.getBorrowerID() };
+                    model.addRow(row);
+                }
+                if (!update) {
+                    JOptionPane.showMessageDialog(null, "Books table successfully pulled!");
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Book table not pulled!", "Read Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);
+        }
+    }
+    
     private void clearFields() {
         tfBookID.setText("");
         tfBookTitle.setText("");
@@ -613,26 +558,17 @@ private BookController bc;
     
     private boolean borrowerExists(int borrowerID) {
         try {
-            BorrowerController bc = new BorrowerController();
-
-            // Retrieve all borrowers
-            bc.viewAllBorrowers("");
-
-            // Get the list of all borrowers
-            List<Borrower> borrowers = bc.getBorrowers();
-
-            // Check if any borrower's ID matches the provided borrowerID
-            for (Borrower borrower : borrowers) {
+            BorrowerController bc = new BorrowerController();            
+            bc.viewAllBorrowers("");    // Retrieve all borrowers            
+            List<Borrower> borrowers = bc.getBorrowers();   // Get the list of all borrowers            
+            for (Borrower borrower : borrowers) {   // Check if any borrower's ID matches the provided borrowerID
                 if (borrower.getId() == borrowerID) {
                     return true; // Borrower ID found
                 }
-            }
-
-            // No matching borrower ID found
-            return false;
-        } catch (Exception ex) {
-            // Print exception to the console and return false
-            ex.printStackTrace();
+            }           
+            return false;   // No matching borrower ID found
+        } catch (Exception ex) {           
+            ex.printStackTrace();   // Print exception to the console and return false
             return false;
         }
     }
