@@ -219,7 +219,7 @@ public class BorrowerManager extends javax.swing.JPanel {
     private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
         // TODO add your handling code here:
         try {
-            bc = new BorrowerController(this,dc);
+            bc = new BorrowerController();
             
             int id = Integer.parseInt(tfBorrowerID.getText());
             String name = tfBorrowerName.getText();
@@ -252,7 +252,7 @@ public class BorrowerManager extends javax.swing.JPanel {
     private void BtnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewActionPerformed
         // TODO add your handling code here:
         try {
-            bc = new BorrowerController(this,dc);
+            bc = new BorrowerController();
             
             int id = Integer.parseInt(tfBorrowerID.getText());
             String name = tfBorrowerName.getText();
@@ -268,7 +268,7 @@ public class BorrowerManager extends javax.swing.JPanel {
 
             if (result.isValid()) {
                 // Add author to the database
-                bc.viewBorrower(borrower);
+                //bc.viewAllBorrowers(borrower);
                 //Pull and Update the table from DB
                 // TO HERE
                 JOptionPane.showMessageDialog(null, "Borrower " + Integer.toString(borrower.getId()) + " successfully updated!");
@@ -285,7 +285,7 @@ public class BorrowerManager extends javax.swing.JPanel {
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
         // TODO add your handling code here:
         try {
-            bc = new BorrowerController(this,dc);
+            bc = new BorrowerController();
             
             int id = Integer.parseInt(tfBorrowerID.getText());
             String name = tfBorrowerName.getText();
@@ -318,7 +318,7 @@ public class BorrowerManager extends javax.swing.JPanel {
     private void BtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteActionPerformed
         // TODO add your handling code here:
         try {
-            bc = new BorrowerController(this,dc);
+            bc = new BorrowerController();
             
             int id = Integer.parseInt(tfBorrowerID.getText());
             String name = tfBorrowerName.getText();

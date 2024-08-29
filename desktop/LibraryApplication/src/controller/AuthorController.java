@@ -1,15 +1,14 @@
-/*
- * Controls all data concerning Authors
- */
+// Author Controller for all related operations
 package controller;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import model.Author;
 
 public class AuthorController {
     private DataController dc;
     private List<Author> authors;
+    private Author placeholder = new Author(0, "Name", "Surname");
 
     public AuthorController() {
         dc = new DataController();
@@ -21,11 +20,10 @@ public class AuthorController {
         dbQuery("auth", 1, author);
     }
     
-    /*
-    public SomeList<Author> getAllAuthors() {
-        // Code to get all Author objects
+    public void viewAllAuthors(String whereClause) {
+        dc.queryExecutor("auth", 4, placeholder, whereClause); // SELECT * for authors
+        this.authors = dc.getAuthorTableData(); // Retrieve the data
     }
-    */
 
     public void updateAuthor(Author author) {
         dbQuery("auth", 2, author, Integer.toString(author.getId()));
@@ -36,17 +34,10 @@ public class AuthorController {
     }
 
     // Database methods related to author operations
-    
-    /* Actions:
-            "1": Add
-            "2": Update
-            "3": Delete
-            "4": Select //IF whereClause is empty its SELECT *
-    */
-    
     public void dbQuery(String table, int action, Author obj) {
         dbQuery(table, action, obj, "");
     }
+
     // Overloaded dbQuery accepts whereClause
     public void dbQuery(String table, int action, Author obj, String whereClause) {
         if (dc == null) {
@@ -54,5 +45,9 @@ public class AuthorController {
             return;
         }
         dc.queryExecutor(table, action, obj, whereClause);
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
     }
 }

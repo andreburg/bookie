@@ -11,7 +11,7 @@ import model.Borrower;
 public class ValidationController {
 
     // Constants for regex patterns
-    private static final String NAME_PATTERN = "^[A-Z][a-zà-ÿÀ-ß'\\-]*$";
+    private static final String NAME_PATTERN = "^[a-zA-Zà-ÿÀ-ß]+(?:[ '-][a-zA-Zà-ÿÀ-ß]+)*$";
     private static final String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
     private static final String PHONE_PATTERN = "^\\d{10}$";
     private static final String ADDRESS_PATTERN = "^\\d+\\s[A-Za-z0-9\\s,.'-]+$";

@@ -1,22 +1,17 @@
-/*
- * Controls all data concerning Borrowers
- */
+// Borrower Controller for all related operations
 package controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import model.Borrower;
-import view.BorrowerManager;
 
 public class BorrowerController {
-    private BorrowerManager view;
-    private DataController db;
+    private DataController dc;
     private List<Borrower> borrowers;
+    private Borrower placeholder = new Borrower(0, "Name", "Surname", "Phone", "Email", "Address");
 
-    public BorrowerController(BorrowerManager view, DataController db) {
-        this.view = view;
-        this.db = db;
-        // At Main start connect to DB, read all borrowers into List<Borrower>
+    public BorrowerController() {
+        dc = new DataController();
         borrowers = new ArrayList<>();
     }
 
@@ -25,11 +20,10 @@ public class BorrowerController {
         dbQuery("borr", 1, borrower);
     }
 
-    /*
-    public SomeList<Borrower> getAllBorrowers() {
-        // Code to get all Borrower objects
+    public void viewAllBorrowers(String whereClause) {
+        dc.queryExecutor("borr", 4, placeholder, whereClause); // SELECT * for borrowers
+        this.borrowers = dc.getBorrowerTableData(); // Retrieve the data
     }
-    */
 
     public void updateBorrower(Borrower borrower) {
         dbQuery("borr", 2, borrower, Integer.toString(borrower.getId()));
@@ -38,16 +32,22 @@ public class BorrowerController {
     public void deleteBorrower(Borrower borrower) {
         dbQuery("borr", 3, borrower, Integer.toString(borrower.getId()));
     }
-    public void viewBorrower(Borrower borrower) {
-        dbQuery("borr", 4, borrower, Integer.toString(borrower.getId()));
-    }
 
-    // Other methods related to borrower operations
+    // Database methods related to borrower operations
     public void dbQuery(String table, int action, Borrower obj) {
         dbQuery(table, action, obj, "");
     }
+
     // Overloaded dbQuery accepts whereClause
     public void dbQuery(String table, int action, Borrower obj, String whereClause) {
-        db.queryExecutor(table, action, obj, whereClause);
+        if (dc == null) {
+            System.out.println("DataController is not initialized.");
+            return;
+        }
+        dc.queryExecutor(table, action, obj, whereClause);
+    }
+
+    public List<Borrower> getBorrowers() {
+        return borrowers;
     }
 }

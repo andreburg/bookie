@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import controller.AuthorController;
 import controller.ValidationController;
+import java.util.List;
 import model.Author;
 
 public class AuthorsManager extends javax.swing.JPanel {
@@ -44,6 +45,7 @@ public class AuthorsManager extends javax.swing.JPanel {
         javax.swing.JButton BtnReset = new javax.swing.JButton();
         BtnUpdate = new javax.swing.JButton();
         BtnDelete = new javax.swing.JButton();
+        javax.swing.JButton BtnSearch = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1080, 540));
         setLayout(null);
@@ -101,7 +103,7 @@ public class AuthorsManager extends javax.swing.JPanel {
         BtnAdd.setBounds(840, 110, 175, 30);
 
         BtnView.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        BtnView.setText("View");
+        BtnView.setText("View All");
         BtnView.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +111,7 @@ public class AuthorsManager extends javax.swing.JPanel {
             }
         });
         add(BtnView);
-        BtnView.setBounds(840, 160, 175, 30);
+        BtnView.setBounds(840, 160, 80, 30);
 
         BtnMain.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnMain.setText("Main Menu");
@@ -137,7 +139,7 @@ public class AuthorsManager extends javax.swing.JPanel {
             }
         });
         add(tfAuthorID);
-        tfAuthorID.setBounds(30, 100, 270, 22);
+        tfAuthorID.setBounds(30, 100, 270, 26);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Name:");
@@ -146,7 +148,7 @@ public class AuthorsManager extends javax.swing.JPanel {
 
         tfAuthorName.setText("Enter your Name");
         add(tfAuthorName);
-        tfAuthorName.setBounds(30, 160, 270, 22);
+        tfAuthorName.setBounds(30, 160, 270, 26);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Last Name:");
@@ -155,7 +157,7 @@ public class AuthorsManager extends javax.swing.JPanel {
 
         tfAuthorLastName.setText("Enter your Last Name");
         add(tfAuthorLastName);
-        tfAuthorLastName.setBounds(30, 220, 270, 22);
+        tfAuthorLastName.setBounds(30, 220, 270, 26);
 
         BtnReset.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnReset.setText("Reset");
@@ -192,6 +194,17 @@ public class AuthorsManager extends javax.swing.JPanel {
         });
         add(BtnDelete);
         BtnDelete.setBounds(840, 260, 175, 30);
+
+        BtnSearch.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnSearch.setText("Search ID");
+        BtnSearch.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSearchActionPerformed(evt);
+            }
+        });
+        add(BtnSearch);
+        BtnSearch.setBounds(935, 160, 80, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private AuthorController ac;
@@ -214,8 +227,13 @@ public class AuthorsManager extends javax.swing.JPanel {
                 // Add author to the database
                 ac.addAuthor(author);
                 //Pull and Update the table from DB
-                // TO HERE
+                populateTable(false, true);
                 JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully added!");
+                
+                // Clear fields
+                tfAuthorID.setText("");
+                tfAuthorName.setText("");
+                tfAuthorLastName.setText("");
             } else {
                 // Display error dialog with the identifier result
                 JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
@@ -227,7 +245,7 @@ public class AuthorsManager extends javax.swing.JPanel {
     }//GEN-LAST:event_BtnAddActionPerformed
 
     private void BtnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewActionPerformed
-        // TODO add your handling code here:
+         populateTable(false, false);
     }//GEN-LAST:event_BtnViewActionPerformed
 
     private void BtnMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMainActionPerformed
@@ -244,7 +262,7 @@ public class AuthorsManager extends javax.swing.JPanel {
     }//GEN-LAST:event_BtnMainActionPerformed
 
     private void tfAuthorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAuthorIDActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_tfAuthorIDActionPerformed
 
     private void BtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResetActionPerformed
@@ -257,8 +275,8 @@ public class AuthorsManager extends javax.swing.JPanel {
         tfAuthorID.setEnabled(true);
         
         // Disable Buttons
-        BtnUpdate.disable();
-        BtnDelete.disable();
+        BtnUpdate.setEnabled(false);
+        BtnDelete.setEnabled(false);
 
         // Deselect any selected row in the table
         TableAuthors.clearSelection();
@@ -286,8 +304,8 @@ public class AuthorsManager extends javax.swing.JPanel {
 
             // Disable the ID field and enable buttons
             tfAuthorID.setEnabled(false);
-            BtnUpdate.enable();
-            BtnDelete.enable();
+            BtnUpdate.setEnabled(true);
+            BtnDelete.setEnabled(true);
         }
     }//GEN-LAST:event_TableAuthorsMouseClicked
 
@@ -307,8 +325,13 @@ public class AuthorsManager extends javax.swing.JPanel {
                 // Add author to the database
                 ac.updateAuthor(author);
                 //Pull and Update the table from DB
-                // TO HERE
+                populateTable(false, true);
                 JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully updated!");
+                
+                // Clear fields
+                tfAuthorID.setText("");
+                tfAuthorName.setText("");
+                tfAuthorLastName.setText("");
             } else {
                 // Display error dialog with the identifier result
                 JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
@@ -335,8 +358,13 @@ public class AuthorsManager extends javax.swing.JPanel {
                 // Add author to the database
                 ac.deleteAuthor(author);
                 //Pull and Update the table from DB
-                // TO HERE
+                populateTable(false, true);
                 JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully deleted!");
+                
+                // Clear fields
+                tfAuthorID.setText("");
+                tfAuthorName.setText("");
+                tfAuthorLastName.setText("");
             } else {
                 // Display error dialog with the identifier result
                 JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
@@ -347,6 +375,49 @@ public class AuthorsManager extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_BtnDeleteActionPerformed
 
+    private void BtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSearchActionPerformed
+        populateTable(true, false);
+    }//GEN-LAST:event_BtnSearchActionPerformed
+
+    private void populateTable(boolean search, boolean update) {
+        try {
+            ac = new AuthorController();
+            DefaultTableModel model = (DefaultTableModel) TableAuthors.getModel();
+
+            if (search) {
+                // Perform search
+                ac.viewAllAuthors(tfAuthorID.getText());
+            } else {
+                // Retrieve all authors
+                ac.viewAllAuthors("");
+            }
+
+            List<Author> authors = ac.getAuthors();
+
+            // Clear existing rows
+            model.setRowCount(0);
+
+            if (authors.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No authors found.", "Search Result", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            } else {
+                // Populate the table with new data
+                for (Author author : authors) {
+                    Object[] row = { author.getId(), author.getName(), author.getSurname() };
+                    model.addRow(row);
+                }
+                if (!update) {
+                 JOptionPane.showMessageDialog(null, "Author table successfully pulled!");   
+                }                 
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Author table not pulled!", "Read Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);
+        }
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnDelete;
     private javax.swing.JButton BtnMain;
