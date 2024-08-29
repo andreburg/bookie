@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package view;
 
 import javax.swing.JFrame;
@@ -231,9 +228,7 @@ public class AuthorsManager extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully added!");
                 
                 // Clear fields
-                tfAuthorID.setText("");
-                tfAuthorName.setText("");
-                tfAuthorLastName.setText("");
+                clearFields();
             } else {
                 // Display error dialog with the identifier result
                 JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
@@ -266,44 +261,31 @@ public class AuthorsManager extends javax.swing.JPanel {
     }//GEN-LAST:event_tfAuthorIDActionPerformed
 
     private void BtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResetActionPerformed
-        // Clear text fields
-        tfAuthorID.setText("");
-        tfAuthorName.setText("");
-        tfAuthorLastName.setText("");
-
-        // Re-enable the ID text field
-        tfAuthorID.setEnabled(true);
-        
-        // Disable Buttons
-        BtnUpdate.setEnabled(false);
-        BtnDelete.setEnabled(false);
-
-        // Deselect any selected row in the table
-        TableAuthors.clearSelection();
+        clearFields();  // Clear text fields       
+        tfAuthorID.setEnabled(true);    // Re-enable the ID text field                
+        BtnUpdate.setEnabled(false);    // Disable Buttons
+        BtnDelete.setEnabled(false);        
+        TableAuthors.clearSelection();  // Deselect any selected row in the table
     }//GEN-LAST:event_BtnResetActionPerformed
 
     private void TableAuthorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableAuthorsMouseClicked
         // Check if a row is selected
         int selectedRow = TableAuthors.getSelectedRow();
     
-        if (selectedRow != -1) {
-            // Get values from the selected row
-            Object idValue = TableAuthors.getValueAt(selectedRow, 0);
+        if (selectedRow != -1) {           
+            Object idValue = TableAuthors.getValueAt(selectedRow, 0);   // Get values from the selected row
             Object firstNameValue = TableAuthors.getValueAt(selectedRow, 1);
             Object lastNameValue = TableAuthors.getValueAt(selectedRow, 2);
-
-            // Convert to String, defaulting to empty string if null
-            String id = idValue != null ? idValue.toString() : "";
+            
+            String id = idValue != null ? idValue.toString() : "";  // Convert to String, defaulting to empty string if null
             String firstName = firstNameValue != null ? firstNameValue.toString() : "";
             String lastName = lastNameValue != null ? lastNameValue.toString() : "";
-
-            // Set the values in text fields
-            tfAuthorID.setText(id);
+            
+            tfAuthorID.setText(id);     // Set the values in text fields
             tfAuthorName.setText(firstName);
             tfAuthorLastName.setText(lastName);
-
-            // Disable the ID field and enable buttons
-            tfAuthorID.setEnabled(false);
+           
+            tfAuthorID.setEnabled(false);   // Disable the ID field and enable buttons
             BtnUpdate.setEnabled(true);
             BtnDelete.setEnabled(true);
         }
@@ -317,27 +299,18 @@ public class AuthorsManager extends javax.swing.JPanel {
             String name = tfAuthorName.getText();
             String lastName = tfAuthorLastName.getText();
             author = new Author(id, name, lastName);
+           
+            ValidationController.ValidationResult result = vc.validateAuthor(author);   // Validate Author
 
-            // Validate Author
-            ValidationController.ValidationResult result = vc.validateAuthor(author);
-
-            if (result.isValid()) {
-                // Add author to the database
-                ac.updateAuthor(author);
-                //Pull and Update the table from DB
-                populateTable(false, true);
-                JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully updated!");
-                
-                // Clear fields
-                tfAuthorID.setText("");
-                tfAuthorName.setText("");
-                tfAuthorLastName.setText("");
-            } else {
-                // Display error dialog with the identifier result
-                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            if (result.isValid()) {                
+                ac.updateAuthor(author);    // Add author to the database                
+                populateTable(false, true); //Pull and Update the table from DB
+                JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully updated!");                               
+                clearFields();  // Clear fields
+            } else {                
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE); // Display error dialog with the identifier result
             }
         } catch (Exception ex){
-            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(ex);
         }
     }//GEN-LAST:event_BtnUpdateActionPerformed
@@ -349,28 +322,18 @@ public class AuthorsManager extends javax.swing.JPanel {
             int id = Integer.parseInt(tfAuthorID.getText());
             String name = tfAuthorName.getText();
             String lastName = tfAuthorLastName.getText();
-            author = new Author(id, name, lastName);
+            author = new Author(id, name, lastName);           
+            ValidationController.ValidationResult result = vc.validateAuthor(author);   // Validate Author
 
-            // Validate Author
-            ValidationController.ValidationResult result = vc.validateAuthor(author);
-
-            if (result.isValid()) {
-                // Add author to the database
-                ac.deleteAuthor(author);
-                //Pull and Update the table from DB
-                populateTable(false, true);
-                JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully deleted!");
-                
-                // Clear fields
-                tfAuthorID.setText("");
-                tfAuthorName.setText("");
-                tfAuthorLastName.setText("");
-            } else {
-                // Display error dialog with the identifier result
-                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            if (result.isValid()) {                
+                ac.deleteAuthor(author);    // Add author to the database                
+                populateTable(false, true); //Pull and Update the table from DB
+                JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully deleted!");                               
+                clearFields();  // Clear fields
+            } else {                
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE); // Display error dialog with the identifier result
             }
         } catch (Exception ex){
-            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(ex);
         }
     }//GEN-LAST:event_BtnDeleteActionPerformed
@@ -384,26 +347,21 @@ public class AuthorsManager extends javax.swing.JPanel {
             ac = new AuthorController();
             DefaultTableModel model = (DefaultTableModel) TableAuthors.getModel();
 
-            if (search) {
-                // Perform search
-                ac.viewAllAuthors(tfAuthorID.getText());
-            } else {
-                // Retrieve all authors
-                ac.viewAllAuthors("");
+            if (search) {                
+                ac.viewAllAuthors(tfAuthorID.getText());    // Perform search
+            } else {                
+                ac.viewAllAuthors("");  // Retrieve all authors
             }
 
-            List<Author> authors = ac.getAuthors();
-
-            // Clear existing rows
-            model.setRowCount(0);
+            List<Author> authors = ac.getAuthors();           
+            model.setRowCount(0);   // Clear existing rows
 
             if (authors.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No authors found.", "Search Result", JOptionPane.INFORMATION_MESSAGE);
                 return;
-            } else {
-                // Populate the table with new data
+            } else {               
                 for (Author author : authors) {
-                    Object[] row = { author.getId(), author.getName(), author.getSurname() };
+                    Object[] row = { author.getId(), author.getName(), author.getSurname() };   // Populate the table with new data
                     model.addRow(row);
                 }
                 if (!update) {
@@ -416,7 +374,11 @@ public class AuthorsManager extends javax.swing.JPanel {
         }
     }
     
-    
+    private void clearFields(){        
+        tfAuthorID.setText("");
+        tfAuthorName.setText("");
+        tfAuthorLastName.setText("");
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnDelete;

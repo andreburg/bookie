@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package view;
 
 import javax.swing.JFrame;
@@ -9,7 +6,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import controller.BorrowerController;
 import controller.ValidationController;
-import controller.DataController;
 import java.util.List;
 import model.Borrower;
 
@@ -243,25 +239,20 @@ public class BorrowerManager extends javax.swing.JPanel {
             bc = new BorrowerController();
             DefaultTableModel model = (DefaultTableModel) TableBorrowers.getModel();
 
-            if (search) {
-                // Perform search
-                bc.viewAllBorrowers(tfBorrowerID.getText());
-            } else {
-                // Retrieve all authors
-                bc.viewAllBorrowers("");
+            if (search) {               
+                bc.viewAllBorrowers(tfBorrowerID.getText());    // Perform search
+            } else {               
+                bc.viewAllBorrowers("");    // Retrieve all authors
             }
 
-            List<Borrower> borrowers = bc.getBorrowers();
-
-            // Clear existing rows
-            model.setRowCount(0);
+            List<Borrower> borrowers = bc.getBorrowers();            
+            model.setRowCount(0);   // Clear existing rows
 
             if (borrowers.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No borrowers found.", "Search Result", JOptionPane.INFORMATION_MESSAGE);
                 return;
-            } else {
-                // Populate the table with new data
-                for (Borrower borrower : borrowers) {
+            } else {               
+                for (Borrower borrower : borrowers) {   // Populate the table with new data
                     Object[] row = {borrower.getId(), borrower.getName(), borrower.getSurname(), borrower.getPhone(), borrower.getEmail(), borrower.getAddress()};
                     model.addRow(row);
                 }
@@ -276,7 +267,6 @@ public class BorrowerManager extends javax.swing.JPanel {
     }
 
     private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
-        // TODO add your handling code here:
         try {
             bc = new BorrowerController();
 
@@ -287,86 +277,63 @@ public class BorrowerManager extends javax.swing.JPanel {
             String email = tfBorrowerEmailAddress.getText();
             String address = tfBorrowerHomeAddress.getText();
 
-            borrower = new Borrower(id, name, lastName, phoneNumber, email, address);
+            borrower = new Borrower(id, name, lastName, phoneNumber, email, address);            
+            ValidationController.ValidationResult result = vc.validateBorrower(borrower);   // Validate Borrower
 
-            // Validate Borrower
-            ValidationController.ValidationResult result = vc.validateBorrower(borrower);
-
-            if (result.isValid()) {
-                // Add author to the database
-                bc.addBorrower(borrower);
-
-                //Pull and Update the table from DB
-                populateTable(false, true);
-                JOptionPane.showMessageDialog(null, "Borrower " + Integer.toString(borrower.getId()) + " successfully added!");
-                
-                //Clear all fields:
-                tfBorrowerID.setText("");
-                tfBorrowerName.setText("");
-                tfBorrowerLastName.setText("");
-                tfBorrowerPhoneNumber.setText("");
-                tfBorrowerEmailAddress.setText("");
-                tfBorrowerHomeAddress.setText("");
-
-            } else {
-                // Display error dialog with the identifier result
-                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            if (result.isValid()) {               
+                bc.addBorrower(borrower);   // Add author to the database               
+                populateTable(false, true); //Pull and Update the table from DB
+                JOptionPane.showMessageDialog(null, "Borrower " + Integer.toString(borrower.getId()) + " successfully added!");                                
+                clearFields();   //Clear all fields:               
+            } else {                
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE); // Display error dialog with the identifier result
             }
         } catch (Exception ex) {
-            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(ex);
         }
     }//GEN-LAST:event_BtnAddActionPerformed
 
     private void BtnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewActionPerformed
-        // TODO add your handling code here:
        populateTable(false,false);
     }//GEN-LAST:event_BtnViewActionPerformed
 
     private void BtnMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMainActionPerformed
-        // TODO add your handling code here:
         JFrame parentFrame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
         if (parentFrame != null) {
             parentFrame.dispose();
         } else {
             System.out.println("No parent frame found.");
         }
-
         MainDashboard md = new MainDashboard();
         md.setVisible(true);
     }//GEN-LAST:event_BtnMainActionPerformed
 
     private void TableBorrowersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableBorrowersMouseClicked
-        // Check if a row is selected
-        int selectedRow = TableBorrowers.getSelectedRow();
+        int selectedRow = TableBorrowers.getSelectedRow();  // Check if a row is selected
 
-        if (selectedRow != -1) {
-            // Get values from the selected row
-            Object idValue = TableBorrowers.getValueAt(selectedRow, 0);
+        if (selectedRow != -1) {            
+            Object idValue = TableBorrowers.getValueAt(selectedRow, 0); // Get values from the selected row
             Object nameValue = TableBorrowers.getValueAt(selectedRow, 1);
             Object surnameValue = TableBorrowers.getValueAt(selectedRow, 2);
             Object phoneValue = TableBorrowers.getValueAt(selectedRow, 3);
             Object emailValue = TableBorrowers.getValueAt(selectedRow, 4);
             Object addressValue = TableBorrowers.getValueAt(selectedRow, 5);
-
-            // Convert to String, defaulting to empty string if null
-            String id = idValue != null ? idValue.toString() : "";
+            
+            String id = idValue != null ? idValue.toString() : "";  // Convert to String, defaulting to empty string if null
             String name = nameValue != null ? nameValue.toString() : "";
             String surname = surnameValue != null ? surnameValue.toString() : "";
             String phone = phoneValue != null ? phoneValue.toString() : "";
             String email = emailValue != null ? emailValue.toString() : "";
             String address = addressValue != null ? addressValue.toString() : "";
-
-            // Set the values in text fields
-            tfBorrowerID.setText(id);
+            
+            tfBorrowerID.setText(id);   // Set the values in text fields
             tfBorrowerName.setText(name);
             tfBorrowerLastName.setText(surname);
             tfBorrowerPhoneNumber.setText(phone);
             tfBorrowerEmailAddress.setText(email);
             tfBorrowerHomeAddress.setText(address);
-
-            // Disable the ID field and enable buttons
-            tfBorrowerID.setEnabled(false);
+          
+            tfBorrowerID.setEnabled(false); // Disable the ID field and enable buttons
             BtnUpdate.setEnabled(true);
             BtnDelete.setEnabled(true);
         }
@@ -383,24 +350,17 @@ public class BorrowerManager extends javax.swing.JPanel {
             String email = tfBorrowerEmailAddress.getText();
             String address = tfBorrowerHomeAddress.getText();
 
-            borrower = new Borrower(id, name, lastName, phoneNumber, email, address);
+            borrower = new Borrower(id, name, lastName, phoneNumber, email, address);            
+            ValidationController.ValidationResult result = vc.validateBorrower(borrower);   // Validate 
 
-            // Validate Borrower
-            ValidationController.ValidationResult result = vc.validateBorrower(borrower);
-
-            if (result.isValid()) {
-                // Add borrower to the database
-                bc.updateBorrower(borrower);
-                //Pull and Update the table from DB
-                populateTable(false,true);
-                // TO HERE
+            if (result.isValid()) {               
+                bc.updateBorrower(borrower);    // Add borrower to the database               
+                populateTable(false,true);  //Pull and Update the table from DB
                 JOptionPane.showMessageDialog(null, "Borrower " + Integer.toString(borrower.getId()) + " successfully updated!");
-            } else {
-                // Display error dialog with the identifier result
-                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            } else {               
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE); // Display error dialog with the identifier result
             }
         } catch (Exception ex) {
-            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(ex);
         }
     }//GEN-LAST:event_BtnUpdateActionPerformed
@@ -416,48 +376,37 @@ public class BorrowerManager extends javax.swing.JPanel {
             String email = tfBorrowerEmailAddress.getText();
             String address = tfBorrowerHomeAddress.getText();
 
-            borrower = new Borrower(id, name, lastName, phoneNumber, email, address);
+            borrower = new Borrower(id, name, lastName, phoneNumber, email, address);           
+            ValidationController.ValidationResult result = vc.validateBorrower(borrower);   // Validate Author
 
-            // Validate Author
-            ValidationController.ValidationResult result = vc.validateBorrower(borrower);
-
-            if (result.isValid()) {
-                // Add author to the database
-                bc.deleteBorrower(borrower);
-                //Pull and Update the table from DB
-                populateTable(false,true);
-                // TO HERE
+            if (result.isValid()) {                
+                bc.deleteBorrower(borrower);  // Add author to the database              
+                populateTable(false,true);  //Pull and Update the table from DB
                 JOptionPane.showMessageDialog(null, "Borrower " + Integer.toString(borrower.getId()) + " successfully deleted!");
-            } else {
-                // Display error dialog with the identifier result
-                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            } else {               
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE); // Display error dialog with the identifier result
             }
         } catch (Exception ex) {
-            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(ex);
         }
     }//GEN-LAST:event_BtnDeleteActionPerformed
 
     private void BtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResetActionPerformed
-        // Clear all text fields
-        tfBorrowerID.setText("");
+        clearFields();      
+        tfBorrowerID.setEnabled(true);  // Re-enable the ID text field for new entries       
+        BtnUpdate.setEnabled(false);    // Disable the update and delete buttons
+        BtnDelete.setEnabled(false);       
+        TableBorrowers.clearSelection();    // Deselect any selected row in the table
+    }//GEN-LAST:event_BtnResetActionPerformed
+
+    private void clearFields(){
+        tfBorrowerID.setText("");   // Clear all text fields
         tfBorrowerName.setText("");
         tfBorrowerLastName.setText("");
         tfBorrowerPhoneNumber.setText("");
         tfBorrowerEmailAddress.setText("");
         tfBorrowerHomeAddress.setText("");
-
-        // Re-enable the ID text field for new entries
-        tfBorrowerID.setEnabled(true);
-
-        // Disable the update and delete buttons
-        BtnUpdate.setEnabled(false);
-        BtnDelete.setEnabled(false);
-
-        // Deselect any selected row in the table
-        TableBorrowers.clearSelection();
-    }//GEN-LAST:event_BtnResetActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnDelete;
