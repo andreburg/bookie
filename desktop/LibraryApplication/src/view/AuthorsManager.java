@@ -16,6 +16,7 @@ public class AuthorsManager extends javax.swing.JPanel {
      */
     public AuthorsManager() {
         initComponents();
+        populateTable(false, true);
     }
 
     /**

@@ -20,6 +20,7 @@ public class BorrowerManager extends javax.swing.JPanel {
      */
     public BorrowerManager() {
         initComponents();
+        populateTable(false, true);
     }
 
     /**
