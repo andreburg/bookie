@@ -26,6 +26,7 @@ public class BooksManager extends javax.swing.JPanel {
      */
     public BooksManager() {
         initComponents();
+        populateTable(false, true);
     }
 
     /**
