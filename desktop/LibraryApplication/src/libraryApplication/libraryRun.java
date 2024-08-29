@@ -6,7 +6,8 @@ package libraryApplication;
 import view.MainDashboard;
 
 public class libraryRun {
-        public static void main(String args[]) {
+    public static String username;
+        public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -31,6 +32,11 @@ public class libraryRun {
         //</editor-fold>
 
         /* Create and display the form */
+        if (args.length > 0){
+            libraryRun.username = args[0];            
+        } else {
+            libraryRun.username = "Anonymous";
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             
             public void run() {

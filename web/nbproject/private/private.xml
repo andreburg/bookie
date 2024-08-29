@@ -2,24 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/view/login.jsp</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/util/PasswordUtils.java</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/view/register.jsp</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/WEB-INF/tags/welcome.tag</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/controller/RegisterServlet.java</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/controller/DataController.java</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/WEB-INF/tags/auth-check.tag</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/controller/LogoutServlet.java</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/WEB-INF/tags/header.tag</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/model/Register.java</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/WEB-INF/tags/prompt-login.tag</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/util/Auth.java</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/web/view/index.jsp</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/controller/LoginServlet.java</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/util/Session.java</file>
-            <file>file:/C:/Users/andre/Documents/projects/bookie/web/src/java/app/model/Login.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
