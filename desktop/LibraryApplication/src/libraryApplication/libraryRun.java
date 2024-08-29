@@ -33,7 +33,12 @@ public class libraryRun {
 
         /* Create and display the form */
         if (args.length > 0){
-            libraryRun.username = args[0];            
+            try{
+                libraryRun.username = args[0].split("arg1=")[1];          
+            }     
+            catch(Exception e){
+                
+            }
         } else {
             libraryRun.username = "Anonymous";
         }
