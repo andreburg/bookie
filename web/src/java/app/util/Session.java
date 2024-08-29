@@ -5,10 +5,6 @@
 package app.util;
 import app.controller.DataController;
 
-/**
- *
- * @author andre
- */
 public class Session {
     private final String username;
     private final DataController dc;

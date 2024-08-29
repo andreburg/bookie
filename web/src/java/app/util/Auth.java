@@ -7,16 +7,13 @@ package app.util;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 
-/**
- *
- * @author andre
- */
 public class Auth {
     public static Session getSession(HttpServletRequest request){
         Cookie[] cookies = request.getCookies();
         String username = "";
-        if(cookies != null){
-            for(Cookie cookie: cookies){
+        if(cookies != null){ 
+            //Iterate over the cookies array to check if a cookie is obtainable that corresponds with the specified username, if so, they are still logged in
+            for(Cookie cookie: cookies){ 
                 if(cookie.getName().equals("username")) {
                 username = cookie.getValue();
                 }   

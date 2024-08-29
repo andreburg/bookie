@@ -1,9 +1,3 @@
-<%-- 
-    Document   : login.jsp
-    Created on : 27 Aug 2024, 01:11:00
-    Author     : werne
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ page import="java.sql.*" %>

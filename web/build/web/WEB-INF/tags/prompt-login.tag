@@ -1,9 +1,3 @@
-<%-- 
-    Document   : prompt-login
-    Created on : 27 Aug 2024, 12:48:24
-    Author     : andre
---%>
-
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
 
 <div class="auth-prompt">

@@ -6,10 +6,6 @@ package app.model;
 
 import app.util.PasswordUtils;
 
-/**
- *
- * @author andre
- */
 public class Register {
     private int id;
     private final String username;

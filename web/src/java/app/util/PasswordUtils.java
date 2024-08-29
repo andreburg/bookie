@@ -5,17 +5,15 @@
 package app.util;
 import org.mindrot.jbcrypt.BCrypt;
 
-/**
- *
- * @author werne
- */
 public class PasswordUtils {
     
     public static String hashPassword(String ogPassword) {
         return BCrypt.hashpw(ogPassword, BCrypt.gensalt());
+        //Hash and salt the user password to store an encrypted password in the database
     }
     
     public static boolean validatePassword(String ogPassword, String hashedPassword) {
         return BCrypt.checkpw(ogPassword, hashedPassword);
+        //Compares the password the user entered with hashed password in the database
     }
 }
