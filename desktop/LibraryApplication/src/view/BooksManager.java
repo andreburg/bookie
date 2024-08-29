@@ -5,6 +5,14 @@
 package view;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import controller.BookController;
+import controller.ValidationController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import model.Book;
 
 /**
  *
@@ -29,10 +37,9 @@ public class BooksManager extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TableBook = new javax.swing.JTable();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         javax.swing.JButton BtnAdd = new javax.swing.JButton();
-        javax.swing.JButton BtnView = new javax.swing.JButton();
         javax.swing.JButton BtnUpdate = new javax.swing.JButton();
         javax.swing.JButton BtnDelete = new javax.swing.JButton();
         BtnMain = new javax.swing.JButton();
@@ -52,11 +59,13 @@ public class BooksManager extends javax.swing.JPanel {
         tfBookLastBorrowedDate = new javax.swing.JTextField();
         javax.swing.JLabel jLabel10 = new javax.swing.JLabel();
         tfBorrowerID = new javax.swing.JTextField();
+        javax.swing.JButton BtnView = new javax.swing.JButton();
+        javax.swing.JButton BtnSearch = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1080, 540));
         setLayout(null);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TableBook.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null}
             },
@@ -79,7 +88,7 @@ public class BooksManager extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TableBook);
 
         add(jScrollPane1);
         jScrollPane1.setBounds(6, 311, 1006, 226);
@@ -99,17 +108,6 @@ public class BooksManager extends javax.swing.JPanel {
         });
         add(BtnAdd);
         BtnAdd.setBounds(838, 121, 174, 31);
-
-        BtnView.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        BtnView.setText("View");
-        BtnView.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        BtnView.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnViewActionPerformed(evt);
-            }
-        });
-        add(BtnView);
-        BtnView.setBounds(838, 170, 174, 31);
 
         BtnUpdate.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         BtnUpdate.setText("Update");
@@ -151,12 +149,12 @@ public class BooksManager extends javax.swing.JPanel {
 
         tfBookID.setText("Enter ID");
         add(tfBookID);
-        tfBookID.setBounds(20, 110, 240, 26);
+        tfBookID.setBounds(20, 110, 240, 22);
 
         tfBookISBNCode.setText("Enter ISBN code");
         tfBookISBNCode.setToolTipText("");
         add(tfBookISBNCode);
-        tfBookISBNCode.setBounds(290, 110, 240, 26);
+        tfBookISBNCode.setBounds(290, 110, 240, 22);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Title:");
@@ -165,7 +163,7 @@ public class BooksManager extends javax.swing.JPanel {
 
         tfBookTitle.setText("Enter book title");
         add(tfBookTitle);
-        tfBookTitle.setBounds(20, 170, 240, 26);
+        tfBookTitle.setBounds(20, 170, 240, 22);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("ISBN Code:");
@@ -174,7 +172,7 @@ public class BooksManager extends javax.swing.JPanel {
 
         tfBookAvailability.setText("Stock Available");
         add(tfBookAvailability);
-        tfBookAvailability.setBounds(290, 170, 240, 26);
+        tfBookAvailability.setBounds(290, 170, 240, 22);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Genre:");
@@ -183,7 +181,7 @@ public class BooksManager extends javax.swing.JPanel {
 
         tfBookGenre.setText("Enter book genre");
         add(tfBookGenre);
-        tfBookGenre.setBounds(20, 240, 240, 26);
+        tfBookGenre.setBounds(20, 240, 240, 22);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Returned Date:");
@@ -192,7 +190,7 @@ public class BooksManager extends javax.swing.JPanel {
 
         tfBookReturnedDate.setText("Enter returned date");
         add(tfBookReturnedDate);
-        tfBookReturnedDate.setBounds(560, 110, 250, 26);
+        tfBookReturnedDate.setBounds(560, 110, 250, 22);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Availability:");
@@ -207,7 +205,7 @@ public class BooksManager extends javax.swing.JPanel {
         tfBookLastBorrowedDate.setText("Enter last borrowed date");
         tfBookLastBorrowedDate.setName(""); // NOI18N
         add(tfBookLastBorrowedDate);
-        tfBookLastBorrowedDate.setBounds(290, 240, 240, 26);
+        tfBookLastBorrowedDate.setBounds(290, 240, 240, 22);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setText("Last Borrowed Date:");
@@ -217,23 +215,226 @@ public class BooksManager extends javax.swing.JPanel {
         tfBorrowerID.setText("Enter Borrower ID");
         tfBorrowerID.setName(""); // NOI18N
         add(tfBorrowerID);
-        tfBorrowerID.setBounds(560, 170, 240, 26);
-    }// </editor-fold>//GEN-END:initComponents
+        tfBorrowerID.setBounds(560, 170, 240, 22);
 
+        BtnView.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnView.setText("View All");
+        BtnView.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnViewActionPerformed(evt);
+            }
+        });
+        add(BtnView);
+        BtnView.setBounds(840, 170, 80, 30);
+
+        BtnSearch.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnSearch.setText("Search ID");
+        BtnSearch.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSearchActionPerformed(evt);
+            }
+        });
+        add(BtnSearch);
+        BtnSearch.setBounds(930, 170, 80, 30);
+    }// </editor-fold>//GEN-END:initComponents
+private BookController bc;
+    ValidationController vc = new ValidationController();
+    Book book;
+    private void populateTable(boolean search, boolean update) {
+        try {
+            bc = new BookController();
+            DefaultTableModel model = (DefaultTableModel) TableBook.getModel();
+
+            if (search) {
+                // Perform search
+                bc.viewAllBooks(tfBookID.getText());
+            } else {
+                // Retrieve all books
+                bc.viewAllBooks("");
+            }
+
+            List<Book> books = bc.getBooks();
+
+            // Clear existing rows
+            model.setRowCount(0);
+
+            if (books.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No books found.", "Search Result", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            } else {
+                // Populate the table with new data
+                for (Book book : books) {
+                    Object[] row = { book.getId(), book.getTitle(), book.getGenre(),book.getIsbn(),book.isAvailable(),book.getDateReturned(),book.getBorrowerID() };
+                    model.addRow(row);
+                }
+                if (!update) {
+                 JOptionPane.showMessageDialog(null, "books table successfully pulled!");   
+                }                 
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Book table not pulled!", "Read Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);
+        }
+    }
+    SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
     private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnAddActionPerformed
+        try {
+            bc = new BookController();
+            
+            int id = Integer.parseInt(tfBookID.getText());
+            String title = tfBookTitle.getText();
+            String genre = tfBookGenre.getText();
+            String isbn = tfBookISBNCode.getText();
+            boolean availability = Boolean.parseBoolean(tfBookAvailability.getText());
+            Date LBD = formatter.parse(tfBookLastBorrowedDate.getText());
+            Date RD = formatter.parse(tfBookReturnedDate.getText());
+            int borrowerID = Integer.parseInt(tfBorrowerID.getText());
+            
+            
+           
+            String formattedLBD = formatter.format(LBD);
+            String formattedRD = formatter.format(RD);
 
-    private void BtnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnViewActionPerformed
+            
+            book = new Book(id, title, genre,isbn,availability,LBD,RD,borrowerID);
+            
+            // Validate book
+            ValidationController.ValidationResult result = vc.validateBook(book);
+
+            if (result.isValid()) {
+                // Add book to the database
+                bc.addBook(book);
+                //Pull and Update the table from DB
+                populateTable(false, true);
+                JOptionPane.showMessageDialog(null, "Book " + Integer.toString(book.getId()) + " successfully added!");
+                
+                // Clear fields
+                tfBookID.setText("");
+                tfBookTitle.setText("");
+            tfBookGenre.setText("");
+            tfBookISBNCode.setText("");
+            tfBookAvailability.setText("");
+            tfBookLastBorrowedDate.setText("");
+            tfBookReturnedDate.setText("");
+            tfBorrowerID.setText("");
+                
+            } else {
+                // Display error dialog with the identifier result
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex){
+            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);
+        }
+        
+        
+    }//GEN-LAST:event_BtnAddActionPerformed
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
         // TODO add your handling code here:
+        try {
+            bc = new BookController();
+            
+            int id = Integer.parseInt(tfBookID.getText());
+            String title = tfBookTitle.getText();
+            String genre = tfBookGenre.getText();
+            String isbn = tfBookISBNCode.getText();
+            boolean availability = Boolean.parseBoolean(tfBookAvailability.getText());
+            Date LBD = formatter.parse(tfBookLastBorrowedDate.getText());
+            Date RD = formatter.parse(tfBookReturnedDate.getText());
+            int borrowerID = Integer.parseInt(tfBorrowerID.getText());
+            
+            
+           
+            String formattedLBD = formatter.format(LBD);
+            String formattedRD = formatter.format(RD);
+
+            
+            book = new Book(id, title, genre,isbn,availability,LBD,RD,borrowerID);
+            
+            // Validate book
+            ValidationController.ValidationResult result = vc.validateBook(book);
+
+            if (result.isValid()) {
+                // Add book to the database
+                bc.updateBook(book);
+                //Pull and Update the table from DB
+                populateTable(false, true);
+                JOptionPane.showMessageDialog(null, "Book " + Integer.toString(book.getId()) + " successfully added!");
+                
+                // Clear fields
+                tfBookID.setText("");
+                tfBookTitle.setText("");
+            tfBookGenre.setText("");
+            tfBookISBNCode.setText("");
+            tfBookAvailability.setText("");
+            tfBookLastBorrowedDate.setText("");
+            tfBookReturnedDate.setText("");
+            tfBorrowerID.setText("");
+                
+            } else {
+                // Display error dialog with the identifier result
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex){
+            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);
+        }
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
     private void BtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteActionPerformed
         // TODO add your handling code here:
+        try {
+            bc = new BookController();
+            
+            int id = Integer.parseInt(tfBookID.getText());
+            String title = tfBookTitle.getText();
+            String genre = tfBookGenre.getText();
+            String isbn = tfBookISBNCode.getText();
+            boolean availability = Boolean.parseBoolean(tfBookAvailability.getText());
+            Date LBD = formatter.parse(tfBookLastBorrowedDate.getText());
+            Date RD = formatter.parse(tfBookReturnedDate.getText());
+            int borrowerID = Integer.parseInt(tfBorrowerID.getText());
+            
+            
+           
+            String formattedLBD = formatter.format(LBD);
+            String formattedRD = formatter.format(RD);
+
+            
+            book = new Book(id, title, genre,isbn,availability,LBD,RD,borrowerID);
+            
+            // Validate book
+            ValidationController.ValidationResult result = vc.validateBook(book);
+
+            if (result.isValid()) {
+                // Add book to the database
+                bc.deleteBook(book);
+                //Pull and Update the table from DB
+                populateTable(false, true);
+                JOptionPane.showMessageDialog(null, "Book " + Integer.toString(book.getId()) + " successfully added!");
+                
+                // Clear fields
+                tfBookID.setText("");
+                tfBookTitle.setText("");
+            tfBookGenre.setText("");
+            tfBookISBNCode.setText("");
+            tfBookAvailability.setText("");
+            tfBookLastBorrowedDate.setText("");
+            tfBookReturnedDate.setText("");
+            tfBorrowerID.setText("");
+                
+            } else {
+                // Display error dialog with the identifier result
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex){
+            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);
+        }
     }//GEN-LAST:event_BtnDeleteActionPerformed
 
     private void BtnMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMainActionPerformed
@@ -249,11 +450,19 @@ public class BooksManager extends javax.swing.JPanel {
         md.setVisible(true);
     }//GEN-LAST:event_BtnMainActionPerformed
 
+    private void BtnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewActionPerformed
+        populateTable(false, false);
+    }//GEN-LAST:event_BtnViewActionPerformed
+
+    private void BtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSearchActionPerformed
+        populateTable(true, false);
+    }//GEN-LAST:event_BtnSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnMain;
+    private javax.swing.JTable TableBook;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField tfBookAvailability;
     private javax.swing.JTextField tfBookGenre;
     private javax.swing.JTextField tfBookID;
