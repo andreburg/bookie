@@ -44,15 +44,11 @@ public class AuthorsManager extends javax.swing.JPanel {
         BtnDelete = new javax.swing.JButton();
         javax.swing.JButton BtnSearch = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(1080, 540));
-        setLayout(null);
+        setPreferredSize(new java.awt.Dimension(1025, 640));
 
         TableAuthors.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "ID", "Name", "Last Name"
@@ -80,39 +76,36 @@ public class AuthorsManager extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(TableAuthors);
 
-        add(jScrollPane1);
-        jScrollPane1.setBounds(6, 306, 1006, 226);
-
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel1.setText("Authors");
-        add(jLabel1);
-        jLabel1.setBounds(431, 10, 220, 50);
 
+        BtnAdd.setBackground(new java.awt.Color(110, 83, 83));
         BtnAdd.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnAdd.setForeground(new java.awt.Color(255, 255, 255));
         BtnAdd.setText("Add");
-        BtnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnAdd.setBorder(null);
         BtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAddActionPerformed(evt);
             }
         });
-        add(BtnAdd);
-        BtnAdd.setBounds(840, 110, 175, 30);
 
+        BtnView.setBackground(new java.awt.Color(110, 83, 83));
         BtnView.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnView.setForeground(new java.awt.Color(255, 255, 255));
         BtnView.setText("View All");
-        BtnView.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnView.setBorder(null);
         BtnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnViewActionPerformed(evt);
             }
         });
-        add(BtnView);
-        BtnView.setBounds(840, 160, 80, 30);
 
+        BtnMain.setBackground(new java.awt.Color(110, 83, 83));
         BtnMain.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnMain.setForeground(new java.awt.Color(255, 255, 255));
         BtnMain.setText("Main Menu");
-        BtnMain.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnMain.setBorder(null);
         BtnMain.setMaximumSize(new java.awt.Dimension(28, 22));
         BtnMain.setMinimumSize(new java.awt.Dimension(28, 22));
         BtnMain.setPreferredSize(new java.awt.Dimension(28, 22));
@@ -121,13 +114,9 @@ public class AuthorsManager extends javax.swing.JPanel {
                 BtnMainActionPerformed(evt);
             }
         });
-        add(BtnMain);
-        BtnMain.setBounds(840, 60, 175, 30);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("ID:");
-        add(jLabel2);
-        jLabel2.setBounds(40, 80, 16, 16);
 
         tfAuthorID.setToolTipText("Enter ID");
         tfAuthorID.addActionListener(new java.awt.event.ActionListener() {
@@ -135,73 +124,141 @@ public class AuthorsManager extends javax.swing.JPanel {
                 tfAuthorIDActionPerformed(evt);
             }
         });
-        add(tfAuthorID);
-        tfAuthorID.setBounds(30, 100, 270, 26);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Name:");
-        add(jLabel4);
-        jLabel4.setBounds(40, 140, 110, 16);
 
         tfAuthorName.setToolTipText("Enter your Name");
-        add(tfAuthorName);
-        tfAuthorName.setBounds(30, 160, 270, 26);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Last Name:");
-        add(jLabel6);
-        jLabel6.setBounds(40, 200, 130, 16);
 
         tfAuthorLastName.setToolTipText("Enter your Last Name");
-        add(tfAuthorLastName);
-        tfAuthorLastName.setBounds(30, 220, 270, 26);
 
+        BtnReset.setBackground(new java.awt.Color(110, 83, 83));
         BtnReset.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnReset.setForeground(new java.awt.Color(255, 255, 255));
         BtnReset.setText("Reset");
-        BtnReset.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnReset.setBorder(null);
         BtnReset.setName(""); // NOI18N
         BtnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnResetActionPerformed(evt);
             }
         });
-        add(BtnReset);
-        BtnReset.setBounds(40, 260, 110, 30);
 
+        BtnUpdate.setBackground(new java.awt.Color(110, 83, 83));
         BtnUpdate.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         BtnUpdate.setText("Update");
-        BtnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnUpdate.setBorder(null);
         BtnUpdate.setEnabled(false);
         BtnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnUpdateActionPerformed(evt);
             }
         });
-        add(BtnUpdate);
-        BtnUpdate.setBounds(840, 210, 175, 30);
 
+        BtnDelete.setBackground(new java.awt.Color(110, 83, 83));
         BtnDelete.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnDelete.setForeground(new java.awt.Color(255, 255, 255));
         BtnDelete.setText("Delete");
-        BtnDelete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnDelete.setBorder(null);
         BtnDelete.setEnabled(false);
         BtnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnDeleteActionPerformed(evt);
             }
         });
-        add(BtnDelete);
-        BtnDelete.setBounds(840, 260, 175, 30);
 
+        BtnSearch.setBackground(new java.awt.Color(110, 83, 83));
         BtnSearch.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnSearch.setForeground(new java.awt.Color(255, 255, 255));
         BtnSearch.setText("Search ID");
-        BtnSearch.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnSearch.setBorder(null);
         BtnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSearchActionPerformed(evt);
             }
         });
-        add(BtnSearch);
-        BtnSearch.setBounds(935, 160, 80, 30);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(431, 431, 431)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BtnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(BtnView, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tfAuthorID, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfAuthorLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(10, 10, 10)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(tfAuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(527, 527, 527)
+                                .addComponent(BtnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(4, 4, 4)
+                        .addComponent(tfAuthorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(jLabel4)
+                .addGap(4, 4, 4)
+                .addComponent(tfAuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel6)
+                .addGap(4, 4, 4)
+                .addComponent(tfAuthorLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnView, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private AuthorController ac;
@@ -215,26 +272,22 @@ public class AuthorsManager extends javax.swing.JPanel {
             int id = Integer.parseInt(tfAuthorID.getText());
             String name = tfAuthorName.getText();
             String lastName = tfAuthorLastName.getText();
-            author = new Author(id, name, lastName);
-
-            // Validate Author
-            ValidationController.ValidationResult result = vc.validateAuthor(author);
+            author = new Author(id, name, lastName);           
+            ValidationController.ValidationResult result = vc.validateAuthor(author);   // Validate Author
 
             if (result.isValid()) {
-                // Add author to the database
-                ac.addAuthor(author);
-                //Pull and Update the table from DB
-                populateTable(false, true);
-                JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully added!");
-                
-                // Clear fields
-                clearFields();
-            } else {
-                // Display error dialog with the identifier result
-                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+                if (!authorExists(author.getId())){
+                    ac.addAuthor(author);   // Add author to the database                 
+                    populateTable(false, true); //Pull and Update the table from DB
+                    JOptionPane.showMessageDialog(null, "Author " + Integer.toString(author.getId()) + " successfully added!");                              
+                    clearFields();  // Clear fields
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: Author " + author.getId() + " already exists", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                }               
+            } else {                
+                JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE); // Display error dialog with the identifier result
             }
         } catch (Exception ex){
-            //JOptionPane.showMessageDialog(null, "Error: Invalid ID", "Validation Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(ex);
         }  
     }//GEN-LAST:event_BtnAddActionPerformed
@@ -244,7 +297,6 @@ public class AuthorsManager extends javax.swing.JPanel {
     }//GEN-LAST:event_BtnViewActionPerformed
 
     private void BtnMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMainActionPerformed
-        // TODO add your handling code here:
         JFrame parentFrame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
         if (parentFrame != null) {
             parentFrame.dispose();
@@ -378,6 +430,23 @@ public class AuthorsManager extends javax.swing.JPanel {
         tfAuthorID.setText("");
         tfAuthorName.setText("");
         tfAuthorLastName.setText("");
+    }
+    
+    private boolean authorExists(int authorID) {
+        try {
+            ac = new AuthorController();            
+            ac.viewAllAuthors("");    // Retrieve all Authors            
+            List<Author> authors = ac.getAuthors();   // Get the list of all Authors            
+            for (Author author : authors) {   // Check if any author's ID matches the provided authorID
+                if (author.getId() == authorID) {
+                    return true; // Author ID found
+                }
+            }           
+            return false;   // No matching author ID found
+        } catch (Exception ex) {           
+            ex.printStackTrace();   // Print exception to the console and return false
+            return false;
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

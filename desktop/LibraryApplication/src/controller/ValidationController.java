@@ -41,9 +41,9 @@ public class ValidationController {
     private static final String ADDRESS_PATTERN = "^\\d+\\s[A-Za-z0-9\\s,.'-]+$"; // Address with house number, street name, and optional details
     private static final String DATE_PATTERN = "^\\d{4}-\\d{2}-\\d{2}$"; // Date format YYYY-MM-DD
     private static final String TITLE_PATTERN = "^[A-Za-z0-9\\s,.'\\-!@#$%^&*()_+=<>?{}\\[\\]~`|:;\"\\\\]+$"; // Title with various allowed characters
-    private static final String GENRE_PATTERN = "^[A-Za-z\\s]+$"; // Genre with letters and spaces
-    //private static final String ISBN_PATTERN = "^(97(8|9))?\\d{9}(\\d|X)$"; // ISBN number format
-    private static final String ISBN_PATTERN = "^[a-zA-Z0-9]+$"; // Accepts any combination of letters and digits for testing
+    private static final String GENRE_PATTERN = "^[a-zA-Zà-ÿÀ-ß]+(?:[ '-][a-zA-Zà-ÿÀ-ß]+)*$"; // Genre with letters and spaces
+    //private static final String ISBN_PATTERN = "^(97(8|9))?\\d{9}(\\d|X)$"; // ISBN number format strict
+    private static final String ISBN_PATTERN = "^[a-zA-Z0-9]+$"; // Accepts any combination of letters and digits loose
     private static final String INTEGER_PATTERN = "^\\d+$"; // Non-negative integer
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);

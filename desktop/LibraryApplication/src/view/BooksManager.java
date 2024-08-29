@@ -64,15 +64,14 @@ public class BooksManager extends javax.swing.JPanel {
         BtnDelete = new javax.swing.JButton();
         BtnReset = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(1080, 540));
-        setLayout(null);
+        setPreferredSize(new java.awt.Dimension(1025, 740));
 
         TableBook.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Title", "Genre", "ISBN Code", "Availability ", "LBD", "Date Returned", "Borrower ID"
+                "ID", "Title", "Genre", "ISBN Code", "Booked Out", "LBD", "Date Returned", "Borrower ID"
             }
         ) {
             Class[] types = new Class [] {
@@ -97,118 +96,83 @@ public class BooksManager extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(TableBook);
 
-        add(jScrollPane1);
-        jScrollPane1.setBounds(6, 311, 1006, 226);
-
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel1.setText("Books");
-        add(jLabel1);
-        jLabel1.setBounds(430, 10, 230, 50);
 
+        BtnAdd.setBackground(new java.awt.Color(110, 83, 83));
         BtnAdd.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnAdd.setForeground(new java.awt.Color(255, 255, 255));
         BtnAdd.setText("Add");
-        BtnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnAdd.setBorder(null);
         BtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAddActionPerformed(evt);
             }
         });
-        add(BtnAdd);
-        BtnAdd.setBounds(838, 121, 174, 31);
 
+        BtnMain.setBackground(new java.awt.Color(110, 83, 83));
         BtnMain.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnMain.setForeground(new java.awt.Color(255, 255, 255));
         BtnMain.setText("Main Menu");
-        BtnMain.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnMain.setBorder(null);
         BtnMain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnMainActionPerformed(evt);
             }
         });
-        add(BtnMain);
-        BtnMain.setBounds(840, 70, 170, 31);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("ID:");
-        add(jLabel2);
-        jLabel2.setBounds(30, 90, 16, 16);
 
         tfBookID.setToolTipText("Enter ID");
-        add(tfBookID);
-        tfBookID.setBounds(20, 110, 240, 26);
 
         tfBookISBNCode.setToolTipText("Enter ISBN code");
-        add(tfBookISBNCode);
-        tfBookISBNCode.setBounds(290, 110, 240, 26);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Title:");
-        add(jLabel4);
-        jLabel4.setBounds(30, 150, 110, 16);
 
         tfBookTitle.setToolTipText("Enter book title");
-        add(tfBookTitle);
-        tfBookTitle.setBounds(20, 170, 240, 26);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("ISBN Code:");
-        add(jLabel5);
-        jLabel5.setBounds(300, 90, 190, 16);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Genre:");
-        add(jLabel6);
-        jLabel6.setBounds(30, 220, 130, 16);
 
         tfBookGenre.setToolTipText("Enter book genre");
-        add(tfBookGenre);
-        tfBookGenre.setBounds(20, 240, 240, 26);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Returned Date:");
-        add(jLabel7);
-        jLabel7.setBounds(570, 90, 150, 16);
 
         tfBookReturnedDate.setToolTipText("Enter returned date");
         tfBookReturnedDate.setEnabled(false);
-        add(tfBookReturnedDate);
-        tfBookReturnedDate.setBounds(560, 110, 250, 26);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Availability:");
-        add(jLabel8);
-        jLabel8.setBounds(300, 150, 200, 16);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Borrower ID:");
-        add(jLabel9);
-        jLabel9.setBounds(570, 150, 120, 16);
 
         tfBookLastBorrowedDate.setToolTipText("Enter last borrowed date");
         tfBookLastBorrowedDate.setEnabled(false);
         tfBookLastBorrowedDate.setName(""); // NOI18N
-        add(tfBookLastBorrowedDate);
-        tfBookLastBorrowedDate.setBounds(290, 240, 240, 26);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setText("Last Borrowed Date:");
-        add(jLabel10);
-        jLabel10.setBounds(300, 220, 120, 16);
 
         tfBorrowerID.setToolTipText("Enter Borrower ID");
         tfBorrowerID.setName(""); // NOI18N
-        add(tfBorrowerID);
-        tfBorrowerID.setBounds(560, 170, 240, 26);
 
+        BtnView.setBackground(new java.awt.Color(110, 83, 83));
         BtnView.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnView.setForeground(new java.awt.Color(255, 255, 255));
         BtnView.setText("View All");
-        BtnView.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnView.setBorder(null);
         BtnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnViewActionPerformed(evt);
             }
         });
-        add(BtnView);
-        BtnView.setBounds(840, 170, 80, 30);
 
         cbxAvailable.setText("IS BOOKED OUT?");
         cbxAvailable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,54 +180,182 @@ public class BooksManager extends javax.swing.JPanel {
                 cbxAvailableMouseClicked(evt);
             }
         });
-        add(cbxAvailable);
-        cbxAvailable.setBounds(300, 170, 180, 20);
 
+        BtnSearch.setBackground(new java.awt.Color(110, 83, 83));
         BtnSearch.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnSearch.setForeground(new java.awt.Color(255, 255, 255));
         BtnSearch.setText("Search ID");
-        BtnSearch.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnSearch.setBorder(null);
         BtnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSearchActionPerformed(evt);
             }
         });
-        add(BtnSearch);
-        BtnSearch.setBounds(930, 170, 79, 27);
 
+        BtnUpdate.setBackground(new java.awt.Color(110, 83, 83));
         BtnUpdate.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         BtnUpdate.setText("Update");
-        BtnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnUpdate.setBorder(null);
         BtnUpdate.setEnabled(false);
         BtnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnUpdateActionPerformed(evt);
             }
         });
-        add(BtnUpdate);
-        BtnUpdate.setBounds(840, 220, 170, 27);
 
+        BtnDelete.setBackground(new java.awt.Color(110, 83, 83));
         BtnDelete.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnDelete.setForeground(new java.awt.Color(255, 255, 255));
         BtnDelete.setText("Delete");
-        BtnDelete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnDelete.setBorder(null);
         BtnDelete.setEnabled(false);
         BtnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnDeleteActionPerformed(evt);
             }
         });
-        add(BtnDelete);
-        BtnDelete.setBounds(840, 260, 160, 27);
 
+        BtnReset.setBackground(new java.awt.Color(110, 83, 83));
         BtnReset.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnReset.setForeground(new java.awt.Color(255, 255, 255));
         BtnReset.setText("Reset");
-        BtnReset.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnReset.setBorder(null);
         BtnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnResetActionPerformed(evt);
             }
         });
-        add(BtnReset);
-        BtnReset.setBounds(580, 230, 79, 27);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BtnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(352, 352, 352)))
+                .addGap(19, 19, 19))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfBookTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tfBookID, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(50, 50, 50))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(140, 140, 140)))
+                                            .addComponent(BtnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cbxAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(16, 16, 16))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tfBookLastBorrowedDate, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BtnView, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tfBookReturnedDate, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfBookGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfBookISBNCode, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfBorrowerID, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(100, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel5))
+                                        .addGap(30, 30, 30))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(tfBookID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfBookISBNCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel4)
+                                .addGap(4, 4, 4)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tfBookTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfBookGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jLabel6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbxAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfBorrowerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(28, 28, 28))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(tfBookLastBorrowedDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(tfBookReturnedDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(BtnView, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BtnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
     }// </editor-fold>//GEN-END:initComponents
 private BookController bc;
     ValidationController vc = new ValidationController();
@@ -279,13 +371,13 @@ private BookController bc;
             String title = tfBookTitle.getText().trim();    // Getting text input directly for title, genre, and ISBN
             String genre = tfBookGenre.getText().trim();
             String isbn = tfBookISBNCode.getText().trim();            
-            boolean isAvailable = cbxAvailable.isSelected(); // Getting boolean value from JCheckBox
+            boolean isNotAvailable = cbxAvailable.isSelected(); // Getting boolean value from JCheckBox
 
             Date LBD = null;
             Date RD = null;
             int borrowerID = 0;
            
-            if (!isAvailable) { // Check if the book is checked out                    
+            if (isNotAvailable) { // Check if the book is checked out                    
                 String lastBorrowedDateText = tfBookLastBorrowedDate.getText().trim();  // Parsing dates with proper format
                 String returnedDateText = tfBookReturnedDate.getText().trim();
 
@@ -312,16 +404,21 @@ private BookController bc;
                 }
             }
            
-            book = new Book(id, title, genre, isbn, isAvailable, LBD, RD, borrowerID);  // Create new Book object
+            book = new Book(id, title, genre, isbn, isNotAvailable, LBD, RD, borrowerID);  // Create new Book object
            
             ValidationController.ValidationResult result = vc.validateBook(book);   // Validate book using ValidationController
 
             if (result.isValid()) {
-                if (isAvailable || borrowerID == 0 || borrowerExists(borrowerID)) {                    
-                    bc.addBook(book);   // Add book to the database                   
-                    populateTable(false, true); // Pull and update the table from DB
-                    JOptionPane.showMessageDialog(null, "Book " + book.getId() + " successfully added!");
-                    clearFields();
+                if (isNotAvailable || borrowerID == 0 || borrowerExists(borrowerID)) { 
+                    if (!bookExists(book.getId())) { 
+                      bc.addBook(book);   // Add book to the database                   
+                        populateTable(false, true); // Pull and update the table from DB
+                        JOptionPane.showMessageDialog(null, "Book " + book.getId() + " successfully added!");
+                        clearFields();  
+                    } else {
+                       JOptionPane.showMessageDialog(null, "Error: Book " + book.getId() + " already exists", "Validation Error", JOptionPane.ERROR_MESSAGE); 
+                       return;
+                    }                   
                 } else {
                     JOptionPane.showMessageDialog(null, "Error: Borrower " + borrowerID + " does not exist", "Validation Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -413,7 +510,7 @@ private BookController bc;
             String title = tfBookTitle.getText().trim();
             String genre = tfBookGenre.getText().trim();
             String isbn = tfBookISBNCode.getText().trim();
-            boolean isAvailable = cbxAvailable.isSelected(); // Directly gets the boolean value
+            boolean isNotAvailable = cbxAvailable.isSelected(); // Directly gets the boolean value
 
             Date lastBorrowedDate = null;
             Date returnedDate = null;
@@ -421,7 +518,7 @@ private BookController bc;
             String returnedDateText = tfBookReturnedDate.getText().trim();
             int borrowerID = 0;
             
-            if (isAvailable) {  // Check if the book is being borrowed
+            if (isNotAvailable) {  // Check if the book is being borrowed
                 if (!lastBorrowedDateText.isEmpty()) {
                     try {
                         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -456,11 +553,11 @@ private BookController bc;
                 }
             }
             
-            book = new Book(id, title, genre, isbn, isAvailable, lastBorrowedDate, returnedDate, borrowerID);   // Create a Book object
+            book = new Book(id, title, genre, isbn, isNotAvailable, lastBorrowedDate, returnedDate, borrowerID);   // Create a Book object
            
             ValidationController.ValidationResult result = vc.validateBook(book);   // Validate book using ValidationController
             if (result.isValid()) {
-                if (isAvailable && borrowerID == 0 || borrowerExists(borrowerID)) {                  
+                if (isNotAvailable && borrowerID == 0 || borrowerExists(borrowerID)) {                  
                 bc.updateBook(book);    // Update book in the database               
                 populateTable(false, true); // Pull and update the table from DB
                 JOptionPane.showMessageDialog(null, "Book " + book.getId() + " successfully updated!");                
@@ -569,6 +666,22 @@ private BookController bc;
             return false;   // No matching borrower ID found
         } catch (Exception ex) {           
             ex.printStackTrace();   // Print exception to the console and return false
+            return false;
+        }
+    }
+    
+    private boolean bookExists(int bookID) {
+        try {
+            bc.viewAllBooks("");
+            List<Book> books = bc.getBooks();
+            for (Book book : books){
+                if (book.getId() == bookID) {
+                    return true;
+                }
+            }
+            return false;    
+        } catch (Exception ex) {
+            ex.printStackTrace();
             return false;
         }
     }

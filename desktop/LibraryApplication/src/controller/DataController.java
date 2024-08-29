@@ -480,6 +480,7 @@ public class DataController {
 
     
     /*
+THIS IS A COPY OF OUR DB AND ITS TABLES
     //Creating Tables
         public void createTables(){       
             try {

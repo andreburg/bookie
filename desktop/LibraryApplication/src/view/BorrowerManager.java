@@ -55,39 +55,23 @@ public class BorrowerManager extends javax.swing.JPanel {
         BtnDelete = new javax.swing.JButton();
         BtnReset = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(1040, 760));
-        setLayout(null);
+        setPreferredSize(new java.awt.Dimension(1025, 760));
 
         tfBorrowerID.setToolTipText("Enter ID");
-        add(tfBorrowerID);
-        tfBorrowerID.setBounds(20, 80, 270, 26);
 
         tfBorrowerName.setToolTipText("Enter your Name");
-        add(tfBorrowerName);
-        tfBorrowerName.setBounds(20, 130, 270, 26);
 
         tfBorrowerLastName.setToolTipText("Enter your Last Name");
-        add(tfBorrowerLastName);
-        tfBorrowerLastName.setBounds(320, 130, 270, 26);
 
         tfBorrowerPhoneNumber.setToolTipText("Enter your Phone Number");
-        add(tfBorrowerPhoneNumber);
-        tfBorrowerPhoneNumber.setBounds(20, 180, 270, 26);
 
         tfBorrowerEmailAddress.setToolTipText("Enter Email Address");
-        add(tfBorrowerEmailAddress);
-        tfBorrowerEmailAddress.setBounds(320, 180, 270, 26);
 
         tfBorrowerHomeAddress.setToolTipText("Enter Home Address");
-        add(tfBorrowerHomeAddress);
-        tfBorrowerHomeAddress.setBounds(20, 230, 270, 26);
 
         TableBorrowers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Name", "Last Name", "Phone Number", "Email", "Address"
@@ -115,119 +99,215 @@ public class BorrowerManager extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(TableBorrowers);
 
-        add(jScrollPane1);
-        jScrollPane1.setBounds(22, 327, 990, 410);
-
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel1.setText("Borrowers");
-        add(jLabel1);
-        jLabel1.setBounds(407, 10, 196, 50);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("ID:");
-        add(jLabel2);
-        jLabel2.setBounds(30, 60, 16, 16);
 
+        BtnAdd.setBackground(new java.awt.Color(110, 83, 83));
         BtnAdd.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnAdd.setForeground(new java.awt.Color(255, 255, 255));
         BtnAdd.setText("Add");
-        BtnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnAdd.setBorder(null);
         BtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAddActionPerformed(evt);
             }
         });
-        add(BtnAdd);
-        BtnAdd.setBounds(30, 290, 174, 30);
 
+        BtnView.setBackground(new java.awt.Color(110, 83, 83));
         BtnView.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnView.setForeground(new java.awt.Color(255, 255, 255));
         BtnView.setText("View All");
-        BtnView.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnView.setBorder(null);
         BtnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnViewActionPerformed(evt);
             }
         });
-        add(BtnView);
-        BtnView.setBounds(410, 230, 80, 30);
 
+        BtnMain.setBackground(new java.awt.Color(110, 83, 83));
         BtnMain.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnMain.setForeground(new java.awt.Color(255, 255, 255));
         BtnMain.setText("Main Menu");
-        BtnMain.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnMain.setBorder(null);
         BtnMain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnMainActionPerformed(evt);
             }
         });
-        add(BtnMain);
-        BtnMain.setBounds(840, 290, 174, 31);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        add(jLabel3);
-        jLabel3.setBounds(370, 80, 0, 0);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Name:");
-        add(jLabel4);
-        jLabel4.setBounds(30, 110, 110, 16);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Phone Number:");
-        add(jLabel5);
-        jLabel5.setBounds(30, 160, 220, 16);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Last Name:");
-        add(jLabel6);
-        jLabel6.setBounds(330, 110, 130, 16);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Home Address:");
-        add(jLabel7);
-        jLabel7.setBounds(30, 210, 150, 16);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Email Address:");
-        add(jLabel8);
-        jLabel8.setBounds(330, 160, 230, 16);
 
+        BtnSearch.setBackground(new java.awt.Color(110, 83, 83));
         BtnSearch.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnSearch.setForeground(new java.awt.Color(255, 255, 255));
         BtnSearch.setText("Search ID");
-        BtnSearch.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        add(BtnSearch);
-        BtnSearch.setBounds(500, 230, 79, 30);
+        BtnSearch.setBorder(null);
 
+        BtnUpdate.setBackground(new java.awt.Color(110, 83, 83));
         BtnUpdate.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         BtnUpdate.setText("Update");
-        BtnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnUpdate.setBorder(null);
+        BtnUpdate.setEnabled(false);
         BtnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnUpdateActionPerformed(evt);
             }
         });
-        add(BtnUpdate);
-        BtnUpdate.setBounds(230, 290, 170, 30);
 
+        BtnDelete.setBackground(new java.awt.Color(110, 83, 83));
         BtnDelete.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnDelete.setForeground(new java.awt.Color(255, 255, 255));
         BtnDelete.setText("Delete");
-        BtnDelete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnDelete.setBorder(null);
+        BtnDelete.setEnabled(false);
         BtnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnDeleteActionPerformed(evt);
             }
         });
-        add(BtnDelete);
-        BtnDelete.setBounds(430, 290, 170, 30);
 
+        BtnReset.setBackground(new java.awt.Color(110, 83, 83));
         BtnReset.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        BtnReset.setForeground(new java.awt.Color(255, 255, 255));
         BtnReset.setText("Reset");
-        BtnReset.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnReset.setBorder(null);
         BtnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnResetActionPerformed(evt);
             }
         });
-        add(BtnReset);
-        BtnReset.setBounds(320, 230, 79, 30);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(407, 407, 407)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(BtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(tfBorrowerName)
+                                                .addGap(41, 41, 41)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tfBorrowerLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(tfBorrowerPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(41, 41, 41))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(tfBorrowerHomeAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(BtnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(37, 37, 37)
+                                                .addComponent(BtnView, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(10, 10, 10)
+                                                .addComponent(BtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tfBorrowerEmailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(tfBorrowerID, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                        .addComponent(BtnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(4, 4, 4)
+                        .addComponent(tfBorrowerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfBorrowerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfBorrowerLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8))
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfBorrowerEmailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfBorrowerPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfBorrowerHomeAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(BtnView, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BtnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(BtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        BtnAdd.getAccessibleContext().setAccessibleName("");
+        BtnUpdate.getAccessibleContext().setAccessibleName("");
+        BtnDelete.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
     private BorrowerController bc;
@@ -280,11 +360,16 @@ public class BorrowerManager extends javax.swing.JPanel {
             borrower = new Borrower(id, name, lastName, phoneNumber, email, address);            
             ValidationController.ValidationResult result = vc.validateBorrower(borrower);   // Validate Borrower
 
-            if (result.isValid()) {               
-                bc.addBorrower(borrower);   // Add author to the database               
-                populateTable(false, true); //Pull and Update the table from DB
-                JOptionPane.showMessageDialog(null, "Borrower " + Integer.toString(borrower.getId()) + " successfully added!");                                
-                clearFields();   //Clear all fields:               
+            if (result.isValid()) { 
+                if (!borrowerExists(borrower.getId())){
+                   bc.addBorrower(borrower);   // Add author to the database               
+                    populateTable(false, true); //Pull and Update the table from DB
+                    JOptionPane.showMessageDialog(null, "Borrower " + Integer.toString(borrower.getId()) + " successfully added!");                                
+                    clearFields();   //Clear all fields: 
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: Borrower " + borrower.getId() + " already exists", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }                              
             } else {                
                 JOptionPane.showMessageDialog(null, "Error: " + result.getIdentifier(), "Validation Error", JOptionPane.ERROR_MESSAGE); // Display error dialog with the identifier result
             }
@@ -406,6 +491,23 @@ public class BorrowerManager extends javax.swing.JPanel {
         tfBorrowerPhoneNumber.setText("");
         tfBorrowerEmailAddress.setText("");
         tfBorrowerHomeAddress.setText("");
+    }
+    
+    private boolean borrowerExists(int borrowerID) {
+        try {
+            BorrowerController bc = new BorrowerController();            
+            bc.viewAllBorrowers("");    // Retrieve all borrowers            
+            List<Borrower> borrowers = bc.getBorrowers();   // Get the list of all borrowers            
+            for (Borrower borrower : borrowers) {   // Check if any borrower's ID matches the provided borrowerID
+                if (borrower.getId() == borrowerID) {
+                    return true; // Borrower ID found
+                }
+            }           
+            return false;   // No matching borrower ID found
+        } catch (Exception ex) {           
+            ex.printStackTrace();   // Print exception to the console and return false
+            return false;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
