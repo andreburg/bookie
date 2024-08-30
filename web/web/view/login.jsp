@@ -26,6 +26,16 @@
                             <input type="password" name ="txtPassword" id="password" placeholder="Password">
                         </div>
                         <input id="sign-in-button" type="submit" value="Sign in">
+                             <% 
+                            String errorMessage = request.getParameter("error");
+                            if (errorMessage != null && !errorMessage.isEmpty() && errorMessage.contains("Invalid credentials")) {
+                            %>
+                                <div class="error-message">
+                                    <p><%= errorMessage %></p>
+                                </div>
+                            <% 
+                                }
+                            %>
                         <p>Don't have an account? <span><a href='/register'>Register</a></span></p>
                     </div>
                 </form>
